@@ -1,15 +1,15 @@
----
+<!-- ---
 title: 'Enemy Nodepool'
 disqus: hackmd
----
+--- -->
 
 Enemy Design
 ===
 
-
+<!-- 
 ## Link
 
-[TOC]
+[TOC] -->
 
 ## Enemy movement
 
