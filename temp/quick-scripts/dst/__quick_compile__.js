@@ -1,6 +1,6 @@
 
 (function () {
-var scripts = [{"deps":{"./assets/Script/ExperienceSystem":1,"./assets/Script/PlayerAttack":3,"./assets/Script/PlayerControl":2,"./assets/Script/Bullet":4,"./assets/Script/CircleAttack":5},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/Script/ExperienceSystem.js"},{"deps":{"./ExperienceSystem":1},"path":"preview-scripts/assets/Script/PlayerControl.js"},{"deps":{},"path":"preview-scripts/assets/Script/PlayerAttack.js"},{"deps":{},"path":"preview-scripts/assets/Script/Bullet.js"},{"deps":{},"path":"preview-scripts/assets/Script/CircleAttack.js"}];
+var scripts = [{"deps":{},"path":"preview-scripts/__qc_index__.js"}];
 var entries = ["preview-scripts/__qc_index__.js"];
 var bundleScript = 'preview-scripts/__qc_bundle__.js';
 

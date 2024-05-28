@@ -17,7 +17,6 @@ export default class ExperienceSystem extends cc.Component {
     @property
     levelUpExperience: number = 100;
 
-    //目前等級
     private level: number = 1;
 
     onLoad() {
@@ -40,6 +39,10 @@ export default class ExperienceSystem extends cc.Component {
         this.level++;
         this.currentExperience -= this.levelUpExperience;
         this.levelUpExperience *= 1.2; // 每次升级后需要更多经验
+
+        // 触发 level-up 事件
+        cc.log(`Level up! New level: ${this.level}`);
+        this.node.emit('level-up', this.level);
         this.updateUI();
     }
 

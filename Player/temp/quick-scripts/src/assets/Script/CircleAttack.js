@@ -1,5 +1,5 @@
 "use strict";
-cc._RF.push(module, '94dcaaDSqlLprV34ucdJNzO', 'CircleAttack');
+cc._RF.push(module, '3e9bdw3XhdHLb0K8rVDxvYS', 'CircleAttack');
 // Script/CircleAttack.ts
 
 "use strict";

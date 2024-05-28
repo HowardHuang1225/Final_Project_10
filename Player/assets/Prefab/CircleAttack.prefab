@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "CircleAttack",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -21,17 +21,20 @@
     "_components": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 3
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 234,
-      "g": 46,
-      "b": 46,
+      "r": 244,
+      "g": 19,
+      "b": 19,
       "a": 255
     },
     "_contentSize": {
@@ -48,8 +51,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        221.483,
-        -78.591,
+        0,
+        0,
         0,
         0,
         0,
@@ -103,6 +106,18 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "3e9bdw3XhdHLb0K8rVDxvYS",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "damage": 10,
+    "duration": 2,
     "_id": ""
   },
   {

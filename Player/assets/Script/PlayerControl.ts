@@ -1,4 +1,4 @@
-import  ExperienceSystem  from './ExperienceSystem'; // Import the ExperienceSystem class
+import ExperienceSystem from './ExperienceSystem'; // Import the ExperienceSystem class
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -30,10 +30,13 @@ export class PlayerController extends cc.Component {
 
         // 获取 ExperienceSystem 组件
         this.experienceSystem = cc.find("Canvas/ExperienceBar").getComponent(ExperienceSystem);
-        if(this.experienceSystem){
+        if (this.experienceSystem) {
             cc.log('ExperienceSystem component found');
+            // 绑定 level-up 事件
+            this.experienceSystem.node.on('level-up', this.onLevelUp, this);
+        } else {
+            cc.error('ExperienceSystem component not found');
         }
-        this.node.on('level-up', this.onLevelUp, this);
     }
 
     start() {
@@ -50,7 +53,7 @@ export class PlayerController extends cc.Component {
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
-        switch(event.keyCode) {
+        switch (event.keyCode) {
             case cc.macro.KEY.a:
                 this.leftDown = true;
                 this.updateMoveDir();
@@ -76,7 +79,7 @@ export class PlayerController extends cc.Component {
     }
 
     onKeyUp(event: cc.Event.EventKeyboard) {
-        switch(event.keyCode) {
+        switch (event.keyCode) {
             case cc.macro.KEY.a:
                 this.leftDown = false;
                 this.updateMoveDir();
@@ -115,18 +118,20 @@ export class PlayerController extends cc.Component {
     }
 
     private onLevelUp(level: number) {
-        console.log('Player leveled up to level:', level);
+        cc.log('Player leveled up to level:', level);
         this.spawnNewAttack();
     }
 
     private spawnNewAttack() {
         if (this.newAttackPrefab) {
             const newAttack = cc.instantiate(this.newAttackPrefab);
-            newAttack.setPosition(this.node.position);
-            this.node.parent.addChild(newAttack);
+            newAttack.setPosition(0, 0); // 确保位置为相对于玩家节点
+            this.node.addChild(newAttack, -1); // 添加到玩家节点，并设置zIndex为-1确保在玩家图像下方
         }
     }
 }
+
+
 
 
 
