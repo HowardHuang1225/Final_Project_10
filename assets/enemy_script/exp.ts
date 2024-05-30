@@ -30,12 +30,12 @@ export default class NewClass extends cc.Component {
         // }, 10);
     }
 
-    onBeginContact(contact, selfCollider, otherCollider) {
-        if (otherCollider.node.name === 'Player') {
+    // onBeginContact(contact, selfCollider, otherCollider) {
+    //     if (otherCollider.node.name === 'Player') {
         
-            // selfCollider.node.removeFromParent(false);
-            console.log("exp")
-            selfCollider.node.destroy();
-        }
-    }
+    //         // selfCollider.node.removeFromParent(false);
+    //         console.log("exp")
+    //         selfCollider.node.destroy();
+    //     }
+    // }
 }

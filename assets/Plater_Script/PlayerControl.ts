@@ -7,11 +7,17 @@ export class PlayerController extends cc.Component {
     @property()
     playerSpeed: number = 300;
 
+    @property()
+    playerLife: number = 30;
+
     @property(cc.Prefab)
     newAttackPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
     shotgunAttackPrefab: cc.Prefab = null; // 新的散弹枪攻击预制体
+
+    @property(cc.ProgressBar)
+    LifeBar: cc.ProgressBar = null;
 
     private moveDir: cc.Vec2 = cc.v2(0, 0);
     private upDown: boolean = false;
@@ -22,8 +28,13 @@ export class PlayerController extends cc.Component {
     private idleFrame: cc.SpriteFrame = null;
     private anim: cc.Animation = null;
     private experienceSystem: ExperienceSystem = null;
+    private contactMonsters: Set<cc.Node> = new Set();
+    private invincible: boolean = false;
+
+    private dead: boolean = false;
 
     onLoad() {
+        // this.node.zIndex = 8
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.physicManager.gravity = cc.v2(0, -200);
@@ -45,6 +56,9 @@ export class PlayerController extends cc.Component {
     start() {
         this.idleFrame = this.getComponent(cc.Sprite).spriteFrame;
         this.anim = this.node.getComponent(cc.Animation);
+
+        // 确保一开始播放 idle 动画
+        this.playAnimation("player_idle");
     }
 
     update(dt: number) {
@@ -53,25 +67,23 @@ export class PlayerController extends cc.Component {
         if (this.moveDir.x !== 0) {
             this.node.scaleX = (this.moveDir.x >= 0) ? 1 : -1;
         }
+
+        this.LifeBar.progress = this.playerLife / 30;
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
         switch (event.keyCode) {
             case cc.macro.KEY.a:
                 this.leftDown = true;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.d:
                 this.rightDown = true;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.w:
                 this.upDown = true;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.s:
                 this.downDown = true;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.e:
                 if (this.experienceSystem) {
@@ -80,36 +92,34 @@ export class PlayerController extends cc.Component {
                 break;
             case cc.macro.KEY.g:
                 if (this.experienceSystem && this.experienceSystem.useUpgradePoint()) {
-                    this.spawnNewAttack(); // 按下 1 键消耗升级点数并增加 CircleAttack
+                    this.spawnNewAttack(); // 按下 G 键消耗升级点数并增加 CircleAttack
                 }
                 break;
             case cc.macro.KEY.h:
                 if (this.experienceSystem && this.experienceSystem.useUpgradePoint()) {
-                    this.spawnShotgunAttack(); // 按下 2 键消耗升级点数并增加 ShotgunAttack
+                    this.spawnShotgunAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
                 }
                 break;
         }
+        this.updateMoveDir();
     }
 
     onKeyUp(event: cc.Event.EventKeyboard) {
         switch (event.keyCode) {
             case cc.macro.KEY.a:
                 this.leftDown = false;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.d:
                 this.rightDown = false;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.w:
                 this.upDown = false;
-                this.updateMoveDir();
                 break;
             case cc.macro.KEY.s:
                 this.downDown = false;
-                this.updateMoveDir();
                 break;
         }
+        this.updateMoveDir();
     }
 
     private updateMoveDir() {
@@ -117,17 +127,32 @@ export class PlayerController extends cc.Component {
         this.moveDir.y = 0;
         if (this.leftDown) {
             this.moveDir.x -= 1;
+            // this.playAnimation("player_left");
+            this.playAnimation("player_right");
         }
         if (this.rightDown) {
             this.moveDir.x += 1;
+            this.playAnimation("player_right");
         }
         if (this.upDown) {
             this.moveDir.y += 1;
+            this.playAnimation("player_up");
         }
         if (this.downDown) {
             this.moveDir.y -= 1;
+            this.playAnimation("player_down");
+        }
+        if (!this.leftDown && !this.rightDown && !this.upDown && !this.downDown) {
+            this.playAnimation("player_idle");
         }
         this.moveDir.normalizeSelf();
+    }
+
+    playAnimation(animationName: string) {
+        if (this.anim && (!this.anim.currentClip || this.anim.currentClip.name !== animationName)) {
+            cc.log(`Playing animation: ${animationName}`);
+            this.anim.play(animationName);
+        }
     }
 
     private onLevelUp(level: number) {
@@ -137,8 +162,10 @@ export class PlayerController extends cc.Component {
     private spawnNewAttack() {
         if (this.newAttackPrefab) {
             const newAttack = cc.instantiate(this.newAttackPrefab);
+            // this.node.zIndex = 8
+            // newAttack.zIndex = 7
             newAttack.setPosition(0, 0); // 确保位置为相对于玩家节点
-            this.node.addChild(newAttack, -1); // 添加到玩家节点，并设置zIndex为-1确保在玩家图像下方
+            this.node.addChild(newAttack); // 添加到玩家节点，并设置zIndex为-1确保在玩家图像下方
             cc.log('Spawned new CircleAttack');
         }
     }
@@ -153,20 +180,70 @@ export class PlayerController extends cc.Component {
     }
 
     onBeginContact(contact, selfCollider, otherCollider) {
+        if (this.playerLife <= 0) {
+            this.playAnimation("player_die");
+            return;
+        }
+
+        if (otherCollider.node.name === "bat" ||
+            otherCollider.node.name === "ghast" ||
+            otherCollider.node.name === "ice" ||
+            otherCollider.node.name === "pumpkin" ||
+            otherCollider.node.name === "wind") {
+
+            const damageMonster = otherCollider.node;
+
+            if (!this.contactMonsters.has(damageMonster)) {
+                this.contactMonsters.add(damageMonster);
+
+                if (!this.invincible) {
+                    this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
+                    this.playerLife -= 1;
+                    cc.log(`Player Life: ${this.playerLife}`);
+
+                    this.invincible = true;
+                    this.scheduleOnce(() => {
+                        this.invincible = false;
+                    }, 0.5);
+                }
+
+                // 设置一个计时器，每0.5秒检查一次
+                damageMonster['damageInterval'] = this.schedule(() => {
+                    if (this.contactMonsters.has(damageMonster) && !this.invincible) {
+                        this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
+                        this.playerLife -= 1;
+                        cc.log(`Player Life: ${this.playerLife}`);
+
+                        this.invincible = true;
+                        this.scheduleOnce(() => {
+                            this.invincible = false;
+                        }, 0.5);
+                    }
+                }, 0.5);
+            }
+        }
         if (otherCollider.node.name === 'exp') {
-        
-            // selfCollider.node.removeFromParent(false);
-            console.log("exp")
             this.experienceSystem.addExperience(10);
+            otherCollider.node.destroy();
+            console.log("ss");
         }
     }
 
+    changeColorTemporarily(node: cc.Node, color: cc.Color, duration: number) {
+        const originalColor = node.color;
+        node.color = color;
+
+        this.scheduleOnce(() => {
+            node.color = originalColor;
+        }, duration);
+    }
+
+    onEndContact(contact, selfCollider, otherCollider) {
+        if (this.contactMonsters.has(otherCollider.node)) {
+            this.contactMonsters.delete(otherCollider.node);
+
+            // 取消计时器
+            this.unschedule(otherCollider.node['damageInterval']);
+        }
+    }
 }
-
-
-
-
-
-
-
-

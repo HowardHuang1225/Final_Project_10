@@ -98,7 +98,7 @@ export default class Monster extends cc.Component {
         if(this.dead) return;
         if (otherCollider.node.name === 'Bullet' && this.life >=1) { 
             this.life -=1;
-             this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
+            this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
             console.log("collide: ", this.life);
         }
         if(otherCollider.node.name === 'Bullet' && this.life <= 0){
