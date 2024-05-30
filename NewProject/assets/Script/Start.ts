@@ -1,11 +1,6 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 const { ccclass, property } = cc._decorator;
+
+
 
 @ccclass
 export default class Start extends cc.Component {
@@ -21,16 +16,24 @@ export default class Start extends cc.Component {
     @property(cc.Prefab)
     signUp: cc.Prefab = null;
 
+
     private signInPag: cc.Prefab = null;
     private signUpPag: cc.Prefab = null;
+    public AudioID_Start = 0;
 
-    // declare const firebase: any;
 
 
 
     protected onLoad(): void {
         //load bgm
-        cc.audioEngine.playMusic(this.bgm, true);
+        this.AudioID_Start = cc.audioEngine.playMusic(this.bgm, true);
+        if (this.AudioID_Start !== null) {
+            // 返回值不为null，表示音乐已经成功播放，可以进行后续操作
+            console.log("AudioID_Start: ", this.AudioID_Start);
+        } else {
+            // 返回值为null，可能是因为音乐文件加载失败或其他原因导致播放失败
+            console.log("Failed to play music.");
+        }
     }
     start() {
         // link click
@@ -62,6 +65,13 @@ export default class Start extends cc.Component {
     }
 
     loadMenu() {
+        const existingSignWinNode = this.node.getParent().getChildByName("SignWin");
+        const existingSignUpNode = this.node.getParent().getChildByName("SignUp");
+        if (existingSignWinNode || existingSignUpNode) {
+            cc.log("Sign-in or Sign-up window already exists!");
+            return;
+        }
+
         // 播放點擊音效
         cc.audioEngine.play(this.click, false, 1);
         cc.audioEngine.stopAll();
@@ -69,22 +79,57 @@ export default class Start extends cc.Component {
     }
 
     signinScene() {
-        //load perfab "SignIn"
+        // Check if SignWin node already exists
+        const existingSignWinNode = this.node.getParent().getChildByName("SignWin");
+        const existingSignUpNode = this.node.getParent().getChildByName("SignUp");
+        if (existingSignWinNode || existingSignUpNode) {
+            cc.log("Sign-in or Sign-up window already exists!");
+            return;
+        }
+
+        // Load prefab "SignIn"
         let prefab = cc.instantiate(this.signIn);
-        console.log("this.node.getParent()", this.node.getParent());
+        prefab.name = "SignWin"; // Set node name
         this.node.getParent().addChild(prefab);
-        // (-64.986,0)
+        prefab.setScale(0);
+
+        // Create a scale-in animation
+        cc.tween(prefab)
+            .to(0.2, { scale: 1 }, { easing: 'backOut' })
+            .start();
         prefab.setPosition(413.235, 320);
     }
 
     signUPScene() {
-        let prefab1 = cc.instantiate(this.signUp);
-        console.log("this.node.getParent()", this.node.getParent());
-        this.node.getParent().addChild(prefab1);
-        prefab1.setPosition(413.235, 320);
+        // Check if SignUp node already exists
+        const existingSignWinNode = this.node.getParent().getChildByName("SignWin");
+        const existingSignUpNode = this.node.getParent().getChildByName("SignUp");
+        if (existingSignWinNode || existingSignUpNode) {
+            cc.log("Sign-in or Sign-up window already exists!");
+            return;
+        }
+
+        // Load prefab "SignUp"
+        let prefab = cc.instantiate(this.signUp);
+        prefab.name = "SignUp"; // Set node name
+        this.node.getParent().addChild(prefab);
+        prefab.setScale(0);
+
+        // Create a scale-in animation
+        cc.tween(prefab)
+            .to(0.2, { scale: 1 }, { easing: 'backOut' })
+            .start();
+        prefab.setPosition(413.235, 320);
     }
 
     jumpScene() {
+        const existingSignWinNode = this.node.getParent().getChildByName("SignWin");
+        const existingSignUpNode = this.node.getParent().getChildByName("SignUp");
+        if (existingSignWinNode || existingSignUpNode) {
+            cc.log("Sign-in or Sign-up window already exists!");
+            return;
+        }
+
         cc.audioEngine.stopAll();
         cc.game.end();
     }

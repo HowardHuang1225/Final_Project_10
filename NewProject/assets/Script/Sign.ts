@@ -23,7 +23,13 @@ export default class Sign extends cc.Component {
 
   onEscButtonClick() {
     // Remove this node from its parent, effectively closing the prefab
-    this.node.destroy();
+    cc.tween(this.node)
+      .to(0.2, { scale: 0 }, { easing: 'backIn' })
+      .call(() => {
+        // Destroy the node after animation
+        this.node.destroy();
+      })
+      .start();
   }
 
   onSubmitButtonClick() {

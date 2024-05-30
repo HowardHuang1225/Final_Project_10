@@ -345,7 +345,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Icon",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
@@ -367,8 +367,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 600,
-      "height": 40
+      "width": 495,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -380,14 +380,14 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -8.651,
+        77.455,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        1.5,
+        1.5,
         1
       ]
     },
@@ -421,11 +421,11 @@
     "_dstBlendFactor": 771,
     "_string": "CODE CODE",
     "_N$string": "CODE CODE",
-    "_fontSize": 300,
+    "_fontSize": 80,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "e4eef931-873e-45e9-b66f-407272097e7b"
+      "__uuid__": "17e24be4-521b-40ff-84a1-f252fecf92ef"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

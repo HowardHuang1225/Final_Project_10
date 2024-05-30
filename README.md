@@ -4,7 +4,7 @@
 
 ## FlowChart
 
-* Start (Window)
+* Start (Window) <- Finish
   * item
       signup(Jump Window)
       signin(Jump Window)
