@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Boss1",
+    "_name": "Boss1_4",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -48,8 +48,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 16,
-      "height": 27
+      "width": 32,
+      "height": 32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -101,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "d7d98bf0-0357-48d3-9a0a-bb2a90bdc44d"
+      "__uuid__": "67c03e27-bf06-4701-b5b3-648518e1b396"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -115,7 +115,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "88543977-e624-4585-b1e0-2429f7d825ce"
+      "__uuid__": "c0630075-c576-4fac-9548-32219af7baf5"
     },
     "_id": ""
   },
@@ -178,23 +178,32 @@
       "__id__": 1
     },
     "_enabled": true,
-    "bossspeed": 300,
+    "bossspeed": 600,
     "bosslife": 10,
     "bossattack": 1,
     "BossPrefab": null,
+    "BoombPrefab": {
+      "__uuid__": "ad5026a6-a8bc-44c6-adfe-e56a572677bc"
+    },
     "_id": ""
   },
   {
-    "__type__": "0d31fAInVVIupYCtbM+1/Op",
+    "__type__": "cc.Animation",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "bossspeed": 300,
-    "bosslife": 10,
-    "bossattack": 1,
+    "_defaultClip": {
+      "__uuid__": "979aa981-0f48-48b4-b1bd-efdc6b103510"
+    },
+    "_clips": [
+      {
+        "__uuid__": "979aa981-0f48-48b4-b1bd-efdc6b103510"
+      }
+    ],
+    "playOnLoad": false,
     "_id": ""
   },
   {

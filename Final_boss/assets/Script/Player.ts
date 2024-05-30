@@ -6,6 +6,9 @@ export class Player extends cc.Component {
     @property()
     playerSpeed: number = 300;
 
+    @property()
+    playerlife = 10;
+
     private physicManager: cc.PhysicsManager = null;
     private rigidBody: cc.RigidBody = null;
     private moveDir = 0;
@@ -33,6 +36,9 @@ export class Player extends cc.Component {
         let velocityX = this.playerSpeed * this.moveDir;
         let velocityY = this.playerSpeed * this.moveDown;
         this.rigidBody.linearVelocity = cc.v2(velocityX, velocityY);
+        if(this.playerlife <= 0){
+            this.node.destroy();
+        }
     }
 
     onKeyDown(event) {
@@ -103,7 +109,19 @@ export class Player extends cc.Component {
 
     onBeginContact(contact, self, other){
         if(other.node.name == "Boss1"){
-            this.rigidBody.linearVelocity = cc.v2(0,0);
+            this.playerlife -= 3;
+        }
+        if(other.node.name == "Boss1_2"){
+            this.playerlife -= 3;
+        }
+        if(other.node.name == "Boss1_3"){
+            this.playerlife -= 3;
+        }
+        if(other.node.name == "Boss1_4"){
+            this.playerlife -= 3;
+        }
+        if(other.node.name == "Boomb"){
+            this.playerlife -= 2;
         }
     }
 }
