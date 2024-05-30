@@ -14,7 +14,6 @@ export default class CircleAttack extends cc.Component {
     }
 
     applyDamage() {
-        // 在这里实现对敌人的伤害逻辑
         cc.log('Applying damage:', this.damage);
     }
 

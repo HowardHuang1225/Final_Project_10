@@ -75,6 +75,11 @@ export class PlayerController extends cc.Component {
                     this.experienceSystem.addExperience(10); // 按下 E 键增加经验值
                 }
                 break;
+            case cc.macro.KEY.num1:  //按下數字鍵1增加CircleAttack
+                if (this.experienceSystem && this.experienceSystem.useUpgradePoint()) {
+                    this.CircleAttack(); // 按下 1 键消耗升级点数并增加 CircleAttack
+                }
+                break;
         }
     }
 
@@ -119,17 +124,19 @@ export class PlayerController extends cc.Component {
 
     private onLevelUp(level: number) {
         cc.log('Player leveled up to level:', level);
-        this.spawnNewAttack();
     }
 
-    private spawnNewAttack() {
+    private CircleAttack() {
         if (this.newAttackPrefab) {
             const newAttack = cc.instantiate(this.newAttackPrefab);
             newAttack.setPosition(0, 0); // 确保位置为相对于玩家节点
             this.node.addChild(newAttack, -1); // 添加到玩家节点，并设置zIndex为-1确保在玩家图像下方
+            cc.log('Spawned new CircleAttack');
         }
     }
 }
+
+
 
 
 

@@ -37,7 +37,6 @@ var CircleAttack = /** @class */ (function (_super) {
         this.scheduleOnce(this.destroySelf, this.duration);
     };
     CircleAttack.prototype.applyDamage = function () {
-        // 在这里实现对敌人的伤害逻辑
         cc.log('Applying damage:', this.damage);
     };
     CircleAttack.prototype.destroySelf = function () {

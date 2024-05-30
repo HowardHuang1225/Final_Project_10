@@ -94,6 +94,11 @@ var PlayerController = /** @class */ (function (_super) {
                     this.experienceSystem.addExperience(10); // 按下 E 键增加经验值
                 }
                 break;
+            case cc.macro.KEY.num1: //按下數字鍵1增加CircleAttack
+                if (this.experienceSystem && this.experienceSystem.useUpgradePoint()) {
+                    this.CircleAttack(); // 按下 1 键消耗升级点数并增加 CircleAttack
+                }
+                break;
         }
     };
     PlayerController.prototype.onKeyUp = function (event) {
@@ -135,13 +140,13 @@ var PlayerController = /** @class */ (function (_super) {
     };
     PlayerController.prototype.onLevelUp = function (level) {
         cc.log('Player leveled up to level:', level);
-        this.spawnNewAttack();
     };
-    PlayerController.prototype.spawnNewAttack = function () {
+    PlayerController.prototype.CircleAttack = function () {
         if (this.newAttackPrefab) {
             var newAttack = cc.instantiate(this.newAttackPrefab);
             newAttack.setPosition(0, 0); // 确保位置为相对于玩家节点
             this.node.addChild(newAttack, -1); // 添加到玩家节点，并设置zIndex为-1确保在玩家图像下方
+            cc.log('Spawned new CircleAttack');
         }
     };
     __decorate([
