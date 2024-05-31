@@ -1,3 +1,5 @@
+import Menu from "./Menu";
+
 const { ccclass, property } = cc._decorator;
 
 
@@ -19,17 +21,19 @@ export default class Start extends cc.Component {
 
     private signInPag: cc.Prefab = null;
     private signUpPag: cc.Prefab = null;
-    public AudioID_Start = 0;
+    static AudioID_Start: number;
 
 
 
 
     protected onLoad(): void {
         //load bgm
-        this.AudioID_Start = cc.audioEngine.playMusic(this.bgm, true);
-        if (this.AudioID_Start !== null) {
+        Start.AudioID_Start = cc.audioEngine.playMusic(this.bgm, true);
+        cc.audioEngine.setVolume(Start.AudioID_Start, Menu.BGMVolume);
+        console.log("Menu.BGMVolume: ", Menu.BGMVolume);
+        if (Start.AudioID_Start !== null) {
             // 返回值不为null，表示音乐已经成功播放，可以进行后续操作
-            console.log("AudioID_Start: ", this.AudioID_Start);
+            console.log("AudioID_Start: ", Start.AudioID_Start);
         } else {
             // 返回值为null，可能是因为音乐文件加载失败或其他原因导致播放失败
             console.log("Failed to play music.");
@@ -37,7 +41,6 @@ export default class Start extends cc.Component {
     }
     start() {
         // link click
-        cc.audioEngine.playMusic(this.bgm, true);
         let startbtn = new cc.Component.EventHandler();
         let signinBt = new cc.Component.EventHandler();
         let signupBt = new cc.Component.EventHandler();

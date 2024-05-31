@@ -1,3 +1,6 @@
+import Setting from "./Setting";
+import Start from "./Start";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -12,17 +15,21 @@ export default class Menu extends cc.Component {
     setting: cc.Prefab = null;
 
 
-    public AudioID_Menu = 3;
+    static AudioID_Menu: number;
+
+    static BGMVolume: number = 0.5;
+    static EffectVolume: number = 0.5;
 
 
-    start() {
-        this.AudioID_Menu = cc.audioEngine.playMusic(this.bgm, true);
-        if (this.AudioID_Menu !== null) {
-            // 返回值不为null，表示音乐已经成功播放，可以进行后续操作
-            console.log("AudioID_Menu: ", this.AudioID_Menu);
-        } else {
-            // 返回值为null，可能是因为音乐文件加载失败或其他原因导致播放失败
-            console.log("Failed to play music.");
+    onLoad() {
+        if (this.node.getComponent(Setting) == null) {  //判斷是 setting 頁面還是 menu 頁面
+            Menu.AudioID_Menu = cc.audioEngine.playMusic(this.bgm, true);
+            cc.audioEngine.setVolume(Menu.AudioID_Menu, Menu.BGMVolume);
+            if (Menu.AudioID_Menu !== null) {
+                console.log("AudioID_Menu: ", Menu.AudioID_Menu);
+            } else {
+                console.log("Failed to play music.");
+            }
         }
         this.addButtonClickListener();
     }
@@ -30,19 +37,20 @@ export default class Menu extends cc.Component {
     addButtonClickListener() {
         // find the button and add a click event listener
         console.log("addButtonClickListener");
+        console.log("this.nodein addButtonClickListener in menu start", this.node);
         const back = cc.find("Canvas/Back").getComponent(cc.Button);
         const setting = cc.find("Canvas/Setting").getComponent(cc.Button);
         const history = cc.find("Canvas/History").getComponent(cc.Button);
         const target = cc.find("Canvas/Target").getComponent(cc.Button);
         const store = cc.find("Canvas/Store").getComponent(cc.Button);
         if (this.node.getParent().getChildByName("setting")) {
-            console.log("this.node.getParent()", this.node.getParent());
-            let existingSettingNode = this.node.getParent();
-            const stopMusic = cc.find("existingSettingNode/Setting/Bgm_control/Bgm_bt").getComponent(cc.Button);
+            console.log("this.node.getParent()", this.node);
+            // let existingSettingNode = this.node.getParent();
+            const stopMusic = cc.find("setting/Bgm_control/Bgm_bt").getComponent(cc.Button);
             const stopMusicHandler = new cc.Component.EventHandler();
             stopMusicHandler.target = this.node;
             stopMusicHandler.component = "Menu";
-            stopMusicHandler.handler = "ControlBgm";
+            // stopMusicHandler.handler = "ControlBgm";
             stopMusic.clickEvents.push(stopMusicHandler);
         }
 
@@ -116,6 +124,19 @@ export default class Menu extends cc.Component {
         // Set initial position above the screen
         prefab.setPosition(471.015, cc.winSize.height);
 
+        // Set the slider positions for BGM and Effect volumes
+        const bgmHandle = cc.find("Bgm_control/Bgm/Handle", prefab);
+        if (bgmHandle) {
+            let xPos = -198 + Menu.BGMVolume * (200 + 198);
+            bgmHandle.setPosition(xPos, bgmHandle.position.y);
+        }
+
+        const effectHandle = cc.find("Effect_control/Effect/Handle", prefab);
+        if (effectHandle) {
+            let xPos = -198 + Menu.EffectVolume * (200 + 198);
+            effectHandle.setPosition(xPos, effectHandle.position.y);
+        }
+
         // Create a move-in animation
         cc.tween(prefab)
             .to(0.5, { position: cc.v3(471.015, 320, 0) }, { easing: 'sineOut' })
@@ -133,8 +154,9 @@ export default class Menu extends cc.Component {
     StoreWindow() { }
 
     ControlBgm() {
-        //set the background music value to zero
-        cc.sys.localStorage.setItem("Menu.AudioID_Menu", "0");
+        cc.audioEngine.setVolume(Menu.AudioID_Menu, 0);
+        Menu.BGMVolume = 0;
+        console.log("ControlBgm mute plzzzzz");
     }
 
     playLockAudio() {
