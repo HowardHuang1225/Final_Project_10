@@ -1,3 +1,5 @@
+import Menu from "./Menu";
+
 const { ccclass, property } = cc._decorator;
 
 // In-memory user data storage (for demonstration purposes)
@@ -6,8 +8,15 @@ const userData = {
   password: null
 };
 
+
+
 @ccclass
 export default class Sign extends cc.Component {
+  @property({ type: cc.AudioClip })
+  click: cc.AudioClip = null;
+
+  // private effect_value: number = Menu.EffectVolume * 10;
+
   start() {
     // Get the ESC_BT button and add the click event listener
     const escButton = cc.find("ESC_BT", this.node);
@@ -23,16 +32,23 @@ export default class Sign extends cc.Component {
 
   onEscButtonClick() {
     // Remove this node from its parent, effectively closing the prefab
-    cc.tween(this.node)
-      .to(0.2, { scale: 0 }, { easing: 'backIn' })
-      .call(() => {
-        // Destroy the node after animation
-        this.node.destroy();
-      })
-      .start();
+    let effect_value = Menu.EffectVolume * 10;
+    cc.audioEngine.play(this.click, false, effect_value);
+    this.scheduleOnce(() => {
+      cc.tween(this.node)
+        .to(0.2, { scale: 0 }, { easing: 'backIn' })
+        .call(() => {
+          // Destroy the node after animation
+          this.node.destroy();
+        })
+        .start();
+    }, 0.2);
+
   }
 
   onSubmitButtonClick() {
+
+
     // Determine if this is a sign-up or sign-in based on the presence of certain input fields
     const emailInput = cc.find("Email_input", this.node).getComponent(cc.EditBox).string.trim();
     const passwordInput = cc.find("Password_input", this.node).getComponent(cc.EditBox).string.trim();
@@ -80,7 +96,12 @@ export default class Sign extends cc.Component {
       cc.log("User signed up successfully!");
       alert("User signed up successfully!");
       // Optionally, you can navigate to a different scene
-      cc.director.loadScene("Menu");
+      let effect_value = Menu.EffectVolume * 10;
+      cc.audioEngine.play(this.click, false, effect_value);
+      this.scheduleOnce(() => {
+        cc.audioEngine.stopAll();
+        cc.director.loadScene("Menu");
+      }, 0.2);
     }
   }
 
@@ -94,7 +115,13 @@ export default class Sign extends cc.Component {
       cc.log("Login successful!");
       alert("Login successful!");
       // Optionally, you can navigate to a different scene
-      cc.director.loadScene("Menu");
+      let effect_value = Menu.EffectVolume * 10;
+      cc.audioEngine.play(this.click, false, effect_value);
+      this.scheduleOnce(() => {
+        cc.audioEngine.stopAll();
+        cc.director.loadScene("Menu");
+      }, 0.2);
+
     } else {
       // Login failed
       cc.log("Invalid email or password!");

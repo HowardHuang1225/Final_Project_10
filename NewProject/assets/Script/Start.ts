@@ -22,6 +22,7 @@ export default class Start extends cc.Component {
     private signInPag: cc.Prefab = null;
     private signUpPag: cc.Prefab = null;
     static AudioID_Start: number;
+    private effect_value: number = Menu.EffectVolume * 10;
 
 
 
@@ -30,14 +31,12 @@ export default class Start extends cc.Component {
         //load bgm
         Start.AudioID_Start = cc.audioEngine.playMusic(this.bgm, true);
         cc.audioEngine.setVolume(Start.AudioID_Start, Menu.BGMVolume);
-        console.log("Menu.BGMVolume: ", Menu.BGMVolume);
-        if (Start.AudioID_Start !== null) {
-            // 返回值不为null，表示音乐已经成功播放，可以进行后续操作
-            console.log("AudioID_Start: ", Start.AudioID_Start);
-        } else {
-            // 返回值为null，可能是因为音乐文件加载失败或其他原因导致播放失败
-            console.log("Failed to play music.");
-        }
+        console.log("StartOnLoad Menu.EffectVolume: ", Menu.EffectVolume);
+        // console.log("Menu.BGMVolume: ", Menu.BGMVolume);
+        // if (Start.AudioID_Start !== null) {
+        //     // 返回值不为null，表示音乐已经成功播放，可以进行后续操作
+        //     console.log("AudioID_Start: ", Start.AudioID_Start);
+        // } 
     }
     start() {
         // link click
@@ -76,9 +75,11 @@ export default class Start extends cc.Component {
         }
 
         // 播放點擊音效
-        cc.audioEngine.play(this.click, false, 1);
-        cc.audioEngine.stopAll();
-        cc.director.loadScene("Menu");
+        cc.audioEngine.play(this.click, false, this.effect_value);
+        this.scheduleOnce(() => {
+            cc.audioEngine.stopAll();
+            cc.director.loadScene("Menu");
+        }, 0.2);
     }
 
     signinScene() {
@@ -91,6 +92,7 @@ export default class Start extends cc.Component {
         }
 
         // Load prefab "SignIn"
+        cc.audioEngine.play(this.click, false, this.effect_value);
         let prefab = cc.instantiate(this.signIn);
         prefab.name = "SignWin"; // Set node name
         this.node.getParent().addChild(prefab);
@@ -111,7 +113,7 @@ export default class Start extends cc.Component {
             cc.log("Sign-in or Sign-up window already exists!");
             return;
         }
-
+        cc.audioEngine.play(this.click, false, this.effect_value);
         // Load prefab "SignUp"
         let prefab = cc.instantiate(this.signUp);
         prefab.name = "SignUp"; // Set node name

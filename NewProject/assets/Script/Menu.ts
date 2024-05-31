@@ -88,24 +88,26 @@ export default class Menu extends cc.Component {
         storeHandler.component = "Menu";
         storeHandler.handler = "StoreWindow";
         store.clickEvents.push(storeHandler);
-
-
-
     }
 
     BackStart() {
+
         const existingSettingNode = this.node.getParent().getChildByName("setting");
 
         if (existingSettingNode) {
             cc.log("Setting window is already open!");
             return;
         }
-        cc.audioEngine.stopAll();
-        cc.director.loadScene("Start");
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+        this.scheduleOnce(() => {
+            cc.audioEngine.stopAll();
+            cc.director.loadScene("Start");
+        }, 0.2);
+
     }
 
     SettingWindow() {
-
         //this.node.getParent()
         console.log("this.node.getParent(): ", this.node.getParent());
         const existingSettingNode = this.node.getParent().getChildByName("setting");
@@ -115,11 +117,13 @@ export default class Menu extends cc.Component {
             return;
         }
         console.log("Setting window is not open, creating one...");
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
         // Load the Setting prefab
         let prefab = cc.instantiate(this.setting);
         prefab.name = "setting";
         this.node.getParent().addChild(prefab);
-        console.log("Prefab parent: ", prefab.getParent());
+        // console.log("Prefab parent: ", prefab.getParent());
 
         // Set initial position above the screen
         prefab.setPosition(471.015, cc.winSize.height);
@@ -154,12 +158,84 @@ export default class Menu extends cc.Component {
     StoreWindow() { }
 
     ControlBgm() {
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
         cc.audioEngine.setVolume(Menu.AudioID_Menu, 0);
         Menu.BGMVolume = 0;
-        console.log("ControlBgm mute plzzzzz");
+
+        const settingNode = this.node.getParent().getChildByName("setting");
+        if (!settingNode) {
+            cc.error("Setting window does not exist!");
+            return;
+        }
+        const bgmHandle = settingNode.getChildByName("Bgm_control").getChildByName("Bgm").getChildByName("Handle");
+        if (bgmHandle) {
+            let xPos = -198 + Menu.BGMVolume * (200 + 198);
+            bgmHandle.setPosition(xPos, bgmHandle.position.y);
+        }
+    }
+    ControlBgm1() {
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+        cc.audioEngine.setVolume(Menu.AudioID_Menu, 1);
+        Menu.BGMVolume = 1;
+
+        const settingNode = this.node.getParent().getChildByName("setting");
+
+        // 检查节点是否存在
+        if (!settingNode) {
+            cc.error("Setting window does not exist!");
+            return;
+        }
+        const bgmHandle = settingNode.getChildByName("Bgm_control").getChildByName("Bgm").getChildByName("Handle");
+
+        if (bgmHandle) {
+            let xPos = -198 + Menu.BGMVolume * (200 + 198);
+            bgmHandle.setPosition(xPos, bgmHandle.position.y);
+        }
+
     }
 
-    playLockAudio() {
-        cc.audioEngine.play(this.lock, false, 10);
+    ControlEffect() {
+        cc.audioEngine.setVolume(Menu.EffectVolume, 0);
+        Menu.EffectVolume = 0;
+        // console.log("ControlBgm mute plzzzzz");
+        console.log("ControlInit Menu.EffectVolume: ", Menu.EffectVolume);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+        const settingNode = this.node.getParent().getChildByName("setting");
+        if (!settingNode) {
+            cc.error("Setting window does not exist!");
+            return;
+        }
+
+        const effectHandle = settingNode.getChildByName("Effect_control").getChildByName("Effect").getChildByName("Handle");
+        if (effectHandle) {
+
+            let xPos = -198 + Menu.EffectVolume * (200 + 198);
+            effectHandle.setPosition(xPos, effectHandle.position.y);
+        }
     }
+
+    ControlEffect1() {
+
+
+        cc.audioEngine.setVolume(Menu.EffectVolume, 1);
+        Menu.EffectVolume = 1;
+        console.log("ControlInit 1 Menu.EffectVolume: ", Menu.EffectVolume);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+
+        const settingNode = this.node.getParent().getChildByName("setting");
+        if (!settingNode) {
+            cc.error("Setting window does not exist!");
+            return;
+        }
+        const effectHandle = settingNode.getChildByName("Effect_control").getChildByName("Effect").getChildByName("Handle");
+        if (effectHandle) {
+            let xPos = -198 + Menu.EffectVolume * (200 + 198);
+            effectHandle.setPosition(xPos, effectHandle.position.y);
+        }
+    }
+
 }
