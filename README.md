@@ -21,12 +21,6 @@
       Start -> Defult Stage Window
       Back -> Start
 
-* Stage Choose (Jump Window - Prefab)
-  * item
-      Different Stage(Preview)
-        -> Start(Click Stage Preview)
-      Back(Close stage choose)
-
 * Setting (Jump Window - Prefab)
   * item
       Bgm voice
@@ -39,26 +33,41 @@
       Ranking
       (login button ?)
       Back -> Menu
+    
+* Target (Window)
+  * item
+      Stage Arrived
+      (Skip Button Here)
+  * Extra Target
+      1. Hit total 1000 enemy (exclude boss)
+      2. Fail for 10 Times
 
-* Player Closet (Window)
+<!-- * Stage Choose (Jump Window - Prefab) <- NONE
+  * item
+      Different Stage(Preview)
+        -> Start(Click Stage Preview)
+      Back(Close stage choose) -->
+<!-- * Player Closet (Window)
   * item
       Player preview
-      Back -> Menu
+      Back -> Menu -->
 
 * Game Stage
   * item
       Game Setting(Jump window)
 
-* Win Scene
+* Win Scene(True)
   *item 
-    Score (And show the Best Score)
-      => if player renew the best score -> ANIMATION(?)
-      => if player renew the ranking -> ANIMATION(?)
-      => if player get any new things in the game -> jump
-    Back(End Game)
+    ESC(End Game)
     Back -> Menu
 
-* Lose Scene
+* Win Scene2(Normal)
+  * Have an ANIMATION
+  *item 
+    ESC(End Game)
+    Back -> Menu
+
+* Lose Scene(If the player Die 5 Times in the Game)
   *item
     Score (And show the Best Score)
     Back(End Game)

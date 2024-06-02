@@ -9,7 +9,7 @@
 
     Ex. 
     ```c
-    Start.AudioID_<Scene_name> = cc.audioEngine.playMusic(<your BGM>, true);
+    <Scene_name>.AudioID_<Scene_name> = cc.audioEngine.playMusic(<your BGM>, true);
     cc.audioEngine.setVolume(<Scene_name>.AudioID_<Scene_name>, Menu.BGMVolume);
     ```
 

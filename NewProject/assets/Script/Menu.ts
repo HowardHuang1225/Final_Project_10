@@ -151,11 +151,24 @@ export default class Menu extends cc.Component {
             .start();
     }
 
-    HistoryWindow() { }
+    HistoryWindow() {
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+        this.scheduleOnce(() => {
+            cc.audioEngine.stopAll();
+            cc.director.loadScene("History");
+        }, 0.2);
+    }
 
-    TargetWindow() { }
+    TargetWindow() {
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+        this.scheduleOnce(() => {
+            cc.audioEngine.stopAll();
+            cc.director.loadScene("Target");
+        }, 0.2);
+    }
 
-    StoreWindow() { }
 
     ControlBgm() {
         let effect_value = Menu.EffectVolume * 10;
@@ -218,8 +231,6 @@ export default class Menu extends cc.Component {
     }
 
     ControlEffect1() {
-
-
         cc.audioEngine.setVolume(Menu.EffectVolume, 1);
         Menu.EffectVolume = 1;
         console.log("ControlInit 1 Menu.EffectVolume: ", Menu.EffectVolume);
@@ -236,6 +247,15 @@ export default class Menu extends cc.Component {
             let xPos = -198 + Menu.EffectVolume * (200 + 198);
             effectHandle.setPosition(xPos, effectHandle.position.y);
         }
+    }
+
+    LoadGame() {
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
+        this.scheduleOnce(() => {
+            cc.audioEngine.stopAll();
+            cc.director.loadScene("Stage1");
+        }, 0.2);
     }
 
 }

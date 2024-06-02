@@ -22,7 +22,7 @@ export default class Start extends cc.Component {
     private signInPag: cc.Prefab = null;
     private signUpPag: cc.Prefab = null;
     static AudioID_Start: number;
-    private effect_value: number = Menu.EffectVolume * 10;
+    // private effect_value: number = Menu.EffectVolume * 10;
 
 
 
@@ -75,7 +75,8 @@ export default class Start extends cc.Component {
         }
 
         // 播放點擊音效
-        cc.audioEngine.play(this.click, false, this.effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.click, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
@@ -92,7 +93,8 @@ export default class Start extends cc.Component {
         }
 
         // Load prefab "SignIn"
-        cc.audioEngine.play(this.click, false, this.effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.click, false, effect_value);
         let prefab = cc.instantiate(this.signIn);
         prefab.name = "SignWin"; // Set node name
         this.node.getParent().addChild(prefab);
@@ -113,7 +115,8 @@ export default class Start extends cc.Component {
             cc.log("Sign-in or Sign-up window already exists!");
             return;
         }
-        cc.audioEngine.play(this.click, false, this.effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.click, false, effect_value);
         // Load prefab "SignUp"
         let prefab = cc.instantiate(this.signUp);
         prefab.name = "SignUp"; // Set node name
