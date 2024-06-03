@@ -63,21 +63,23 @@ export default class LoseScene extends cc.Component {
     }
 
     BackMenu() {
-        // let effect_value = Menu.EffectVolume * 10;
-        // cc.audioEngine.play(this.lock, false, effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
     }
 
     EndScene() {
         // let effect_value = Menu.EffectVolume * 10;
         // cc.audioEngine.play(this.lock, false, effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("EndScene");
-        }, 0.2);
+        }, 0.5);
     }
 
     shrinkAndRemoveNodes() {

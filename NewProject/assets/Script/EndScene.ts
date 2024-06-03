@@ -11,6 +11,8 @@ export default class EndScene extends cc.Component {
 
     @property({ type: cc.VideoPlayer })
     videoPlayer: cc.VideoPlayer = null;
+    @property({ type: cc.AudioClip })
+    click: cc.AudioClip = null;
     @property({ type: cc.Node })
     block: cc.Node = null;
 
@@ -65,10 +67,12 @@ export default class EndScene extends cc.Component {
     BackMenu() {
         // let effect_value = Menu.EffectVolume * 10;
         // cc.audioEngine.play(this.lock, false, effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.click, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
     }
 
     shrinkAndRemoveNodes() {

@@ -76,7 +76,7 @@ export default class WinScene_True extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
 
     }
 

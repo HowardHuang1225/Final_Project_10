@@ -14,13 +14,27 @@ export default class History extends cc.Component {
 
     @property({ type: cc.AudioClip })
     lock: cc.AudioClip = null;
+    @property({ type: cc.AudioClip })
+    bgm: cc.AudioClip = null;
+
+    static AudioID_Start: number;
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
+    protected onLoad(): void {
+        //load bgm
+        History.AudioID_Start = cc.audioEngine.playMusic(this.bgm, true);
+        cc.audioEngine.setVolume(History.AudioID_Start, Menu.BGMVolume);
+        console.log("StartOnLoad Menu.EffectVolume: ", Menu.EffectVolume);
+    }
 
     start() {
-
+        let startbtn = new cc.Component.EventHandler();
+        startbtn.target = this.node;
+        startbtn.component = "History";
+        startbtn.handler = "BackMenu";
+        cc.find("Canvas/Back").getComponent(cc.Button).clickEvents.push(startbtn);
     }
 
     BackMenu() {
@@ -29,7 +43,7 @@ export default class History extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
 
     }
 

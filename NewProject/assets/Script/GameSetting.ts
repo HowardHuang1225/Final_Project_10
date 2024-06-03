@@ -30,7 +30,7 @@ export default class GameSetting extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
 
     }
     RestartGame() {
@@ -39,7 +39,7 @@ export default class GameSetting extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Stage1");
-        }, 0.2);
+        }, 0.5);
     }
     ContinueGame() {
         let effect_value = Menu.EffectVolume * 10;

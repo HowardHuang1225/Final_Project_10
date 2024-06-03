@@ -103,7 +103,7 @@ export default class Stage1 extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("WinScene_True");
-        }, 0.2);
+        }, 0.5);
 
     }
 
@@ -120,7 +120,7 @@ export default class Stage1 extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("WinScene_Normal");
-        }, 0.2);
+        }, 0.5);
 
     }
 
@@ -139,7 +139,7 @@ export default class Stage1 extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("LoseScene");
-        }, 0.2);
+        }, 0.5);
 
     }
 
@@ -156,7 +156,7 @@ export default class Stage1 extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
 
     }
 

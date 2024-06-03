@@ -1870,7 +1870,7 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 255,
+    "_opacity": 205,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -2352,7 +2352,7 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 255,
+    "_opacity": 205,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -2901,7 +2901,7 @@
     },
     "_enabled": true,
     "lock": {
-      "__uuid__": "e23a144b-3f3a-4c25-bdcd-de34d283fcb6"
+      "__uuid__": "e6600a90-4930-454b-a5db-0ad61758a15c"
     },
     "gameSetting": {
       "__uuid__": "8f7732c3-f0a4-43f6-a4c0-88d1314db2de"

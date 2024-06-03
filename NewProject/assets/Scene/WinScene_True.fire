@@ -17,7 +17,7 @@
         "__id__": 2
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -1936,7 +1936,7 @@
     },
     "_enabled": true,
     "lock": {
-      "__uuid__": "e23a144b-3f3a-4c25-bdcd-de34d283fcb6"
+      "__uuid__": "e6600a90-4930-454b-a5db-0ad61758a15c"
     },
     "bgm": {
       "__uuid__": "976b390c-cc6a-441b-90b6-70083a0d04dd"

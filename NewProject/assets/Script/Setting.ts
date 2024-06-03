@@ -30,7 +30,7 @@ const { ccclass, property } = cc._decorator;
           this.node.destroy();
         })
         .start();
-    }, 0.2);
+    }, 0.5);
   }
 
   onSliderChange(event: cc.Slider) {
