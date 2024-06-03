@@ -10,6 +10,16 @@ export default class Monster extends cc.Component {
     @property(cc.Prefab)
     exp: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    video_game: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    redbull: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    chatgpt: cc.Prefab = null;
+    
+
     // 怪物速度
     speed: number = 100;
     private animation: cc.Animation = null;
@@ -67,7 +77,7 @@ export default class Monster extends cc.Component {
                 const distance = this.node.position.sub(targetPosition).mag();
 
                 // 如果距离小于等于10，怪物才移动
-                if (distance >= 20) {
+                if (distance >= 0) {
                     const direction = targetPosition.sub(this.node.position).normalize();
                     const velocity = direction.mul(this.speed * dt);
                     this.node.position = this.node.position.add(velocity);
@@ -107,46 +117,52 @@ export default class Monster extends cc.Component {
                 this.dead = true;
 
                 console.log("kill")
-                // if (selfCollider.node.name === 'bat') {
-                //     const rigidBody = selfCollider.node.getComponent(cc.RigidBody);
-                //     if (rigidBody) {
-                //         rigidBody.linearVelocity = cc.v2(0, 0);
-                //         rigidBody.angularVelocity = 0;
-                //     }
+                
+                const rigidBody = selfCollider.node.getComponent(cc.RigidBody);
+                if (rigidBody) {
+                    rigidBody.linearVelocity = cc.v2(0, 0);
+                    rigidBody.angularVelocity = 0;
+                }
+                
+                const collider = selfCollider.node.getComponent(cc.Collider);
+                if (collider) {
+                    collider.enabled = false;
+                }
 
-                //     // // 禁用碰撞组件
-                //     // const collider = selfCollider.node.getComponent(cc.Collider);
-                //     // if (collider) {
-                //     //     collider.enabled = false;
-                //     // }
-                //     this.playAnimation('bat_die', () => {
-                //         const newNode = cc.instantiate(this.exp);
-                //         newNode.setPosition(this.node.x, this.node.y);
-                //         this.node.parent.addChild(newNode);
-        
-                //         this.getMonsterManager().recycleMonster(selfCollider.node);
-                //     });
-                // }
-                // else{
-                    const rigidBody = selfCollider.node.getComponent(cc.RigidBody);
-                    if (rigidBody) {
-                        rigidBody.linearVelocity = cc.v2(0, 0);
-                        rigidBody.angularVelocity = 0;
-                    }
+                
+                
+                this.playAnimation(this.node.name+'_die', () => {
+                    const newNode = cc.instantiate(this.exp);
+                    newNode.setPosition(this.node.x, this.node.y);
+                    this.node.parent.addChild(newNode);
                     
-                    const collider = selfCollider.node.getComponent(cc.Collider);
-                    if (collider) {
-                        collider.enabled = false;
+                    let a = Math.floor(Math.random() * 1000) + 1
+                    let b = Math.floor(Math.random() * 1000) + 1
+                    let c = Math.floor(Math.random() * 1000) + 1
+                    if(a<=5){
+                        console.log("yyyyyyyyyyyy")
+                        const video_game = cc.instantiate(this.video_game);
+                        video_game.setPosition(this.node.x, this.node.y);
+                        this.node.parent.addChild(video_game);
                     }
-                    
-                    this.playAnimation(this.node.name+'_die', () => {
-                        const newNode = cc.instantiate(this.exp);
-                        newNode.setPosition(this.node.x, this.node.y);
-                        this.node.parent.addChild(newNode);
-        
-                        this.getMonsterManager().recycleMonster(selfCollider.node);
-                    });
-                //}
+
+                    if(b==1){
+                        console.log("xxxxxxxxxxxx")
+                        const redbull = cc.instantiate(this.redbull);
+                        redbull.setPosition(this.node.x, this.node.y);
+                        this.node.parent.addChild(redbull);
+                    }
+
+                    if(c<=20){
+                        console.log("xxxxxxxxxxxx")
+                        const chatgpt = cc.instantiate(this.chatgpt);
+                        chatgpt.setPosition(this.node.x, this.node.y);
+                        this.node.parent.addChild(chatgpt);
+                    }
+    
+                    this.getMonsterManager().recycleMonster(selfCollider.node);
+                });
+                
             
         }
     }

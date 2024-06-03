@@ -3,7 +3,8 @@
   "group-list": [
     "default",
     "exp",
-    "player"
+    "player",
+    "wall"
   ],
   "collision-matrix": [
     [
@@ -13,11 +14,18 @@
     ],
     [
       false,
-      true,
+      false,
       true
     ],
     [
       true,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
       true,
       false
     ]

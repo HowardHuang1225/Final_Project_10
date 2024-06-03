@@ -1,4 +1,5 @@
 import ExperienceSystem from './ExperienceSystem'; // Import the ExperienceSystem class
+import StaminaSystem from './StaminaSystem';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -33,11 +34,19 @@ export class PlayerController extends cc.Component {
     private experienceSystem: ExperienceSystem = null;
     private contactMonsters: Set<cc.Node> = new Set();
     private invincible: boolean = false;
+<<<<<<< HEAD
     private iscircle: boolean = false;
     private isring: boolean = false;
     private ismoloto: boolean = false;
+=======
+    private staminaSystem: StaminaSystem = null;
+    private overlay: cc.Node = null;
+>>>>>>> 251f7a8ecd054160017dab95e40fe732eecad198
 
     private dead: boolean = false;
+    private iscircle: boolean = false;
+    private isring: boolean = false;
+    private ismoloto: boolean = false;
 
     onLoad() {
         // this.node.zIndex = 8
@@ -57,6 +66,15 @@ export class PlayerController extends cc.Component {
         } else {
             cc.error('ExperienceSystem component not found');
         }
+
+        this.staminaSystem = cc.find("Canvas/Main Camera/StaminaBar").getComponent(StaminaSystem);
+        if (this.staminaSystem) {
+            cc.log('StaminaSystem component found');
+        } else {
+            cc.error('StaminaSystem component not found');
+        }
+
+        this.overlay = cc.find("Canvas/Main Camera/Overlay");
     }
 
     start() {
@@ -109,6 +127,16 @@ export class PlayerController extends cc.Component {
                     this.spawnRingAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
                     this.isring = true;
                     console.log(123);
+<<<<<<< HEAD
+                }
+                break;
+            case cc.macro.KEY.v:
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.ismoloto) {
+                    this.experienceSystem.useUpgradePoint();
+                    this.spawnLandmineAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
+                    this.ismoloto = true;
+=======
+>>>>>>> 251f7a8ecd054160017dab95e40fe732eecad198
                 }
                 break;
             case cc.macro.KEY.v:
@@ -117,6 +145,11 @@ export class PlayerController extends cc.Component {
                     this.spawnLandmineAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
                     this.ismoloto = true;
                 }
+                break;
+
+            case cc.macro.KEY.o:
+                this.staminaSystem.addStamina();
+                console.log("Stamina++");
                 break;
         }
         this.updateMoveDir();
@@ -210,6 +243,10 @@ export class PlayerController extends cc.Component {
     onBeginContact(contact, selfCollider, otherCollider) {
         if (this.playerLife <= 0) {
             this.playAnimation("player_die");
+            this.scheduleOnce(() => {
+                // cc.audioEngine.stopAll();
+                cc.director.loadScene("Menu");
+            }, 1.5);
             return;
         }
 
@@ -255,6 +292,25 @@ export class PlayerController extends cc.Component {
             otherCollider.node.destroy();
             console.log("ss");
         }
+        if (otherCollider.node.name === 'video_games') {
+            // this.experienceSystem.addExperience(10);
+            this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
+            otherCollider.node.destroy();
+            console.log("reveal: ", this.playerLife);
+        }
+        if (otherCollider.node.name === 'redbull') {
+            // this.experienceSystem.addExperience(10);
+            this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
+            otherCollider.node.destroy();
+            console.log("reveal: ", this.playerLife);
+        }
+
+        // if (otherCollider.node.name === 'redbull') {
+        //     // this.experienceSystem.addExperience(10);
+        //     this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
+        //     otherCollider.node.destroy();
+        //     console.log("reveal: ", this.playerLife);
+        // }
     }
 
     changeColorTemporarily(node: cc.Node, color: cc.Color, duration: number) {
@@ -273,5 +329,36 @@ export class PlayerController extends cc.Component {
             // 取消计时器
             this.unschedule(otherCollider.node['damageInterval']);
         }
+    }
+
+    applySpeedReduction(apply: boolean) {
+        if (apply) {
+            this.playerSpeed = 150; // 减速到原来的一半
+            console.log("Speed reduced");
+        } else {
+            this.playerSpeed = 300; // 恢复原速度
+            console.log("Speed restored");
+        }
+    }
+
+    applyVisionRestriction(opacity: number) {
+        if (this.overlay) {
+            this.overlay.opacity = opacity;
+        }
+    }
+
+    applyScreenShake(apply: boolean) {
+        if (apply) {
+            this.schedule(this.shakeScreen, 0.05); // 画面摇晃
+        } else {
+            this.unschedule(this.shakeScreen); // 停止画面摇晃
+        }
+    }
+
+    shakeScreen() {
+        const shakeAmount = 15;
+        const posX = (Math.random() - 0.5) * shakeAmount;
+        const posY = (Math.random() - 0.5) * shakeAmount;
+        this.node.position = this.node.position.add(cc.v3(posX, posY, 0));
     }
 }

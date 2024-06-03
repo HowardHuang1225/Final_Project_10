@@ -33,13 +33,10 @@
       },
       {
         "__id__": 6
-      },
-      {
-        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 8
+      "__id__": 7
     },
     "_opacity": 255,
     "_color": {
@@ -185,32 +182,10 @@
         "__uuid__": "6db637a4-0ee8-4c59-a8dc-55947b2d4c59"
       },
       {
-        "__uuid__": "2dd27d04-8c5e-4569-b977-f8470da03d74"
-      },
-      {
-        "__uuid__": "22a1c21d-f700-4156-b573-cc24c96f7628"
-      },
-      {
-        "__uuid__": "5df548ba-4aea-4579-bf4d-954b8f63ed71"
-      },
-      {
-        "__uuid__": "a9ac4018-2b2a-4676-ae7a-774cd4e9e81b"
-      },
-      {
         "__uuid__": "c3462e78-9342-4d58-ae0c-71accdd8f9b8"
       }
     ],
     "playOnLoad": true,
-    "_id": ""
-  },
-  {
-    "__type__": "0aa02zDZBZHxLxo9IK6ooNC",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
     "_id": ""
   },
   {
@@ -223,6 +198,15 @@
     "_enabled": true,
     "exp": {
       "__uuid__": "276b2566-d981-4ea9-a06f-99ba526ef27f"
+    },
+    "video_game": {
+      "__uuid__": "9578c11a-6e01-4c11-9111-0e3f8334c321"
+    },
+    "redbull": {
+      "__uuid__": "d9604b4e-8048-46a5-a70d-c7e4a5541334"
+    },
+    "chatgpt": {
+      "__uuid__": "5dfaf53e-b97a-43f6-b770-9b585645edda"
     },
     "_id": ""
   },

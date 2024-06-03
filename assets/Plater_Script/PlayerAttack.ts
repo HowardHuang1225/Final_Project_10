@@ -25,7 +25,11 @@ export default class PlayerAttack extends cc.Component {
 
     update(dt: number) {
         if(this.level == 3){
+<<<<<<< HEAD
             this.fireInterval = 0.1;
+=======
+            this.fireInterval = 0.5;
+>>>>>>> 251f7a8ecd054160017dab95e40fe732eecad198
         }
         // 更新計時器
         this.fireTimer += dt;

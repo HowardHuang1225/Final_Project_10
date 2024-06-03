@@ -1,6 +1,10 @@
 {
   "ver": "1.1.0",
+<<<<<<< HEAD
   "uuid": "04f7d86f-855a-41e5-ae36-00e13be03e70",
+=======
+  "uuid": "54036d21-64e7-489b-b5f5-6240e5e60f84",
+>>>>>>> 251f7a8ecd054160017dab95e40fe732eecad198
   "importer": "typescript",
   "isPlugin": false,
   "loadPluginInWeb": true,
