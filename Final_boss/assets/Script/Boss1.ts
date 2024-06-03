@@ -18,6 +18,9 @@ export default class Boss1 extends cc.Component {
     @property(cc.Prefab)
     BoombPrefab: cc.Prefab = null;
 
+    @property(cc.ProgressBar)
+    LifeBar: cc.ProgressBar = null;
+
     private player: cc.Node = null;
     private rigidBody: cc.RigidBody = null;
     private screenSize: cc.Size = null;
@@ -58,6 +61,7 @@ export default class Boss1 extends cc.Component {
             this.rigidBody.linearVelocity = cc.v2(0, 0);
         }
         this.checkBounds();
+        this.LifeBar.progress = this.bosslife/10;
     }
 
     moveToPlayer() {
