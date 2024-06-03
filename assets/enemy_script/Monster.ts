@@ -111,7 +111,7 @@ export default class Monster extends cc.Component {
             this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
             console.log("collide: ", this.life);
         }
-        if(otherCollider.node.name === 'Bullet' && this.life <= 0){
+        if((otherCollider.node.name === 'Bullet' || otherCollider.node.name === 'Bullet_ring') && this.life <= 0){
                 this.dead = true;
 
                 console.log("kill")
@@ -137,14 +137,14 @@ export default class Monster extends cc.Component {
                     let a = Math.floor(Math.random() * 1000) + 1
                     let b = Math.floor(Math.random() * 1000) + 1
                     let c = Math.floor(Math.random() * 1000) + 1
-                    if(a<=5){
+                    if(a<=10){
                         console.log("yyyyyyyyyyyy")
                         const video_game = cc.instantiate(this.video_game);
                         video_game.setPosition(this.node.x, this.node.y);
                         this.node.parent.addChild(video_game);
                     }
 
-                    if(b==1){
+                    if(b<=10){
                         console.log("xxxxxxxxxxxx")
                         const redbull = cc.instantiate(this.redbull);
                         redbull.setPosition(this.node.x, this.node.y);

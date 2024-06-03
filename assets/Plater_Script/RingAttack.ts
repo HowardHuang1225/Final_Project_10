@@ -33,7 +33,7 @@ export default class RingAttack extends cc.Component {
         for (let i = 0; i < this.bullets.length; i++) {
             this.angles[i] += this.speed * dt;
             let x = this.radius * Math.cos(this.angles[i]);
-            let y = 90 + this.radius * Math.sin(this.angles[i]);
+            let y = this.radius * Math.sin(this.angles[i]);
             this.bullets[i].setPosition(x, y);
         }
     }
@@ -56,7 +56,7 @@ export default class RingAttack extends cc.Component {
 
         for (let i = 0; i < count; i++) {
             let bullet = cc.instantiate(this.bulletPrefab);
-            this.node.addChild(bullet);
+            this.node.parent.addChild(bullet);
             this.bullets.push(bullet);
             this.angles.push((i / count) * Math.PI * 2); // 均勻分布角度
         }

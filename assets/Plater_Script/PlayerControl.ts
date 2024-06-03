@@ -69,6 +69,7 @@ export class PlayerController extends cc.Component {
         }
 
         this.overlay = cc.find("Canvas/Main Camera/Overlay");
+        
     }
 
     start() {
@@ -227,10 +228,14 @@ export class PlayerController extends cc.Component {
     onBeginContact(contact, selfCollider, otherCollider) {
         if (this.playerLife <= 0) {
             this.playAnimation("player_die");
+            // const cover = cc.find("Canvas/Main Camera/Overlay1");
+            // 例如，某个事件触发时调用
+            this.applyVisionRestriction1(255);  // 从当前透明度渐变到255
+
             this.scheduleOnce(() => {
                 // cc.audioEngine.stopAll();
                 cc.director.loadScene("Menu");
-            }, 1.5);
+            }, 4);
             return;
         }
 
@@ -278,7 +283,9 @@ export class PlayerController extends cc.Component {
         }
         if (otherCollider.node.name === 'video_games') {
             // this.experienceSystem.addExperience(10);
-            this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
+            // this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
+            this.staminaSystem.addStamina();
+            this.staminaSystem.addStamina();
             otherCollider.node.destroy();
             console.log("reveal: ", this.playerLife);
         }
@@ -330,6 +337,16 @@ export class PlayerController extends cc.Component {
             this.overlay.opacity = opacity;
         }
     }
+
+    applyVisionRestriction1(targetOpacity: number) {
+        const cover = cc.find("Overlay1");
+        if (cover) {
+            cc.tween(cover)
+                .to(0.5, { opacity: targetOpacity })  // 1秒内将透明度变为目标值
+                .start();
+        }
+    }
+    
 
     applyScreenShake(apply: boolean) {
         if (apply) {
