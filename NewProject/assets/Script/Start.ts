@@ -32,11 +32,6 @@ export default class Start extends cc.Component {
         Start.AudioID_Start = cc.audioEngine.playMusic(this.bgm, true);
         cc.audioEngine.setVolume(Start.AudioID_Start, Menu.BGMVolume);
         console.log("StartOnLoad Menu.EffectVolume: ", Menu.EffectVolume);
-        // console.log("Menu.BGMVolume: ", Menu.BGMVolume);
-        // if (Start.AudioID_Start !== null) {
-        //     // 返回值不为null，表示音乐已经成功播放，可以进行后续操作
-        //     console.log("AudioID_Start: ", Start.AudioID_Start);
-        // } 
     }
     start() {
         // link click
