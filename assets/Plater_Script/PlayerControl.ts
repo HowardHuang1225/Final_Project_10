@@ -14,7 +14,10 @@ export class PlayerController extends cc.Component {
     newAttackPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
-    shotgunAttackPrefab: cc.Prefab = null; // 新的散弹枪攻击预制体
+    ringAttackPrefab: cc.Prefab = null; // 新的散弹枪攻击预制体
+
+    @property(cc.Prefab)
+    landmineAttackPrefab: cc.Prefab = null;
 
     @property(cc.ProgressBar)
     LifeBar: cc.ProgressBar = null;
@@ -30,6 +33,9 @@ export class PlayerController extends cc.Component {
     private experienceSystem: ExperienceSystem = null;
     private contactMonsters: Set<cc.Node> = new Set();
     private invincible: boolean = false;
+    private iscircle: boolean = false;
+    private isring: boolean = false;
+    private ismoloto: boolean = false;
 
     private dead: boolean = false;
 
@@ -91,13 +97,25 @@ export class PlayerController extends cc.Component {
                 }
                 break;
             case cc.macro.KEY.g:
-                if (this.experienceSystem && this.experienceSystem.useUpgradePoint()) {
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.iscircle) {
+                    this.experienceSystem.useUpgradePoint();
                     this.spawnNewAttack(); // 按下 G 键消耗升级点数并增加 CircleAttack
+                    this.iscircle = true;
                 }
                 break;
             case cc.macro.KEY.h:
-                if (this.experienceSystem && this.experienceSystem.useUpgradePoint()) {
-                    this.spawnShotgunAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.isring) {
+                    this.experienceSystem.useUpgradePoint();
+                    this.spawnRingAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
+                    this.isring = true;
+                    console.log(123);
+                }
+                break;
+            case cc.macro.KEY.v:
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.ismoloto) {
+                    this.experienceSystem.useUpgradePoint();
+                    this.spawnLandmineAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
+                    this.ismoloto = true;
                 }
                 break;
         }
@@ -170,12 +188,22 @@ export class PlayerController extends cc.Component {
         }
     }
 
-    private spawnShotgunAttack() {
-        if (this.shotgunAttackPrefab) {
-            const shotgunAttack = cc.instantiate(this.shotgunAttackPrefab);
-            shotgunAttack.setPosition(this.node.position); // 确保位置为相对于玩家节点
-            this.node.parent.addChild(shotgunAttack); // 添加到玩家的父节点，以便相对于玩家的位置
-            cc.log('Spawned new ShotgunAttack');
+    private spawnRingAttack() {
+        if (this.ringAttackPrefab) {
+            const ringAttack = cc.instantiate(this.ringAttackPrefab);
+            ringAttack.setPosition(this.node.position); // 确保位置为相对于玩家节点
+            this.node.addChild(ringAttack); // 添加到玩家的父节点，以便相对于玩家的位置
+            cc.log('Spawned new ringAttack');
+        }
+    }
+
+    private spawnLandmineAttack() {
+        if (this.landmineAttackPrefab) {
+            const landmineAttack = cc.instantiate(this.landmineAttackPrefab);
+            landmineAttack.setPosition(this.node.position); // 确保位置为相对于玩家节点
+            console.log(this.node.parent);
+            this.node.addChild(landmineAttack); // 添加到玩家的父节点，以便相对于玩家的位置
+            cc.log('Spawned newlandmineAttack');
         }
     }
 

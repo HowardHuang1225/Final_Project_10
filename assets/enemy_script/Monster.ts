@@ -29,6 +29,8 @@ export default class Monster extends cc.Component {
         else if(this.node.name === "pumpkin") this.life = 2;
         else this.life = 1;
 
+        this.life =10;
+
 
         let collider = this.getComponent(cc.Collider);
         if (collider) {
