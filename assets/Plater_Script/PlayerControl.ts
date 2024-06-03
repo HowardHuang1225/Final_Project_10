@@ -227,6 +227,10 @@ export class PlayerController extends cc.Component {
     onBeginContact(contact, selfCollider, otherCollider) {
         if (this.playerLife <= 0) {
             this.playAnimation("player_die");
+            this.scheduleOnce(() => {
+                // cc.audioEngine.stopAll();
+                cc.director.loadScene("Menu");
+            }, 1.5);
             return;
         }
 

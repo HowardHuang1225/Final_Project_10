@@ -62,13 +62,13 @@ export class MonsterManager extends cc.Component {
         }
 
         if(elapsedTime >= 60) {
-            this.spawnInterval = 0.05;
+            this.spawnInterval = 0.01;
         } else if (elapsedTime >= 30) {
-            this.spawnInterval = 0.1;
+            this.spawnInterval = 0.07;
         } else if (elapsedTime >= 10) {
-            this.spawnInterval = 0.3;
+            this.spawnInterval = 0.1;
         } else {
-            this.spawnInterval = 0.4;
+            this.spawnInterval = 0.3;
         }
 
         // 重新调度 spawnMonster 方法
@@ -82,7 +82,7 @@ export class MonsterManager extends cc.Component {
         if (this.monsterPool.size() > 0) {
             monster = this.monsterPool.get(this.monsterPool);
         } else {
-            // monster = this.createMonster();
+            monster = this.createMonster();
         }
         // if(monster!= null) monster.getComponent("Monster").init(this.node)
         if(monster!= null){

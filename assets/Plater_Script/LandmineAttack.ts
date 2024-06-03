@@ -31,6 +31,8 @@ export default class LandmineAttack extends cc.Component {
         const landmine = cc.instantiate(this.landminePrefab);
         landmine.setPosition(playerPosition);
         this.node.parent.parent.addChild(landmine);
+
+        this.scheduleOnce(() => {landmine.active = false}, 5);
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
@@ -38,7 +40,7 @@ export default class LandmineAttack extends cc.Component {
             case cc.macro.KEY.v:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints>0 && this.level !=3) {
                     this.experienceSystem.useUpgradePoint();
-                    this.level +=1 ; // 按下 G 键消耗升级点数并增加 CircleAttack
+                    this.level +=1 ; 
                     console.log("level :",this.level);
                 }
                 break;
