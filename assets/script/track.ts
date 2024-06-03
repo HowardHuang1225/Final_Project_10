@@ -5,6 +5,9 @@ export default class NewClass extends cc.Component {
     @property()
     pawnspeed: number = 300;
 
+    @property()
+    pawnlife: number = 5;
+
     @property(cc.Prefab)
     BulletPrefab: cc.Prefab = null;
 
