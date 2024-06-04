@@ -618,7 +618,12 @@
     "timerNode": {
       "__id__": 15
     },
-    "Bosslabel": null,
+    "Bosslabel": {
+      "__id__": 35
+    },
+    "bossPrefab": {
+      "__uuid__": "f9ea722a-e172-4e96-ac24-d2755481a7aa"
+    },
     "_id": "e03b97wTpGLYT8mEUdZDWM"
   },
   {

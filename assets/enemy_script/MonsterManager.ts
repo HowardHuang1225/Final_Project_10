@@ -27,9 +27,12 @@ export class MonsterManager extends cc.Component {
     @property(cc.Node)
     Bosslabel: cc.Node = null;  
 
+    @property(cc.Prefab)
+    bossPrefab: cc.Prefab = null;
+
 
     private monsterPool: cc.NodePool;
-    private spawnInterval: number = 0.5;  // 初始生成间隔
+    private spawnInterval: number = 0.3;  // 初始生成间隔
 
     onLoad() {
         // 找到 Timer 节点并开始计时器
@@ -39,14 +42,33 @@ export class MonsterManager extends cc.Component {
         
         // 初始化怪物节点池
         this.monsterPool = new cc.NodePool();
-        for (let i = 0; i < 400; i++) {
+        for (let i = 0; i < 800; i++) {
             let monster = this.createMonster();
             this.monsterPool.put(monster);
         }
+        // 调度在100秒后生成Boss
+        this.scheduleOnce(this.spawnBoss, 100);
+
+        this.scheduleOnce(()=>{
+            cc.director.loadScene("Menu");
+        }, 110);
     }
 
+    spawnBoss() {
+        let boss = cc.instantiate(this.bossPrefab);
+        this.monsterParent.addChild(boss);
+        boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +150);
+    
+        // 显示Boss到达的标签
+        if (this.Bosslabel) {
+            this.Bosslabel.active = true;
+        }
+        this.scheduleOnce(()=>{this.Bosslabel.active = false}, 1);
+    }
+    
+
     start() {
-        this.schedule(this.adjustSpawnRate, 1);  // 每秒调整一次生成速度
+        this.schedule(this.adjustSpawnRate, 0.5);  // 每秒调整一次生成速度
         this.schedule(this.spawnMonster, this.spawnInterval);
     }
 
@@ -54,20 +76,32 @@ export class MonsterManager extends cc.Component {
         const timer = this.timerNode.getComponent("Timer");
         const elapsedTime = timer.Time();
 
-        if (elapsedTime >= 90) {
-            // 超过 90 秒，停止生成怪物
-            this.unschedule(this.spawnMonster);
-            this.unschedule(this.adjustSpawnRate);
-            return;
-        }
-
-        if(elapsedTime >= 60) {
+        // if (elapsedTime >= 90) {
+        //     // 超过 90 秒，停止生成怪物
+        //     this.unschedule(this.spawnMonster);
+        //     this.unschedule(this.adjustSpawnRate);
+        //     return;
+        // }
+        console.log("elapsedTime: ",elapsedTime)
+        if(elapsedTime >= 100) {
             this.spawnInterval = 0.01;
-        } else if (elapsedTime >= 30) {
-            this.spawnInterval = 0.07;
-        } else if (elapsedTime >= 10) {
+        }
+        else if(elapsedTime >= 90) {
+            this.spawnInterval = 0.04;
+        }
+        else if(elapsedTime >= 80) {
             this.spawnInterval = 0.1;
-        } else {
+        }
+        else if(elapsedTime >= 60) {
+            this.spawnInterval = 0.01;
+        }
+        else if (elapsedTime >= 30) {
+            this.spawnInterval = 0.07;
+        } 
+        else if (elapsedTime >= 10) {
+            this.spawnInterval = 0.1;
+        } 
+        else {
             this.spawnInterval = 0.3;
         }
 
@@ -77,17 +111,23 @@ export class MonsterManager extends cc.Component {
     }
 
     spawnMonster() {
+        const timer = this.timerNode.getComponent("Timer");
+        const elapsedTime = timer.Time();
         let monster: cc.Node = null;
+
+        console.log("this.monsterPool.size:", this.monsterPool.size() )
         
-        if (this.monsterPool.size() > 0) {
+        if (this.monsterPool.size() > 0 && elapsedTime<=100) {
             monster = this.monsterPool.get(this.monsterPool);
-        } else {
+        } 
+        else {
             monster = this.createMonster();
         }
         // if(monster!= null) monster.getComponent("Monster").init(this.node)
         if(monster!= null){
             this.monsterParent.addChild(monster);
             monster.setPosition(this.getNewMonsterPosition());
+            console.log("spawn spawn spawn spawn")
         }
 
         // 在特定时间后回收怪物

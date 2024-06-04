@@ -35,10 +35,14 @@ export default class Monster extends cc.Component {
         // });
         this.dead = false;
         this.node.zIndex = 6
-        if(this.node.name === "ice") this.life = 3;
-        else if(this.node.name === "pumpkin") this.life = 2;
+        if(this.node.name === "ice") this.life = 4;
+        else if(this.node.name === "pumpkin") this.life = 3;
+        if(this.node.name === "bat") this.life = 2;
         else this.life = 1;
 
+        if(this.node.name === "wind") this.speed = 250;
+        if(this.node.name === "ice") this.speed = 80;
+        if(this.node.name === "bat") this.speed = 150;
 
         let collider = this.getComponent(cc.Collider);
         if (collider) {
@@ -106,15 +110,15 @@ export default class Monster extends cc.Component {
     onBeginContact(contact, selfCollider, otherCollider) {
         // 当怪物与其他物体碰撞时回收
         if(this.dead) return;
-        if (otherCollider.node.name === 'Bullet' && this.life >=1) { 
+        if ((otherCollider.node.name === 'Bullet'|| otherCollider.node.name === 'Bullet_ring') && this.life >=1) { 
             this.life -=1;
             this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-            console.log("collide: ", this.life);
+            // console.log("collide: ", this.life);
         }
         if((otherCollider.node.name === 'Bullet' || otherCollider.node.name === 'Bullet_ring') && this.life <= 0){
                 this.dead = true;
 
-                console.log("kill")
+                // console.log("kill")
                 
                 const rigidBody = selfCollider.node.getComponent(cc.RigidBody);
                 if (rigidBody) {
@@ -138,21 +142,21 @@ export default class Monster extends cc.Component {
                     let b = Math.floor(Math.random() * 1000) + 1
                     let c = Math.floor(Math.random() * 1000) + 1
                     if(a<=10){
-                        console.log("yyyyyyyyyyyy")
+                        // console.log("yyyyyyyyyyyy")
                         const video_game = cc.instantiate(this.video_game);
                         video_game.setPosition(this.node.x, this.node.y);
                         this.node.parent.addChild(video_game);
                     }
 
                     if(b<=10){
-                        console.log("xxxxxxxxxxxx")
+                        //console.log("xxxxxxxxxxxx")
                         const redbull = cc.instantiate(this.redbull);
                         redbull.setPosition(this.node.x, this.node.y);
                         this.node.parent.addChild(redbull);
                     }
 
                     if(c<=20){
-                        console.log("xxxxxxxxxxxx")
+                        //console.log("xxxxxxxxxxxx")
                         const chatgpt = cc.instantiate(this.chatgpt);
                         chatgpt.setPosition(this.node.x, this.node.y);
                         this.node.parent.addChild(chatgpt);

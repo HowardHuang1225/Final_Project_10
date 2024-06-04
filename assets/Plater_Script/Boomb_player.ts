@@ -2,7 +2,7 @@ const { ccclass, property } = cc._decorator;
 import LandmineAttack from './LandmineAttack'
 
 @ccclass
-export default class Boomb extends cc.Component {
+export default class Boomb_player extends cc.Component {
 
     private anim: cc.Animation = null;
     private level: number = null;

@@ -20,7 +20,7 @@ export default class StaminaSystem extends cc.Component {
 
     onLoad() {
         this.player = cc.find("Canvas/Player");
-        this.schedule(this.decreaseStamina, 1); // 每秒调用一次减少心力值方法
+        this.schedule(this.decreaseStamina, 1.5); // 每秒调用一次减少心力值方法
     }
 
     /*decreaseStamina() {
@@ -78,8 +78,8 @@ export default class StaminaSystem extends cc.Component {
             let opacity = 0;
             if (this.currentStamina < 80) {     
                 opacity = (80 - this.currentStamina) * 5;
-                if(opacity>=200){
-                    opacity = 200;
+                if(opacity>=180){
+                    opacity = 180;
                 
                 } // 每下降 1% 增加 10 透明度
             }

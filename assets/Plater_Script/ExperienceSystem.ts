@@ -47,7 +47,7 @@ export default class ExperienceSystem extends cc.Component {
     levelUp() {
         this.level++;
         this.currentExperience -= this.levelUpExperience;
-        this.levelUpExperience *= 1.2; // 每次升级后需要更多经验
+        this.levelUpExperience *= 1.8; // 每次升级后需要更多经验
         this.upgradePoints++; // 增加一个升级点数
 
         // 触发 level-up 事件

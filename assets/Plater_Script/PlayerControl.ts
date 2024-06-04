@@ -235,7 +235,7 @@ export class PlayerController extends cc.Component {
             this.scheduleOnce(() => {
                 // cc.audioEngine.stopAll();
                 cc.director.loadScene("Menu");
-            }, 4);
+            }, 1.5);
             return;
         }
 
@@ -243,7 +243,8 @@ export class PlayerController extends cc.Component {
             otherCollider.node.name === "ghast" ||
             otherCollider.node.name === "ice" ||
             otherCollider.node.name === "pumpkin" ||
-            otherCollider.node.name === "wind") {
+            otherCollider.node.name === "wind"||
+            otherCollider.node.name === "Boomb") {
 
             const damageMonster = otherCollider.node;
 
@@ -252,7 +253,8 @@ export class PlayerController extends cc.Component {
 
                 if (!this.invincible) {
                     this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-                    this.playerLife -= 1;
+                    if(otherCollider.node.name === "Boomb") this.playerLife <=10 ?0:this.playerLife -= 10;
+                    else this.playerLife -= 2;
                     cc.log(`Player Life: ${this.playerLife}`);
 
                     this.invincible = true;
@@ -265,13 +267,14 @@ export class PlayerController extends cc.Component {
                 damageMonster['damageInterval'] = this.schedule(() => {
                     if (this.contactMonsters.has(damageMonster) && !this.invincible) {
                         this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-                        this.playerLife -= 1;
+                        if(otherCollider.node.name === "Boomb") this.playerLife <=10 ?0:this.playerLife -= 10;
+                        else this.playerLife -= 2;
                         cc.log(`Player Life: ${this.playerLife}`);
 
                         this.invincible = true;
                         this.scheduleOnce(() => {
                             this.invincible = false;
-                        }, 0.5);
+                        }, 0.3);
                     }
                 }, 0.5);
             }
@@ -285,13 +288,13 @@ export class PlayerController extends cc.Component {
             // this.experienceSystem.addExperience(10);
             // this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
             this.staminaSystem.addStamina();
-            this.staminaSystem.addStamina();
+            // this.staminaSystem.addStamina();
             otherCollider.node.destroy();
             console.log("reveal: ", this.playerLife);
         }
         if (otherCollider.node.name === 'redbull') {
             // this.experienceSystem.addExperience(10);
-            this.playerLife + 20 >= 30 ? this.playerLife = 30 : this.playerLife += 20;
+            this.playerLife + 10 >= 30 ? this.playerLife = 30 : this.playerLife += 10;
             otherCollider.node.destroy();
             console.log("reveal: ", this.playerLife);
         }
@@ -324,7 +327,7 @@ export class PlayerController extends cc.Component {
 
     applySpeedReduction(apply: boolean) {
         if (apply) {
-            this.playerSpeed = 150; // 减速到原来的一半
+            this.playerSpeed = 200; // 减速到原来的一半
             console.log("Speed reduced");
         } else {
             this.playerSpeed = 300; // 恢复原速度

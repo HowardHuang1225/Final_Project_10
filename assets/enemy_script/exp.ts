@@ -25,9 +25,9 @@ export default class NewClass extends cc.Component {
         p.enabled = true;
         p.gravity = cc.v2(0, 0);
 
-        // this.scheduleOnce(() => {
-        //     this.node.destroy();
-        // }, 10);
+        this.scheduleOnce(() => {
+            this.node.destroy();
+        }, 20);
     }
 
     // onBeginContact(contact, selfCollider, otherCollider) {
