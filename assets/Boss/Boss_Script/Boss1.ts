@@ -136,7 +136,7 @@ export default class Boss1 extends cc.Component {
             this.bosslife -= 5;
             //console.log(this.bosslife);
         }
-        if(other.node.name === 'Bullet' || other.node.name === 'Bullet_ring' || other.node.name === 'Boomb' || other.node.name === 'CircleAttack' || other.node.name === 'BouncingBall'){
+        if(other.node.name === 'Bullet' || other.node.name === 'Bullet_ring' || other.node.name === 'Boomb_player' || other.node.name === 'CircleAttack' || other.node.name === 'BouncingBall'){
             this.bosslife -= 1;
         }
     }

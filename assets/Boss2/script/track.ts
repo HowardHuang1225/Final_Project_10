@@ -37,7 +37,7 @@ export default class NewClass extends cc.Component {
 
     start () {
         this.trackTimer = 0;
-        this.schedule(this.bulletcreate, 3);
+        this.schedule(this.bulletcreate, 2);
     }
 
     update (dt) {

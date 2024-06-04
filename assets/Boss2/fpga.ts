@@ -144,7 +144,7 @@ export default class Boss2 extends cc.Component {
         //     //console.log(this.bosslife);
         // }
         const damageMonster = other.node;
-        if(other.node.name === 'Bullet' || other.node.name === 'Bullet_ring' || other.node.name === 'Boomb' || other.node.name === 'CircleAttack' || other.node.name === 'BouncingBall'){
+        if(other.node.name === 'Bullet' || other.node.name === 'Bullet_ring' || other.node.name === 'Boomb_player' || other.node.name === 'CircleAttack' || other.node.name === 'BouncingBall'){
             if (!this.invincible) {
                 console.log("hit fpga")
                 this.changeColorTemporarily(self.node, cc.Color.RED, 0.1);
