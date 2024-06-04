@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "749be425-81ad-471c-b6ff-b4e398cf35ba",
+  "uuid": "ac307f64-cd64-4afe-87f4-db01ab9963e5",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_LightbulbOn": {
       "ver": "1.0.6",
-      "uuid": "00cf4ef9-c7d1-4d43-a810-04679f99cb4a",
+      "uuid": "f72a618c-c045-4ee1-8317-9e79c8770c49",
       "importer": "sprite-frame",
-      "rawTextureUuid": "749be425-81ad-471c-b6ff-b4e398cf35ba",
+      "rawTextureUuid": "ac307f64-cd64-4afe-87f4-db01ab9963e5",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

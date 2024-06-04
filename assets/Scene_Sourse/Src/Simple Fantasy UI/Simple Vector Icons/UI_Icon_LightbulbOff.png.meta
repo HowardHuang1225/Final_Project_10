@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "911f8af7-7983-4f05-a6dd-4e72f6e24615",
+  "uuid": "8ba00a66-639a-41e4-a359-bc9dd1dae772",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_LightbulbOff": {
       "ver": "1.0.6",
-      "uuid": "ba80da4f-d9bb-4278-b9ab-f09ee52a72ed",
+      "uuid": "236a5225-bef9-42f3-8e38-a3b2d9e1c1ee",
       "importer": "sprite-frame",
-      "rawTextureUuid": "911f8af7-7983-4f05-a6dd-4e72f6e24615",
+      "rawTextureUuid": "8ba00a66-639a-41e4-a359-bc9dd1dae772",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

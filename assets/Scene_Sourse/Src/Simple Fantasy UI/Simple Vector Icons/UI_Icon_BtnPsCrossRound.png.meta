@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "a1bef612-8cd2-463f-b11a-c0687356f350",
+  "uuid": "6e4d1e52-4092-4b45-952d-cf620e8d46a9",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_BtnPsCrossRound": {
       "ver": "1.0.6",
-      "uuid": "fc8878bd-086a-41a4-94fc-8d244925e304",
+      "uuid": "998551d1-c329-496e-98ff-4a0b4367c46c",
       "importer": "sprite-frame",
-      "rawTextureUuid": "a1bef612-8cd2-463f-b11a-c0687356f350",
+      "rawTextureUuid": "6e4d1e52-4092-4b45-952d-cf620e8d46a9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

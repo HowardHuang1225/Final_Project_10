@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "31bd1c10-d904-4048-a8e5-c2add4a26c5d",
+  "uuid": "76d8e047-ee2c-41c4-93e2-afb30066b7cf",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_TurnLeft": {
       "ver": "1.0.6",
-      "uuid": "e48e0db8-c0e7-43ab-aed3-d38460d70ea1",
+      "uuid": "db5b0510-ff98-4a78-9658-4ce24c5fa83e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "31bd1c10-d904-4048-a8e5-c2add4a26c5d",
+      "rawTextureUuid": "76d8e047-ee2c-41c4-93e2-afb30066b7cf",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

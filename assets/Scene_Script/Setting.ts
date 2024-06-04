@@ -18,6 +18,7 @@ const { ccclass, property } = cc._decorator;
   }
 
   onEscButtonClick() {
+    cc.director.resume();
     // Create a move-up animation
     console.log("Setting ESC Menu.EffectVolume: ", Menu.EffectVolume);
     let effect_value = Menu.EffectVolume * 10;
@@ -30,7 +31,7 @@ const { ccclass, property } = cc._decorator;
           this.node.destroy();
         })
         .start();
-    }, 0.2);
+    }, 0.5);
   }
 
   onSliderChange(event: cc.Slider) {

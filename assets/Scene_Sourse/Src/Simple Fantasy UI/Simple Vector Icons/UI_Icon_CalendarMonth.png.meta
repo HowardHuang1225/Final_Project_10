@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "86ede4d8-9ddc-45f6-9197-ed2e738e1727",
+  "uuid": "1c84cb1f-00b5-4b31-9a7d-cf9e2d9d4965",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CalendarMonth": {
       "ver": "1.0.6",
-      "uuid": "5737d55e-1e1b-4f5d-96bc-334e84c4880d",
+      "uuid": "33fd7454-3ca1-4331-8216-6f0552b950f4",
       "importer": "sprite-frame",
-      "rawTextureUuid": "86ede4d8-9ddc-45f6-9197-ed2e738e1727",
+      "rawTextureUuid": "1c84cb1f-00b5-4b31-9a7d-cf9e2d9d4965",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

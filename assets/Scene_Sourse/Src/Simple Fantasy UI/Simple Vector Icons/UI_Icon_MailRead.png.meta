@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "2970dd33-8d19-4991-b2b3-e89209f1ea86",
+  "uuid": "2397238c-d7e1-4bb9-a5ab-019610247992",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_MailRead": {
       "ver": "1.0.6",
-      "uuid": "eb563451-4c59-43f4-88fc-4ce23dc19346",
+      "uuid": "bf1c7c56-d5e0-4e05-870a-0ca75c49fbf0",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2970dd33-8d19-4991-b2b3-e89209f1ea86",
+      "rawTextureUuid": "2397238c-d7e1-4bb9-a5ab-019610247992",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

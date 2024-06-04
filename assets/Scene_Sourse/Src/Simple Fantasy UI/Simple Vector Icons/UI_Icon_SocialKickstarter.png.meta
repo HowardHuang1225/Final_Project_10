@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "d24a32de-05b2-4545-9411-ca13fc6efb5e",
+  "uuid": "c7c31c69-db3f-4540-b533-eb8750b5fe50",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialKickstarter": {
       "ver": "1.0.6",
-      "uuid": "5685b757-b006-4c61-8d0e-b6b2c1a44d74",
+      "uuid": "3eea7cb3-3a8e-4707-9ffd-e785cef3c12d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "d24a32de-05b2-4545-9411-ca13fc6efb5e",
+      "rawTextureUuid": "c7c31c69-db3f-4540-b533-eb8750b5fe50",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -11,8 +11,13 @@ export default class EndScene extends cc.Component {
 
     @property({ type: cc.VideoPlayer })
     videoPlayer: cc.VideoPlayer = null;
+    @property({ type: cc.AudioClip })
+    click: cc.AudioClip = null;
+    @property({ type: cc.Node })
+    block: cc.Node = null;
 
     static AudioID_EndScene: number;
+    private skip: number = 0;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -31,7 +36,9 @@ export default class EndScene extends cc.Component {
         cc.audioEngine.setVolume(EndScene.AudioID_EndScene, Menu.BGMVolume);
 
         this.playVideo();
-        this.scheduleOnce(this.jumpScene, 90); // 184秒（3分04秒）后直接进入EndScene
+        this.scheduleOnce(this.shrinkAndRemoveNodes, 40);
+        this.scheduleOnce(this.jumpScene, 100); // 184秒（3分04秒）后直接进入EndScene
+        // this.scheduleOnce(this.shrinkAndRemoveBlockAndVideoPlayer, 40);
 
         // this.scheduleOnce(this.shrinkAndRemoveVideoPlayer, 10);
     }
@@ -44,12 +51,10 @@ export default class EndScene extends cc.Component {
 
     onKeyDown(event) {
         switch (event.keyCode) {
-            case cc.macro.KEY.escape:
-                this.jumpScene();
-                break;
-            case cc.macro.KEY.a:
-            case cc.macro.KEY.left:
-                this.BackMenu();
+            case cc.macro.KEY.d:
+            case cc.macro.KEY.right:
+                this.shrinkAndRemoveNodes();
+                // this.skip = 1;
                 break;
         }
     }
@@ -62,15 +67,30 @@ export default class EndScene extends cc.Component {
     BackMenu() {
         // let effect_value = Menu.EffectVolume * 10;
         // cc.audioEngine.play(this.lock, false, effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.click, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
     }
 
-    shrinkAndRemoveVideoPlayer() {
+    shrinkAndRemoveNodes() {
+        if (this.skip == 1)
+            return;
+        this.skip = 1;
+
+        if (this.block) {
+            cc.tween(this.block)
+                .to(1, { scale: 0 })
+                .call(() => {
+                    this.block.destroy();
+                    this.block = null;
+                })
+                .start();
+        }
+
         if (this.videoPlayer) {
-            // 使用 cc.tween 逐步缩小 VideoPlayer 节点
             cc.tween(this.videoPlayer.node)
                 .to(1, { scale: 0 }) // 在1秒内缩小到0倍
                 .call(() => {

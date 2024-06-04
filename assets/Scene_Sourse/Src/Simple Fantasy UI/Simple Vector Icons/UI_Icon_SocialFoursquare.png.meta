@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "7f8b0ef0-9f64-44a0-bc60-2e83b4e6fb82",
+  "uuid": "05dd6d7a-2052-483e-8f40-e249db47308d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialFoursquare": {
       "ver": "1.0.6",
-      "uuid": "3dd83db5-7bf9-4610-a48b-cb26cd3610db",
+      "uuid": "516f423d-843f-4330-96e1-b9561fff1237",
       "importer": "sprite-frame",
-      "rawTextureUuid": "7f8b0ef0-9f64-44a0-bc60-2e83b4e6fb82",
+      "rawTextureUuid": "05dd6d7a-2052-483e-8f40-e249db47308d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

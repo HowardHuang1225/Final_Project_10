@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "11d92f92-04eb-4525-9918-27f4d491e683",
+  "uuid": "dfcddffb-f8a7-40a6-a2bc-f53f079296e9",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_BtnDpadDirDown": {
       "ver": "1.0.6",
-      "uuid": "ff5b8b6e-6838-48b1-99b4-4af6400abf25",
+      "uuid": "d7448b53-9d37-495b-ab41-bed8eb6b89dc",
       "importer": "sprite-frame",
-      "rawTextureUuid": "11d92f92-04eb-4525-9918-27f4d491e683",
+      "rawTextureUuid": "dfcddffb-f8a7-40a6-a2bc-f53f079296e9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

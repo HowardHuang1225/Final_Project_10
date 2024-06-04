@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "2e387d31-7792-4b1b-b501-603090bca246",
+  "uuid": "9ae73367-0005-4270-a29f-cfa1f75f5167",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Puzzle": {
       "ver": "1.0.6",
-      "uuid": "ed46cc46-db79-46a0-9e97-e9002d7be435",
+      "uuid": "5f1846c1-55ad-483c-8f0d-fffbc40623b2",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2e387d31-7792-4b1b-b501-603090bca246",
+      "rawTextureUuid": "9ae73367-0005-4270-a29f-cfa1f75f5167",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "20c27a59-8fcd-4ef0-a563-8446d2c0def2",
+  "uuid": "9b8d59d9-ae28-45f2-9f2d-24d12441f1b5",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialLine": {
       "ver": "1.0.6",
-      "uuid": "ed794cb2-09e2-459a-a953-540ccc329d0f",
+      "uuid": "6585aace-ce1b-4193-a98b-d5b07a430573",
       "importer": "sprite-frame",
-      "rawTextureUuid": "20c27a59-8fcd-4ef0-a563-8446d2c0def2",
+      "rawTextureUuid": "9b8d59d9-ae28-45f2-9f2d-24d12441f1b5",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

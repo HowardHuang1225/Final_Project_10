@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "71d1ba75-5712-4ff5-b7c6-75f098151ffc",
+  "uuid": "70c32cc0-1764-4b4f-80ac-b28602e95fe0",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_BtnXboxB": {
       "ver": "1.0.6",
-      "uuid": "f51356c7-69a4-4e87-ab92-c4491d6bd005",
+      "uuid": "69fe6a0b-fbb0-40a7-a4bb-16ac6d18503d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "71d1ba75-5712-4ff5-b7c6-75f098151ffc",
+      "rawTextureUuid": "70c32cc0-1764-4b4f-80ac-b28602e95fe0",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

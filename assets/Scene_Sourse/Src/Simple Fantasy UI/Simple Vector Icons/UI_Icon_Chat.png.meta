@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "afd0868f-b1c9-4e15-885a-d43defb2d54f",
+  "uuid": "f3208050-1dab-4dd7-aaad-e1ed95884ee3",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Chat": {
       "ver": "1.0.6",
-      "uuid": "d592dc07-32fb-404a-a123-1a77671a1d07",
+      "uuid": "f0b5c11c-4d5d-44c5-86a8-9eb02c592925",
       "importer": "sprite-frame",
-      "rawTextureUuid": "afd0868f-b1c9-4e15-885a-d43defb2d54f",
+      "rawTextureUuid": "f3208050-1dab-4dd7-aaad-e1ed95884ee3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

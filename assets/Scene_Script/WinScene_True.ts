@@ -20,7 +20,11 @@ export default class WinScene_True extends cc.Component {
     @property({ type: cc.VideoPlayer })
     videoPlayer: cc.VideoPlayer = null;
 
+    @property({ type: cc.Node })
+    block: cc.Node = null;
+
     static AudioID_WinScene_True: number;
+    private skip: number = 0;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -42,7 +46,8 @@ export default class WinScene_True extends cc.Component {
         this.playVideo();
         this.scheduleOnce(this.EndScene, 90);
 
-        this.scheduleOnce(this.shrinkAndRemoveVideoPlayer, 37);
+        this.scheduleOnce(this.shrinkAndRemoveNodes, 37);
+        // this.scheduleOnce(this.shrinkAndRemoveBlockAndVideoPlayer, 37);
     }
 
     playVideo() {
@@ -53,16 +58,9 @@ export default class WinScene_True extends cc.Component {
 
     onKeyDown(event) {
         switch (event.keyCode) {
-            // case cc.macro.KEY.escape:
-            //     this.EndScene();
-            //     break;
-            case cc.macro.KEY.a:
-            case cc.macro.KEY.left:
-                this.BackMenu();
-                break;
             case cc.macro.KEY.d:
             case cc.macro.KEY.right:
-                this.EndScene();
+                this.shrinkAndRemoveNodes();
                 break;
         }
     }
@@ -78,7 +76,7 @@ export default class WinScene_True extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
 
     }
 
@@ -91,9 +89,22 @@ export default class WinScene_True extends cc.Component {
         }, 0.2);
     }
 
-    shrinkAndRemoveVideoPlayer() {
+    shrinkAndRemoveNodes() {
+        if (this.skip == 1)
+            return;
+        this.skip = 1;
+
+        if (this.block) {
+            cc.tween(this.block)
+                .to(1, { scale: 0 })
+                .call(() => {
+                    this.block.destroy();
+                    this.block = null;
+                })
+                .start();
+        }
+
         if (this.videoPlayer) {
-            // 使用 cc.tween 逐步缩小 VideoPlayer 节点
             cc.tween(this.videoPlayer.node)
                 .to(1, { scale: 0 }) // 在1秒内缩小到0倍
                 .call(() => {
@@ -103,8 +114,9 @@ export default class WinScene_True extends cc.Component {
                 .start();
         }
     }
-
-
-
-    // update (dt) {}
 }
+
+
+
+// update (dt) {}
+

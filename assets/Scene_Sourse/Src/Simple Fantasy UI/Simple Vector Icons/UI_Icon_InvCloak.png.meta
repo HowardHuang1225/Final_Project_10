@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "5938f992-376b-4f8f-bb80-45aafa2b8438",
+  "uuid": "3e628fb1-4dfd-41ae-be8c-65ecd5ce4df3",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_InvCloak": {
       "ver": "1.0.6",
-      "uuid": "20785f6c-3d5e-402c-bae2-a6136c4063db",
+      "uuid": "b92ef354-dca9-4833-90d7-60c492c392d4",
       "importer": "sprite-frame",
-      "rawTextureUuid": "5938f992-376b-4f8f-bb80-45aafa2b8438",
+      "rawTextureUuid": "3e628fb1-4dfd-41ae-be8c-65ecd5ce4df3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "f193843d-e8d0-4b81-bf6d-c7ba26621212",
+  "uuid": "a27e69a7-f2e9-4a38-8bc1-4a2a16fe7128",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Compass": {
       "ver": "1.0.6",
-      "uuid": "4293c022-56f8-448a-b149-5d3efb35d8a9",
+      "uuid": "cb2ef17a-f9af-408c-9258-1c96af512766",
       "importer": "sprite-frame",
-      "rawTextureUuid": "f193843d-e8d0-4b81-bf6d-c7ba26621212",
+      "rawTextureUuid": "a27e69a7-f2e9-4a38-8bc1-4a2a16fe7128",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

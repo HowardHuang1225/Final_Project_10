@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "dcbba58c-2346-456d-b84d-0281fcc109e5",
+  "uuid": "170eb42d-8e8b-40a4-ae8d-a67ace476712",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_TShirt": {
       "ver": "1.0.6",
-      "uuid": "01dd4831-995c-4f4b-b2a1-763827bd6e04",
+      "uuid": "d0c641ea-3400-44ad-bec6-324cbc8604e8",
       "importer": "sprite-frame",
-      "rawTextureUuid": "dcbba58c-2346-456d-b84d-0281fcc109e5",
+      "rawTextureUuid": "170eb42d-8e8b-40a4-ae8d-a67ace476712",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

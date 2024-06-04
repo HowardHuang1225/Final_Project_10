@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "001480ac-7b21-480b-91fa-35c1ff63c750",
+  "uuid": "3f286fc0-6635-4735-a232-e8e31f16457f",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Paperplane": {
       "ver": "1.0.6",
-      "uuid": "b3941b2b-7735-4a8a-93fb-22a670b3ea1f",
+      "uuid": "bff730a6-7db9-4b2b-8279-31825ffb2259",
       "importer": "sprite-frame",
-      "rawTextureUuid": "001480ac-7b21-480b-91fa-35c1ff63c750",
+      "rawTextureUuid": "3f286fc0-6635-4735-a232-e8e31f16457f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

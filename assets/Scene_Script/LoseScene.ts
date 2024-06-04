@@ -14,7 +14,11 @@ export default class LoseScene extends cc.Component {
     @property({ type: cc.VideoPlayer })
     videoPlayer: cc.VideoPlayer = null;
 
+    @property({ type: cc.Node })
+    block: cc.Node = null;
+
     static AudioID_LoseScene: number;
+    private skip: number = 0;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -35,7 +39,7 @@ export default class LoseScene extends cc.Component {
         this.playVideo();
         this.scheduleOnce(this.EndScene, 90);
 
-        this.scheduleOnce(this.shrinkAndRemoveVideoPlayer, 45);
+        this.scheduleOnce(this.shrinkAndRemoveNodes, 45);
     }
 
     playVideo() {
@@ -46,16 +50,9 @@ export default class LoseScene extends cc.Component {
 
     onKeyDown(event) {
         switch (event.keyCode) {
-            // case cc.macro.KEY.escape:
-            //     this.EndScene();
-            //     break;
-            case cc.macro.KEY.a:
-            case cc.macro.KEY.left:
-                this.BackMenu();
-                break;
             case cc.macro.KEY.d:
             case cc.macro.KEY.right:
-                this.EndScene();
+                this.shrinkAndRemoveNodes();
                 break;
         }
     }
@@ -66,26 +63,41 @@ export default class LoseScene extends cc.Component {
     }
 
     BackMenu() {
-        // let effect_value = Menu.EffectVolume * 10;
-        // cc.audioEngine.play(this.lock, false, effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Menu");
-        }, 0.2);
+        }, 0.5);
     }
 
     EndScene() {
         // let effect_value = Menu.EffectVolume * 10;
         // cc.audioEngine.play(this.lock, false, effect_value);
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("EndScene");
-        }, 0.2);
+        }, 0.5);
     }
 
-    shrinkAndRemoveVideoPlayer() {
+    shrinkAndRemoveNodes() {
+        if (this.skip == 1)
+            return;
+        this.skip = 1;
+
+        if (this.block) {
+            cc.tween(this.block)
+                .to(1, { scale: 0 })
+                .call(() => {
+                    this.block.destroy();
+                    this.block = null;
+                })
+                .start();
+        }
+
         if (this.videoPlayer) {
-            // 使用 cc.tween 逐步缩小 VideoPlayer 节点
             cc.tween(this.videoPlayer.node)
                 .to(1, { scale: 0 }) // 在1秒内缩小到0倍
                 .call(() => {

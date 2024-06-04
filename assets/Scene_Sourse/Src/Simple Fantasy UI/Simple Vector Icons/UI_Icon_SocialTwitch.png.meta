@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "122d57e2-8d84-4095-8305-d38dfb906f43",
+  "uuid": "aebc1e8b-7828-4f22-bf8f-04d4b5ae1517",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialTwitch": {
       "ver": "1.0.6",
-      "uuid": "b8b8ff0b-5abb-41dc-a33d-db2f70769a74",
+      "uuid": "3f60b2cb-c50b-4d2c-8179-b7488f121f63",
       "importer": "sprite-frame",
-      "rawTextureUuid": "122d57e2-8d84-4095-8305-d38dfb906f43",
+      "rawTextureUuid": "aebc1e8b-7828-4f22-bf8f-04d4b5ae1517",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

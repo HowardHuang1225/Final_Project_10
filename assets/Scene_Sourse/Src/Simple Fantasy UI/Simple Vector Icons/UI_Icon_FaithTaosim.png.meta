@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "80deb9b0-982f-42ce-bb80-5f7cfba68b31",
+  "uuid": "d1675575-5bfc-4e07-beab-ae57429b6fe0",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_FaithTaosim": {
       "ver": "1.0.6",
-      "uuid": "7181af51-f70d-4fe2-a912-363587c6f100",
+      "uuid": "7a262043-6221-4f98-91f3-43cec70e757e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "80deb9b0-982f-42ce-bb80-5f7cfba68b31",
+      "rawTextureUuid": "d1675575-5bfc-4e07-beab-ae57429b6fe0",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

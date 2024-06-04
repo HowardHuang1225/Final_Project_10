@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "6af81d82-2115-4f0b-a684-a977d8fffdd6",
+  "uuid": "51244201-9e27-485e-abf7-e40d3a32b409",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Skull": {
       "ver": "1.0.6",
-      "uuid": "91596ee3-82e8-4fc2-b0de-47881f5e7ef6",
+      "uuid": "392d1f39-1d34-4aab-a810-593263fe9b2d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "6af81d82-2115-4f0b-a684-a977d8fffdd6",
+      "rawTextureUuid": "51244201-9e27-485e-abf7-e40d3a32b409",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

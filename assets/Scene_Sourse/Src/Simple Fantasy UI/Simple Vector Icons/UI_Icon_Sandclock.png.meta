@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "911fd4ec-3acc-42cb-8274-7add10eecb12",
+  "uuid": "e57cefb1-c2c2-4721-8f43-e7374258fe46",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Sandclock": {
       "ver": "1.0.6",
-      "uuid": "ace7eb63-6c52-4b74-8750-58881e30ec43",
+      "uuid": "473ea009-e8b2-4a85-b5d9-77d35e9240e6",
       "importer": "sprite-frame",
-      "rawTextureUuid": "911fd4ec-3acc-42cb-8274-7add10eecb12",
+      "rawTextureUuid": "e57cefb1-c2c2-4721-8f43-e7374258fe46",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

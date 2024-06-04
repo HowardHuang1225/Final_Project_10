@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "10e649da-4d40-4d31-bad2-9a14ff3cc4fc",
+  "uuid": "c0c3cde6-066b-4aa5-81bd-9a69271818a5",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CalendarConfirm": {
       "ver": "1.0.6",
-      "uuid": "13afc483-0572-4593-b20f-9ca19e1eedad",
+      "uuid": "22d8c3a8-1e3c-4cad-8078-d43e008193e6",
       "importer": "sprite-frame",
-      "rawTextureUuid": "10e649da-4d40-4d31-bad2-9a14ff3cc4fc",
+      "rawTextureUuid": "c0c3cde6-066b-4aa5-81bd-9a69271818a5",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

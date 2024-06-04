@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "09e1bc3c-0714-495e-a11d-615df0f0d4d3",
+  "uuid": "5e64d3d2-1d2a-482d-80e5-971622aa049c",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CurrencyWon": {
       "ver": "1.0.6",
-      "uuid": "03438bd4-6485-471e-9e73-07ec3176043f",
+      "uuid": "32575035-ad75-4bdd-be38-f6d274b7cc52",
       "importer": "sprite-frame",
-      "rawTextureUuid": "09e1bc3c-0714-495e-a11d-615df0f0d4d3",
+      "rawTextureUuid": "5e64d3d2-1d2a-482d-80e5-971622aa049c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

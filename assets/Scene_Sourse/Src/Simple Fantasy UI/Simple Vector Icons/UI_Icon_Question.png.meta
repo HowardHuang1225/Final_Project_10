@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "ce88d44e-1c2e-4ab2-809e-83e28855ecbe",
+  "uuid": "9b78612a-5fc6-4d6f-b528-b83873cb79d0",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Question": {
       "ver": "1.0.6",
-      "uuid": "050f2f21-61d4-480a-b276-0012ae122c44",
+      "uuid": "9bbc2865-c491-4ea4-aa33-b1d2bd9e933e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "ce88d44e-1c2e-4ab2-809e-83e28855ecbe",
+      "rawTextureUuid": "9b78612a-5fc6-4d6f-b528-b83873cb79d0",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "8c3c5f7e-65e7-42aa-ada9-5bdbc19219f4",
+  "uuid": "b278acc2-98c3-4319-8427-1a6fb1552fd3",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Checkbox": {
       "ver": "1.0.6",
-      "uuid": "0e666ab1-bafa-4c03-926b-d0e8b06fe88b",
+      "uuid": "b333c0f6-12c2-49e0-8cfa-8e8dead0b141",
       "importer": "sprite-frame",
-      "rawTextureUuid": "8c3c5f7e-65e7-42aa-ada9-5bdbc19219f4",
+      "rawTextureUuid": "b278acc2-98c3-4319-8427-1a6fb1552fd3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

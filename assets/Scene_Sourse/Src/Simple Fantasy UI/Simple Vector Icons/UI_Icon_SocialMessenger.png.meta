@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "668b6204-186d-4672-828c-3a7ecac4422b",
+  "uuid": "536a8259-c037-482f-ae05-f19e4091c6c9",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialMessenger": {
       "ver": "1.0.6",
-      "uuid": "865ecd29-d38f-4bab-af97-6582c2f8bb82",
+      "uuid": "2eb4c510-1d44-4673-bd5e-2d8b7868fd3f",
       "importer": "sprite-frame",
-      "rawTextureUuid": "668b6204-186d-4672-828c-3a7ecac4422b",
+      "rawTextureUuid": "536a8259-c037-482f-ae05-f19e4091c6c9",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

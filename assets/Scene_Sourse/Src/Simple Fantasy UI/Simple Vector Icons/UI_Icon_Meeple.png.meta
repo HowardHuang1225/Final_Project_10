@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "93aa4322-ba32-4246-b699-4e5e66b9018b",
+  "uuid": "b01265d1-0d80-43c1-a9e6-96862a87bdde",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Meeple": {
       "ver": "1.0.6",
-      "uuid": "4df3301f-2ee7-4b0f-b40b-664909b8c424",
+      "uuid": "ff8147e3-07f2-4328-9822-8413099c7d58",
       "importer": "sprite-frame",
-      "rawTextureUuid": "93aa4322-ba32-4246-b699-4e5e66b9018b",
+      "rawTextureUuid": "b01265d1-0d80-43c1-a9e6-96862a87bdde",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

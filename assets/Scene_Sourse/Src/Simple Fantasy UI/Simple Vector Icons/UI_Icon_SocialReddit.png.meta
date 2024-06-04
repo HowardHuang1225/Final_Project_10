@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "e13d273a-deef-43df-b1e4-61fa680608f0",
+  "uuid": "b1a52125-e1f2-4744-a883-c4bbb26acda3",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialReddit": {
       "ver": "1.0.6",
-      "uuid": "9bca3f4c-977e-4877-bb80-24eb3842fcc4",
+      "uuid": "37bfe2ac-1f6e-42cb-9c3d-84421165f0e7",
       "importer": "sprite-frame",
-      "rawTextureUuid": "e13d273a-deef-43df-b1e4-61fa680608f0",
+      "rawTextureUuid": "b1a52125-e1f2-4744-a883-c4bbb26acda3",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

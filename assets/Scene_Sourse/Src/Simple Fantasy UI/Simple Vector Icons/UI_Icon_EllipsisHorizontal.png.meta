@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "0469efb9-40e3-486f-af55-d67051d51c18",
+  "uuid": "1075575d-aa2d-4bfc-87a8-ba806887e58b",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_EllipsisHorizontal": {
       "ver": "1.0.6",
-      "uuid": "ede63704-7df1-4447-b484-03bbb19cbffb",
+      "uuid": "9fdaf6da-f38c-422c-8429-6d50092a5643",
       "importer": "sprite-frame",
-      "rawTextureUuid": "0469efb9-40e3-486f-af55-d67051d51c18",
+      "rawTextureUuid": "1075575d-aa2d-4bfc-87a8-ba806887e58b",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

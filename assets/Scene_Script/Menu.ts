@@ -42,7 +42,7 @@ export default class Menu extends cc.Component {
         const setting = cc.find("Canvas/Setting").getComponent(cc.Button);
         const history = cc.find("Canvas/History").getComponent(cc.Button);
         const target = cc.find("Canvas/Target").getComponent(cc.Button);
-        const store = cc.find("Canvas/Store").getComponent(cc.Button);
+        // const store = cc.find("Canvas/Store").getComponent(cc.Button);
         if (this.node.getParent().getChildByName("setting")) {
             console.log("this.node.getParent()", this.node);
             // let existingSettingNode = this.node.getParent();
@@ -83,11 +83,11 @@ export default class Menu extends cc.Component {
         targetHandler.handler = "TargetWindow";
         target.clickEvents.push(targetHandler);
 
-        const storeHandler = new cc.Component.EventHandler();
-        storeHandler.target = this.node;
-        storeHandler.component = "Menu";
-        storeHandler.handler = "StoreWindow";
-        store.clickEvents.push(storeHandler);
+        // const storeHandler = new cc.Component.EventHandler();
+        // storeHandler.target = this.node;
+        // storeHandler.component = "Menu";
+        // storeHandler.handler = "StoreWindow";
+        // store.clickEvents.push(storeHandler);
     }
 
     BackStart() {
@@ -99,11 +99,16 @@ export default class Menu extends cc.Component {
             return;
         }
         let effect_value = Menu.EffectVolume * 10;
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful  
+        }).catch((error) => {
+            // An error happened
+        });
         cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Start");
-        }, 0.2);
+        }, 0.5);
 
     }
 
@@ -157,7 +162,7 @@ export default class Menu extends cc.Component {
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
             cc.director.loadScene("History");
-        }, 0.2);
+        }, 0.5);
     }
 
     TargetWindow() {
@@ -165,8 +170,8 @@ export default class Menu extends cc.Component {
         cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
-            cc.director.loadScene("Target");
-        }, 0.2);
+            cc.director.loadScene("Intro");
+        }, 0.5);
     }
 
 
@@ -252,10 +257,10 @@ export default class Menu extends cc.Component {
     LoadGame() {
         let effect_value = Menu.EffectVolume * 10;
         cc.audioEngine.play(this.lock, false, effect_value);
-        this.scheduleOnce(() => {
-            cc.audioEngine.stopAll();
-            cc.director.loadScene("game");
-        }, 0.2);
+        cc.audioEngine.stopAll();
+        cc.director.loadScene("Loading");
+        // this.scheduleOnce(() => {
+        // }, 2);
     }
 
 }

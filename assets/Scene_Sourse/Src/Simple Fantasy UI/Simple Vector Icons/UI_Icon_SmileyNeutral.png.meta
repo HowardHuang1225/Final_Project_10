@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "89c0d15f-8ce3-4428-aff6-182f1f7460d3",
+  "uuid": "f4a0fa2d-0480-4897-8a45-581ec6427fd4",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SmileyNeutral": {
       "ver": "1.0.6",
-      "uuid": "5992bc4b-65fe-4dd6-ae0d-ad57156f7cda",
+      "uuid": "1d1f0167-bf5e-43fc-9bd6-e3b5f4b84688",
       "importer": "sprite-frame",
-      "rawTextureUuid": "89c0d15f-8ce3-4428-aff6-182f1f7460d3",
+      "rawTextureUuid": "f4a0fa2d-0480-4897-8a45-581ec6427fd4",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "4b6c4b02-a807-4318-a636-f9de847f56da",
+  "uuid": "668eba31-8b9e-4465-9efa-e6ee50ca07c2",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_ShoppingBag": {
       "ver": "1.0.6",
-      "uuid": "2907aa9f-10cf-4b49-b4c2-bc90663900ff",
+      "uuid": "3f6edeeb-b3d6-43c0-9276-f8e1db45cf00",
       "importer": "sprite-frame",
-      "rawTextureUuid": "4b6c4b02-a807-4318-a636-f9de847f56da",
+      "rawTextureUuid": "668eba31-8b9e-4465-9efa-e6ee50ca07c2",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

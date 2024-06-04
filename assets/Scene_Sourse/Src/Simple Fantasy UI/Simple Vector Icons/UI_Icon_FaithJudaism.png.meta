@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "f9924032-5449-479d-af14-7523eb4ac259",
+  "uuid": "e47b1717-3843-4f22-aed6-c7d0c03c6327",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_FaithJudaism": {
       "ver": "1.0.6",
-      "uuid": "6ecb196b-2504-438b-b86a-4403d39f3c9b",
+      "uuid": "962064fa-4bfa-4de5-b606-d5c539c60728",
       "importer": "sprite-frame",
-      "rawTextureUuid": "f9924032-5449-479d-af14-7523eb4ac259",
+      "rawTextureUuid": "e47b1717-3843-4f22-aed6-c7d0c03c6327",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

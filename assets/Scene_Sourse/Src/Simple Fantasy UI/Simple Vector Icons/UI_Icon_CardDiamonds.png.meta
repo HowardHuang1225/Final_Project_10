@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "0e7cd665-15b3-4ef1-b1a8-b6f4f45b8e77",
+  "uuid": "773fa1fe-c05e-4589-aabd-faa9cb253879",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CardDiamonds": {
       "ver": "1.0.6",
-      "uuid": "9044e8c9-14d9-4255-9f33-06856f565af7",
+      "uuid": "150c39f0-73bd-4f14-ae30-a58a60f74416",
       "importer": "sprite-frame",
-      "rawTextureUuid": "0e7cd665-15b3-4ef1-b1a8-b6f4f45b8e77",
+      "rawTextureUuid": "773fa1fe-c05e-4589-aabd-faa9cb253879",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

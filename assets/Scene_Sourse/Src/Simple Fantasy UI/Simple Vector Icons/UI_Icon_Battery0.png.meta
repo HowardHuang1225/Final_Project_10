@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "b89d9caa-f4f9-4c7c-a1cb-f46bb192453d",
+  "uuid": "305be394-b6d0-4de9-ae1c-b5e67f0f8eb6",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Battery0": {
       "ver": "1.0.6",
-      "uuid": "8a23a91d-8b34-4cf2-9bda-a140d723b9b5",
+      "uuid": "88f620d3-195f-4e6d-9878-bf5852e79995",
       "importer": "sprite-frame",
-      "rawTextureUuid": "b89d9caa-f4f9-4c7c-a1cb-f46bb192453d",
+      "rawTextureUuid": "305be394-b6d0-4de9-ae1c-b5e67f0f8eb6",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

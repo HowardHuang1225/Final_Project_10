@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "e4153beb-c391-41c5-a75d-882ef17cf6b1",
+  "uuid": "ebe5f451-fd94-4229-a478-14a6c738aece",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Stopwatch": {
       "ver": "1.0.6",
-      "uuid": "c3bc69a1-016f-4a38-a8e2-cc9bcc703152",
+      "uuid": "706b334a-7984-4c38-98e4-571035687b54",
       "importer": "sprite-frame",
-      "rawTextureUuid": "e4153beb-c391-41c5-a75d-882ef17cf6b1",
+      "rawTextureUuid": "ebe5f451-fd94-4229-a478-14a6c738aece",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

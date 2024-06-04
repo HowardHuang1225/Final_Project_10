@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "eeb86271-1151-48c3-b1db-f198398f41b7",
+  "uuid": "c6546547-cbb6-4c96-a553-24ae1eb6bab8",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_USB": {
       "ver": "1.0.6",
-      "uuid": "412f490d-76df-4156-8444-be469b736693",
+      "uuid": "b91d5198-1e97-4a8d-8493-c2edcb4478a2",
       "importer": "sprite-frame",
-      "rawTextureUuid": "eeb86271-1151-48c3-b1db-f198398f41b7",
+      "rawTextureUuid": "c6546547-cbb6-4c96-a553-24ae1eb6bab8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "f575efd2-0245-4426-9744-dbbfdac4cacd",
+  "uuid": "96dbaaae-2c1a-4d0a-9789-604586a57e42",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialFacebook": {
       "ver": "1.0.6",
-      "uuid": "105eafc6-1a7e-4be3-acd4-0ea5466dd14d",
+      "uuid": "94dbc856-4c9a-41e2-ab39-dd5721044b49",
       "importer": "sprite-frame",
-      "rawTextureUuid": "f575efd2-0245-4426-9744-dbbfdac4cacd",
+      "rawTextureUuid": "96dbaaae-2c1a-4d0a-9789-604586a57e42",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

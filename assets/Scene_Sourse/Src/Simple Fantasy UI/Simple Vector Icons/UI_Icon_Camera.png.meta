@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "c32e15c9-132b-41a0-a4a5-9d7ffe201701",
+  "uuid": "db29f7ac-2fba-4d46-8d8e-5733211baf00",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Camera": {
       "ver": "1.0.6",
-      "uuid": "15e5c4b7-4569-46c0-998a-a7ef918c151c",
+      "uuid": "166ea990-629f-4bcc-9251-4672743da9a3",
       "importer": "sprite-frame",
-      "rawTextureUuid": "c32e15c9-132b-41a0-a4a5-9d7ffe201701",
+      "rawTextureUuid": "db29f7ac-2fba-4d46-8d8e-5733211baf00",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

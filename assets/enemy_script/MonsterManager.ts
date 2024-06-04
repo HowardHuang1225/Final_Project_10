@@ -25,7 +25,10 @@ export class MonsterManager extends cc.Component {
     timerNode: cc.Node = null;  // 关联 Timer 节点
 
     @property(cc.Node)
-    Bosslabel: cc.Node = null;  
+    Bosslabel2: cc.Node = null;
+    
+    @property(cc.Node)
+    Bosslabel1: cc.Node = null;
 
     @property(cc.Prefab)
     bossPrefab: cc.Prefab = null;
@@ -62,11 +65,11 @@ export class MonsterManager extends cc.Component {
     spawnBoss1() {
     
         // 显示Boss到达的标签
-        if (this.Bosslabel) {
-            this.Bosslabel.active = true;
+        if (this.Bosslabel1) {
+            this.Bosslabel1.active = true;
         }
         this.scheduleOnce(()=>{
-            this.Bosslabel.active = false
+            this.Bosslabel1.active = false
             let boss = cc.instantiate(this.bossPrefab);
             this.monsterParent.addChild(boss);
             boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +200);
@@ -74,11 +77,11 @@ export class MonsterManager extends cc.Component {
     }
 
     spawnBoss2() {
-        if (this.Bosslabel) {
-            this.Bosslabel.active = true;
+        if (this.Bosslabel2) {
+            this.Bosslabel2.active = true;
         }
         this.scheduleOnce(()=>{
-            this.Bosslabel.active = false
+            this.Bosslabel2.active = false
             let boss = cc.instantiate(this.bossPrefab2);
             this.monsterParent.addChild(boss);
             boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +200);

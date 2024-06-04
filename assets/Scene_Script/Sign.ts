@@ -1,4 +1,5 @@
 import Menu from "./Menu";
+declare const firebase: any;
 
 const { ccclass, property } = cc._decorator;
 
@@ -48,7 +49,6 @@ export default class Sign extends cc.Component {
 
   onSubmitButtonClick() {
 
-
     // Determine if this is a sign-up or sign-in based on the presence of certain input fields
     const emailInput = cc.find("Email_input", this.node).getComponent(cc.EditBox).string.trim();
     const passwordInput = cc.find("Password_input", this.node).getComponent(cc.EditBox).string.trim();
@@ -73,59 +73,87 @@ export default class Sign extends cc.Component {
   }
 
   handleSignUp(email: string, password: string, confirmPassword: string) {
+    var Auth = firebase.auth;
     if (email === "" || password === "" || confirmPassword === "") {
       cc.log("Please enter email, password, and confirm your password!");
       alert("Please enter email, password, and confirm your password!");
       return;
     }
-
     if (!email.includes('@')) {
       cc.log("Invalid email format! Email must contain '@'.");
       alert("Invalid email format! Email must contain '@'.");
       return;
     }
-
     if (password !== confirmPassword) {
       // Show password mismatch warning
       cc.log("Passwords do not match!");
       alert("Passwords do not match!");
-    } else {
-      // Save user data
-      userData.email = email;
-      userData.password = password;
-      cc.log("User signed up successfully!");
-      alert("User signed up successfully!");
-      // Optionally, you can navigate to a different scene
-      let effect_value = Menu.EffectVolume * 10;
-      cc.audioEngine.play(this.click, false, effect_value);
-      this.scheduleOnce(() => {
-        cc.audioEngine.stopAll();
-        cc.director.loadScene("Menu");
-      }, 0.2);
+    } 
+    else { 
+      Auth().createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+          // Sign up successful
+          const user = userCredential.user;
+          console.log("Sign up successful:");
+          // Save user email as username to Realtime Database
+          const userId = user.uid;
+          firebase.database().ref('users/' + userId+"/username/").set({
+            username: email,
+          }).then(() => {
+            cc.log("User signed up successfully!");
+            alert("User signed up successfully!");
+            console.log("User email saved to database as username.");
+            // Optionally, you can navigate to a different scene
+            let effect_value = Menu.EffectVolume * 10;
+            cc.audioEngine.play(this.click, false, effect_value);
+            this.scheduleOnce(() => {
+              cc.audioEngine.stopAll();
+              cc.director.loadScene("Menu");
+            }, 0.2);
+          }).catch(error => {
+              console.error("Failed to save email to database:", error);
+          });
+          firebase.database().ref('users/' + userId+"/time/").set({
+              time: "00:00",
+          }).then(() => {
+              console.log("User email saved to database as username.");
+              cc.log("User signed up successfully!");
+              //alert("User signed up successfully!");
+              // Optionally, you can navigate to a different scene
+              let effect_value = Menu.EffectVolume * 10;
+              cc.audioEngine.play(this.click, false, effect_value);
+              this.scheduleOnce(() => {
+                cc.audioEngine.stopAll();
+                cc.director.loadScene("Menu");
+              }, 0.2);
+          }).catch(error => {
+              console.error("Failed to save email to database:", error);
+          });
+      })
+      .catch((error) => {
+          alert("email address has been used");
+          console.error("Sign up failed:", error);
+      });
     }
   }
 
   handleSignIn(email: string, password: string) {
-    if (userData.email === null) {
-      // User has not signed up yet
-      cc.log("User has not registered!");
-      alert("User has not registered!");
-    } else if (userData.email === email && userData.password === password) {
-      // Successful login
-      cc.log("Login successful!");
-      alert("Login successful!");
-      // Optionally, you can navigate to a different scene
-      let effect_value = Menu.EffectVolume * 10;
-      cc.audioEngine.play(this.click, false, effect_value);
-      this.scheduleOnce(() => {
-        cc.audioEngine.stopAll();
-        cc.director.loadScene("Menu");
-      }, 0.2);
-
-    } else {
-      // Login failed
-      cc.log("Invalid email or password!");
-      alert("Invalid email or password!");
-    }
+    var Auth = firebase.auth;
+    Auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        cc.log("Login successful!");
+        alert("Login successful!");
+        console.log("Login successful:");
+        let effect_value = Menu.EffectVolume * 10;
+        cc.audioEngine.play(this.click, false, effect_value);
+        this.scheduleOnce(() => {
+          cc.audioEngine.stopAll();
+          cc.director.loadScene("Menu");
+        }, 0.2);
+      })
+      .catch((error) => {
+        alert("Invalid email or password!");
+        console.error("Login failed:", error);
+    });
   }
 }

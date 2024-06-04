@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "5de36a2e-6909-414d-a50b-3f7f7df9279b",
+  "uuid": "f906ad1f-300c-4a6b-95ef-a6ba87343278",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Mail": {
       "ver": "1.0.6",
-      "uuid": "c5b06d71-3bf9-4f77-8711-7c9e36d397d6",
+      "uuid": "2cc43dc5-8cfb-4a58-8448-03c59aaafc39",
       "importer": "sprite-frame",
-      "rawTextureUuid": "5de36a2e-6909-414d-a50b-3f7f7df9279b",
+      "rawTextureUuid": "f906ad1f-300c-4a6b-95ef-a6ba87343278",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

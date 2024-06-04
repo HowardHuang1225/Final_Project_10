@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "a03fd69b-fa77-429e-9630-da6bff467bf5",
+  "uuid": "f5ca765c-cd93-4c22-8670-6a5d502000c1",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Rainstorm": {
       "ver": "1.0.6",
-      "uuid": "253b2f8e-057a-4f36-b71a-1ee6a08b1dcf",
+      "uuid": "e4fe3380-ccc2-475e-9338-1ce413bb48b5",
       "importer": "sprite-frame",
-      "rawTextureUuid": "a03fd69b-fa77-429e-9630-da6bff467bf5",
+      "rawTextureUuid": "f5ca765c-cd93-4c22-8670-6a5d502000c1",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

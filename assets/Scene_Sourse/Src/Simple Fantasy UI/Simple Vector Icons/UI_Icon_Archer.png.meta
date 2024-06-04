@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "75e9153f-38d7-439d-9c88-7497dcee820d",
+  "uuid": "e82f2e06-994f-4094-910b-e14268bf417f",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Archer": {
       "ver": "1.0.6",
-      "uuid": "b562b98a-c9d4-460f-95b3-d791666d7faa",
+      "uuid": "140f2a39-e8c0-446d-9ec8-7ac135cab0a0",
       "importer": "sprite-frame",
-      "rawTextureUuid": "75e9153f-38d7-439d-9c88-7497dcee820d",
+      "rawTextureUuid": "e82f2e06-994f-4094-910b-e14268bf417f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

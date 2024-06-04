@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "d71feec6-cb7e-4175-b6a6-64762789913a",
+  "uuid": "e895a765-3376-42bf-bc5c-1c2ee8537ff8",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_ShoppingCart": {
       "ver": "1.0.6",
-      "uuid": "2aade7f6-7999-48b3-ab0c-4f0f2b7e6e52",
+      "uuid": "322fcc04-5ef0-4afe-8143-bb8c9b0a5227",
       "importer": "sprite-frame",
-      "rawTextureUuid": "d71feec6-cb7e-4175-b6a6-64762789913a",
+      "rawTextureUuid": "e895a765-3376-42bf-bc5c-1c2ee8537ff8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

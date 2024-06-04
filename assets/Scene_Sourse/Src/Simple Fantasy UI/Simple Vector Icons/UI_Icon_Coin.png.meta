@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "29eca5fb-a7db-467c-81fa-ff04b1345040",
+  "uuid": "4771f587-cb12-40f4-92ff-cc39a788ec31",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Coin": {
       "ver": "1.0.6",
-      "uuid": "94e664b9-3b1e-494b-9ecb-838b00892389",
+      "uuid": "825864fa-3921-4cc5-b1ef-63e7f2072417",
       "importer": "sprite-frame",
-      "rawTextureUuid": "29eca5fb-a7db-467c-81fa-ff04b1345040",
+      "rawTextureUuid": "4771f587-cb12-40f4-92ff-cc39a788ec31",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

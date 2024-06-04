@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "1fb97346-0546-4ec9-8120-f31f01ae2531",
+  "uuid": "e698db22-880d-4148-9fbe-959e10b98435",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_FaithChristianity": {
       "ver": "1.0.6",
-      "uuid": "e6dd40ee-5968-4e24-a93c-098148f7aed8",
+      "uuid": "dfd55852-7d51-4f29-bb5a-c21b99e655a3",
       "importer": "sprite-frame",
-      "rawTextureUuid": "1fb97346-0546-4ec9-8120-f31f01ae2531",
+      "rawTextureUuid": "e698db22-880d-4148-9fbe-959e10b98435",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

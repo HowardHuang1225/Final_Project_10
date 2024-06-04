@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "2569bf38-9e7f-4732-9b32-e25ebd3548dd",
+  "uuid": "c2ad4ab1-d793-46d6-a935-510b47c9c604",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_HealthKit": {
       "ver": "1.0.6",
-      "uuid": "eb90c219-c879-4b61-aa22-da3f066f1654",
+      "uuid": "67ab0145-e4c2-4ec3-9f89-400ccf3ebc6e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2569bf38-9e7f-4732-9b32-e25ebd3548dd",
+      "rawTextureUuid": "c2ad4ab1-d793-46d6-a935-510b47c9c604",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

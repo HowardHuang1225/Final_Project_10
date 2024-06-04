@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "f003198b-16b0-4a90-9f7d-e44ae8b3bd41",
+  "uuid": "14cf4e98-fa55-4a62-9c75-c51606b4ea3c",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SmileyUnhappy": {
       "ver": "1.0.6",
-      "uuid": "e3fa532e-6acf-4b3f-a759-92d82e74de15",
+      "uuid": "1007a65b-54a2-453c-a664-a1ea8a509110",
       "importer": "sprite-frame",
-      "rawTextureUuid": "f003198b-16b0-4a90-9f7d-e44ae8b3bd41",
+      "rawTextureUuid": "14cf4e98-fa55-4a62-9c75-c51606b4ea3c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "2725dc19-2bff-43e8-8687-7fc92ca07a0d",
+  "uuid": "5ae6f7db-3042-46fc-953f-9a61ee4ed26e",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_MusicOff": {
       "ver": "1.0.6",
-      "uuid": "24aba981-fd36-4c20-a6a4-8d30f924b670",
+      "uuid": "560697b7-ab4a-4b26-b906-8d80e4cd5ab8",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2725dc19-2bff-43e8-8687-7fc92ca07a0d",
+      "rawTextureUuid": "5ae6f7db-3042-46fc-953f-9a61ee4ed26e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

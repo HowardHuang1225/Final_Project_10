@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "6313335e-5f22-4097-8940-b5478e004f29",
+  "uuid": "bec45303-0038-4c69-9f2e-e6fc6e482c4d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Bluetooth": {
       "ver": "1.0.6",
-      "uuid": "7acd1437-0ff1-4dcb-b034-0c5dcd161231",
+      "uuid": "a8b78a71-a80d-4e47-ab44-923e14949572",
       "importer": "sprite-frame",
-      "rawTextureUuid": "6313335e-5f22-4097-8940-b5478e004f29",
+      "rawTextureUuid": "bec45303-0038-4c69-9f2e-e6fc6e482c4d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

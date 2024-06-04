@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "bdd0e73f-25ef-483d-a43d-2030f5fc08b3",
+  "uuid": "2319812e-26f9-4c9d-8aca-a6602d8cea65",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_AlarmOn": {
       "ver": "1.0.6",
-      "uuid": "92c8a7df-5dda-4c37-9a88-0881599ef67b",
+      "uuid": "6e74576f-43bf-42ac-8cb7-5aadc0f32e41",
       "importer": "sprite-frame",
-      "rawTextureUuid": "bdd0e73f-25ef-483d-a43d-2030f5fc08b3",
+      "rawTextureUuid": "2319812e-26f9-4c9d-8aca-a6602d8cea65",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

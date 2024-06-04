@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "7d230262-d918-44c7-823d-71f8d2ea7f8d",
+  "uuid": "d066d018-df2d-4bac-a666-b5259a07b3ff",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Wifi": {
       "ver": "1.0.6",
-      "uuid": "3b1c03be-6902-47d5-9ee5-0c333cc39ce8",
+      "uuid": "d97fb455-de6f-4ef8-8dd1-de320578bfb5",
       "importer": "sprite-frame",
-      "rawTextureUuid": "7d230262-d918-44c7-823d-71f8d2ea7f8d",
+      "rawTextureUuid": "d066d018-df2d-4bac-a666-b5259a07b3ff",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

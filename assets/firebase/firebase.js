@@ -13,6 +13,7 @@
 var config = {
   apiKey: "AIzaSyCznpyNtksMkdYQ842tr0nIscEs2i6U12w",
   authDomain: "final-project-10-b55d6.firebaseapp.com",
+  databaseURL: "https://final-project-10-b55d6-default-rtdb.firebaseio.com",
   projectId: "final-project-10-b55d6",
   storageBucket: "final-project-10-b55d6.appspot.com",
   messagingSenderId: "691869107335",

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "8d7c7aac-0b4b-46ea-aefe-f670690125b0",
+  "uuid": "9062fb86-dd9a-45d4-9bc6-2b951ac47a16",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Thermo1": {
       "ver": "1.0.6",
-      "uuid": "803856da-7f88-423d-93ed-3ff8d63e8474",
+      "uuid": "13261fe7-181e-4bc6-be22-5eeb21f29c07",
       "importer": "sprite-frame",
-      "rawTextureUuid": "8d7c7aac-0b4b-46ea-aefe-f670690125b0",
+      "rawTextureUuid": "9062fb86-dd9a-45d4-9bc6-2b951ac47a16",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

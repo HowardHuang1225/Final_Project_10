@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "4f6bc1d3-47af-458c-b0de-b27c8b55bed5",
+  "uuid": "12c957f3-9cf8-4779-8520-83a390ba78aa",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SignOut": {
       "ver": "1.0.6",
-      "uuid": "6dde9f4c-9ad9-40f4-9178-860f5bbf96c6",
+      "uuid": "ec27c541-0fdc-42dd-87cd-562e5ff9691d",
       "importer": "sprite-frame",
-      "rawTextureUuid": "4f6bc1d3-47af-458c-b0de-b27c8b55bed5",
+      "rawTextureUuid": "12c957f3-9cf8-4779-8520-83a390ba78aa",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

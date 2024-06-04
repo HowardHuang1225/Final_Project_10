@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "5f6a954d-9894-49c3-8241-ef31f3f242e6",
+  "uuid": "84fb9560-23ca-4ee9-aa8f-1b8898a2bfdc",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CurrencyDollar": {
       "ver": "1.0.6",
-      "uuid": "e7a1024d-7862-4b8f-b2e3-31bfaef579c3",
+      "uuid": "66fef6d4-4f43-4236-8810-e1b5ddae297a",
       "importer": "sprite-frame",
-      "rawTextureUuid": "5f6a954d-9894-49c3-8241-ef31f3f242e6",
+      "rawTextureUuid": "84fb9560-23ca-4ee9-aa8f-1b8898a2bfdc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

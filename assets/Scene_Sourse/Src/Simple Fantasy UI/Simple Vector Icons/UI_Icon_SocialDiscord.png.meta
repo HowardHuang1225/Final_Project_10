@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "aedf059d-74b7-45c8-bb43-004433f2bc18",
+  "uuid": "842941a3-2ec9-44fe-bfb3-142e361f2c9f",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_SocialDiscord": {
       "ver": "1.0.6",
-      "uuid": "170b9c30-2790-4a9a-87da-4db80a79a9ec",
+      "uuid": "41966446-b843-40f6-96d8-e9d2c0a2c9c4",
       "importer": "sprite-frame",
-      "rawTextureUuid": "aedf059d-74b7-45c8-bb43-004433f2bc18",
+      "rawTextureUuid": "842941a3-2ec9-44fe-bfb3-142e361f2c9f",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

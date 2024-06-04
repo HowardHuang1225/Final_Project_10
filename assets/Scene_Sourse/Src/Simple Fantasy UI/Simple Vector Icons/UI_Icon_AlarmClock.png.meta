@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "d78d3595-6797-452b-b598-d93b855512bf",
+  "uuid": "0ade099b-a125-494f-a16e-1c2914a76d8c",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_AlarmClock": {
       "ver": "1.0.6",
-      "uuid": "84f748cd-cd59-4899-a74f-bd09f2715659",
+      "uuid": "af44621e-660d-44fb-84b4-943a3e630e4c",
       "importer": "sprite-frame",
-      "rawTextureUuid": "d78d3595-6797-452b-b598-d93b855512bf",
+      "rawTextureUuid": "0ade099b-a125-494f-a16e-1c2914a76d8c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

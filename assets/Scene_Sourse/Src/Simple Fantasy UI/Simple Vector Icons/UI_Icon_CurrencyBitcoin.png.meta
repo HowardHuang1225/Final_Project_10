@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "2f524267-6c63-494e-af59-4839363b676f",
+  "uuid": "9fe12bca-5c34-4a2a-be4e-2870a8b63b68",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CurrencyBitcoin": {
       "ver": "1.0.6",
-      "uuid": "9be2bba5-8dd7-4430-b488-78a305cf5b75",
+      "uuid": "c1d225e7-511c-4769-b4f2-b2360f71bd54",
       "importer": "sprite-frame",
-      "rawTextureUuid": "2f524267-6c63-494e-af59-4839363b676f",
+      "rawTextureUuid": "9fe12bca-5c34-4a2a-be4e-2870a8b63b68",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

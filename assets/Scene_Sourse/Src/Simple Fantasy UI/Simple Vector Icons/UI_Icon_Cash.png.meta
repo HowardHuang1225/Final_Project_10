@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "13772005-dfef-48e8-aae8-18f3ce04a0e1",
+  "uuid": "5b1a4682-4c53-48c3-8500-c94147b430c7",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Cash": {
       "ver": "1.0.6",
-      "uuid": "e4f3b247-73b8-48ba-b1cc-a7fce58219a4",
+      "uuid": "3fb7ab3c-b46f-475a-9fbc-dad8dd730d78",
       "importer": "sprite-frame",
-      "rawTextureUuid": "13772005-dfef-48e8-aae8-18f3ce04a0e1",
+      "rawTextureUuid": "5b1a4682-4c53-48c3-8500-c94147b430c7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "58590833-01f9-45b8-aa19-af5ac72ade84",
+  "uuid": "76974371-100b-4e2a-af39-52cf6187c735",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_Wrench": {
       "ver": "1.0.6",
-      "uuid": "dfa03575-6c14-4767-8767-a6df5b709876",
+      "uuid": "563fa920-6fc9-4d53-8192-442b0233d0cd",
       "importer": "sprite-frame",
-      "rawTextureUuid": "58590833-01f9-45b8-aa19-af5ac72ade84",
+      "rawTextureUuid": "76974371-100b-4e2a-af39-52cf6187c735",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

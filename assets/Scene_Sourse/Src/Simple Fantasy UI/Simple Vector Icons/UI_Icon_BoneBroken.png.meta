@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "028736db-41a0-4cc7-93e7-f216e905dc80",
+  "uuid": "4d0e25b7-93de-49a0-b557-968a7095c6fc",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_BoneBroken": {
       "ver": "1.0.6",
-      "uuid": "00f61f0c-8c20-47c1-a3d6-04e7140f9b25",
+      "uuid": "6d9e9305-7b5d-4ad9-a151-b43b9210d3c8",
       "importer": "sprite-frame",
-      "rawTextureUuid": "028736db-41a0-4cc7-93e7-f216e905dc80",
+      "rawTextureUuid": "4d0e25b7-93de-49a0-b557-968a7095c6fc",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

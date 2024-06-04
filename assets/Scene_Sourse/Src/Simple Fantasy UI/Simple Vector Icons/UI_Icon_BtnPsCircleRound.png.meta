@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "d039f45c-7327-43ff-a855-57675bd1e0f0",
+  "uuid": "a2b45269-e2de-4d91-a622-c9dce92fcb48",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_BtnPsCircleRound": {
       "ver": "1.0.6",
-      "uuid": "5fc98980-eff5-45e8-a8d4-e3b5fe5213db",
+      "uuid": "cb7ab01d-b495-44be-8a93-dc532938cd36",
       "importer": "sprite-frame",
-      "rawTextureUuid": "d039f45c-7327-43ff-a855-57675bd1e0f0",
+      "rawTextureUuid": "a2b45269-e2de-4d91-a622-c9dce92fcb48",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

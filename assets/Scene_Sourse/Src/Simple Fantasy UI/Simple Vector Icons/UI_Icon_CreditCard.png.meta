@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "f0265cae-ed37-486a-af8e-0ca4a4f16922",
+  "uuid": "a59f62d3-a690-426a-b7ff-9bfbd1c4746d",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "UI_Icon_CreditCard": {
       "ver": "1.0.6",
-      "uuid": "6f60584a-fae4-41e7-9de0-b7a6a6a436b5",
+      "uuid": "989d082d-2271-4a6a-94f7-401d40538842",
       "importer": "sprite-frame",
-      "rawTextureUuid": "f0265cae-ed37-486a-af8e-0ca4a4f16922",
+      "rawTextureUuid": "a59f62d3-a690-426a-b7ff-9bfbd1c4746d",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

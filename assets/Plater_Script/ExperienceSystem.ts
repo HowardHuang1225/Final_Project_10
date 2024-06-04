@@ -60,7 +60,7 @@ export default class ExperienceSystem extends cc.Component {
     updateUI() {
         this.levelLabel.string = 'Lv' + this.level;
         this.experienceBar.progress = this.currentExperience / this.levelUpExperience;
-        this.upgradePointsLabel.string = '剩餘點數: ' + this.upgradePoints; // 更新升级点数
+        this.upgradePointsLabel.string = 'Remaining Points: ' + this.upgradePoints; // 更新升级点数
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
