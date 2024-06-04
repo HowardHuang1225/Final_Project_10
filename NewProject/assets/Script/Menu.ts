@@ -254,7 +254,7 @@ export default class Menu extends cc.Component {
         cc.audioEngine.play(this.lock, false, effect_value);
         this.scheduleOnce(() => {
             cc.audioEngine.stopAll();
-            cc.director.loadScene("Stage1");
+            cc.director.loadScene("Loading");
         }, 0.5);
     }
 

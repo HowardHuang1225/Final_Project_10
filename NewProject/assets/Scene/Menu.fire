@@ -3209,7 +3209,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Menu",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 66
     },
@@ -3243,8 +3243,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -7.467,
-        229.969,
+        -20.422,
+        218.865,
         0,
         0,
         0,
