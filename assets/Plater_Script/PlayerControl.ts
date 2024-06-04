@@ -244,7 +244,12 @@ export class PlayerController extends cc.Component {
             otherCollider.node.name === "ice" ||
             otherCollider.node.name === "pumpkin" ||
             otherCollider.node.name === "wind"||
-            otherCollider.node.name === "Boomb") {
+            otherCollider.node.name === "Boomb"||
+            otherCollider.node.name === "bullet"||
+            otherCollider.node.name === "Boss1"||
+            otherCollider.node.name === "Boss1_2"||
+            otherCollider.node.name === "Boss1_3"||
+            otherCollider.node.name === "Boss1_4") {
 
             const damageMonster = otherCollider.node;
 
@@ -254,6 +259,7 @@ export class PlayerController extends cc.Component {
                 if (!this.invincible) {
                     this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
                     if(otherCollider.node.name === "Boomb") this.playerLife <=10 ?0:this.playerLife -= 10;
+                    else if(otherCollider.node.name === "Boss1"||otherCollider.node.name === "Boss1_2"||otherCollider.node.name === "Boss1_3"||otherCollider.node.name === "Boss1_4") this.playerLife <=5 ?0:this.playerLife -= 5;
                     else this.playerLife -= 2;
                     cc.log(`Player Life: ${this.playerLife}`);
 
@@ -268,6 +274,7 @@ export class PlayerController extends cc.Component {
                     if (this.contactMonsters.has(damageMonster) && !this.invincible) {
                         this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
                         if(otherCollider.node.name === "Boomb") this.playerLife <=10 ?0:this.playerLife -= 10;
+                        else if(otherCollider.node.name === "Boss1"||otherCollider.node.name === "Boss1_2"||otherCollider.node.name === "Boss1_3"||otherCollider.node.name === "Boss1_4") this.playerLife <=5 ?0:this.playerLife -= 5;
                         else this.playerLife -= 2;
                         cc.log(`Player Life: ${this.playerLife}`);
 

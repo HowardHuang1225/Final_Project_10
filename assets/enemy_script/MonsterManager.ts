@@ -30,6 +30,9 @@ export class MonsterManager extends cc.Component {
     @property(cc.Prefab)
     bossPrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    bossPrefab2: cc.Prefab = null;
+
 
     private monsterPool: cc.NodePool;
     private spawnInterval: number = 0.3;  // 初始生成间隔
@@ -47,23 +50,39 @@ export class MonsterManager extends cc.Component {
             this.monsterPool.put(monster);
         }
         // 调度在100秒后生成Boss
-        this.scheduleOnce(this.spawnBoss, 100);
+        this.scheduleOnce(this.spawnBoss1, 95);
 
-        this.scheduleOnce(()=>{
-            cc.director.loadScene("Menu");
-        }, 110);
+        // this.scheduleOnce(()=>{
+        //     cc.director.loadScene("Menu");
+        // }, 110);
+
+        this.scheduleOnce(this.spawnBoss2, 150);
     }
 
-    spawnBoss() {
-        let boss = cc.instantiate(this.bossPrefab);
-        this.monsterParent.addChild(boss);
-        boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +150);
+    spawnBoss1() {
     
         // 显示Boss到达的标签
         if (this.Bosslabel) {
             this.Bosslabel.active = true;
         }
-        this.scheduleOnce(()=>{this.Bosslabel.active = false}, 1);
+        this.scheduleOnce(()=>{
+            this.Bosslabel.active = false
+            let boss = cc.instantiate(this.bossPrefab);
+            this.monsterParent.addChild(boss);
+            boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +200);
+        }, 1);
+    }
+
+    spawnBoss2() {
+        if (this.Bosslabel) {
+            this.Bosslabel.active = true;
+        }
+        this.scheduleOnce(()=>{
+            this.Bosslabel.active = false
+            let boss = cc.instantiate(this.bossPrefab2);
+            this.monsterParent.addChild(boss);
+            boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +200);
+        }, 1);
     }
     
 
@@ -76,12 +95,12 @@ export class MonsterManager extends cc.Component {
         const timer = this.timerNode.getComponent("Timer");
         const elapsedTime = timer.Time();
 
-        // if (elapsedTime >= 90) {
-        //     // 超过 90 秒，停止生成怪物
-        //     this.unschedule(this.spawnMonster);
-        //     this.unschedule(this.adjustSpawnRate);
-        //     return;
-        // }
+        if (elapsedTime >= 150) {
+            // 超过 90 秒，停止生成怪物
+            this.unschedule(this.spawnMonster);
+            this.unschedule(this.adjustSpawnRate);
+            return;
+        }
         console.log("elapsedTime: ",elapsedTime)
         if(elapsedTime >= 100) {
             this.spawnInterval = 0.01;

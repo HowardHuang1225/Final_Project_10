@@ -3,7 +3,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
-    speed: number = 250;
+    speed: number = 500;
     static gpt: boolean = false; // 使用静态变量以便所有实例共享
 
     onLoad() {

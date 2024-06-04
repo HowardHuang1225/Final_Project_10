@@ -33,12 +33,15 @@ export default class Monster extends cc.Component {
 
         // this.playAnimation(this.node.name+'_idle', () => {
         // });
+        this.life = 5;
         this.dead = false;
         this.node.zIndex = 6
         if(this.node.name === "ice") this.life = 4;
         else if(this.node.name === "pumpkin") this.life = 3;
-        if(this.node.name === "bat") this.life = 2;
+        else if(this.node.name === "bat") this.life = 2;
         else this.life = 1;
+
+        //this.life = 5;
 
         if(this.node.name === "wind") this.speed = 250;
         if(this.node.name === "ice") this.speed = 80;

@@ -7,7 +7,7 @@ export default class Boss1 extends cc.Component {
     bossspeed: number = 200;
 
     @property()
-    bosslife: number = 10;
+    bosslife: number = 30;
 
     @property()
     bossattack: number = 1;
@@ -29,6 +29,7 @@ export default class Boss1 extends cc.Component {
     private anim: cc.Animation = null;
 
     onLoad() {
+        this.bosslife = 30;
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.rigidBody = this.getComponent(cc.RigidBody);
@@ -61,7 +62,7 @@ export default class Boss1 extends cc.Component {
             this.rigidBody.linearVelocity = cc.v2(0, 0);
         }
         
-        this.LifeBar.progress = this.bosslife/10;
+        this.LifeBar.progress = this.bosslife/30;
     }
 
     moveToPlayer() {
