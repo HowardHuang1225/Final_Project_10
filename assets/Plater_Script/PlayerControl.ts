@@ -11,6 +11,9 @@ export class PlayerController extends cc.Component {
     @property()
     playerLife: number = 30;
 
+    @property()
+    playermaxLife: number = 30;
+
     @property(cc.Prefab)
     newAttackPrefab: cc.Prefab = null;
 
@@ -22,6 +25,9 @@ export class PlayerController extends cc.Component {
 
     @property(cc.ProgressBar)
     LifeBar: cc.ProgressBar = null;
+
+    @property(cc.Prefab)
+    bouncingBallPrefab: cc.Prefab = null;
 
     private moveDir: cc.Vec2 = cc.v2(0, 0);
     private upDown: boolean = false;
@@ -41,9 +47,15 @@ export class PlayerController extends cc.Component {
     private iscircle: boolean = false;
     private isring: boolean = false;
     private ismoloto: boolean = false;
+    private bouncingBallEnabled: boolean = false;
+    private bouncelevel: number = -1;
+    private level: number = 0;
+    private BouncingBallAttackLevelLabel: cc.Label = null;
 
     onLoad() {
         // this.node.zIndex = 8
+        this.BouncingBallAttackLevelLabel = cc.find("Canvas/Main Camera/SkillUI/BouncingBallAttackLevelLabel").getComponent(cc.Label);
+
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.physicManager.gravity = cc.v2(0, -200);
@@ -69,7 +81,7 @@ export class PlayerController extends cc.Component {
         }
 
         this.overlay = cc.find("Canvas/Main Camera/Overlay");
-        
+
     }
 
     start() {
@@ -109,25 +121,25 @@ export class PlayerController extends cc.Component {
                     this.experienceSystem.addExperience(10); // 按下 E 键增加经验值
                 }
                 break;
-            case cc.macro.KEY.g:
+            case cc.macro.KEY.v:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.iscircle) {
                     this.experienceSystem.useUpgradePoint();
                     this.spawnNewAttack(); // 按下 G 键消耗升级点数并增加 CircleAttack
                     this.iscircle = true;
                 }
                 break;
-            case cc.macro.KEY.h:
+            case cc.macro.KEY.c:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.isring) {
                     this.experienceSystem.useUpgradePoint();
-                    this.spawnRingAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
+                    this.spawnRingAttack(); 
                     this.isring = true;
                     console.log(123);
                 }
                 break;
-            case cc.macro.KEY.v:
+            case cc.macro.KEY.z:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.ismoloto) {
                     this.experienceSystem.useUpgradePoint();
-                    this.spawnLandmineAttack(); // 按下 H 键消耗升级点数并增加 ShotgunAttack
+                    this.spawnLandmineAttack(); 
                     this.ismoloto = true;
                 }
                 break;
@@ -135,6 +147,18 @@ export class PlayerController extends cc.Component {
             case cc.macro.KEY.o:
                 this.staminaSystem.addStamina();
                 console.log("Stamina++");
+                break;
+
+            case cc.macro.KEY.b:
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && this.bouncelevel <3) {
+                    this.experienceSystem.useUpgradePoint();
+                    this.enableBouncingBallAttack(); // 按下 J 键消耗升级点数并启用 BouncingBall 攻击方式
+                    this.bouncelevel++;
+                    if(this.bouncelevel+1<=3){
+                        this.BouncingBallAttackLevelLabel.string = `${this.bouncelevel+1}`;
+                    }
+                    
+                }
                 break;
         }
         this.updateMoveDir();
@@ -200,6 +224,8 @@ export class PlayerController extends cc.Component {
             const newAttack = cc.instantiate(this.newAttackPrefab);
             // this.node.zIndex = 8
             // newAttack.zIndex = 7
+            this.playerLife *= 1.2;
+            this.playermaxLife *= 1.2;
             newAttack.setPosition(0, 0); // 确保位置为相对于玩家节点
             this.node.addChild(newAttack); // 添加到玩家节点，并设置zIndex为-1确保在玩家图像下方
             cc.log('Spawned new CircleAttack');
@@ -225,6 +251,24 @@ export class PlayerController extends cc.Component {
         }
     }
 
+    private enableBouncingBallAttack() {
+        if (!this.bouncingBallEnabled) {
+            this.bouncingBallEnabled = true;
+            this.schedule(this.spawnBouncingBall, 3); // 每隔三秒发射一个新的球
+            console.log('BouncingBall attack enabled');
+        }
+    }
+
+    private spawnBouncingBall() {
+        if (this.bouncingBallPrefab) {
+            const bouncingBall = cc.instantiate(this.bouncingBallPrefab);
+            bouncingBall.scale = 0.5 + 0.2*this.bouncelevel; 
+            bouncingBall.setPosition(this.node.position); // 确保位置为相对于玩家节点
+            this.node.parent.addChild(bouncingBall); // 添加到玩家的父节点，以便相对于玩家的位置
+            cc.log('Spawned new BouncingBall');
+        }
+    }
+
     onBeginContact(contact, selfCollider, otherCollider) {
         if (this.playerLife <= 0) {
             this.playAnimation("player_die");
@@ -235,7 +279,7 @@ export class PlayerController extends cc.Component {
             this.scheduleOnce(() => {
                 // cc.audioEngine.stopAll();
                 cc.director.loadScene("Menu");
-            }, 1.5);
+            }, 2.4);
             return;
         }
 
@@ -243,12 +287,12 @@ export class PlayerController extends cc.Component {
             otherCollider.node.name === "ghast" ||
             otherCollider.node.name === "ice" ||
             otherCollider.node.name === "pumpkin" ||
-            otherCollider.node.name === "wind"||
-            otherCollider.node.name === "Boomb"||
-            otherCollider.node.name === "bullet"||
-            otherCollider.node.name === "Boss1"||
-            otherCollider.node.name === "Boss1_2"||
-            otherCollider.node.name === "Boss1_3"||
+            otherCollider.node.name === "wind" ||
+            otherCollider.node.name === "Boomb" ||
+            otherCollider.node.name === "bullet" ||
+            otherCollider.node.name === "Boss1" ||
+            otherCollider.node.name === "Boss1_2" ||
+            otherCollider.node.name === "Boss1_3" ||
             otherCollider.node.name === "Boss1_4") {
 
             const damageMonster = otherCollider.node;
@@ -258,8 +302,8 @@ export class PlayerController extends cc.Component {
 
                 if (!this.invincible) {
                     this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-                    if(otherCollider.node.name === "Boomb") this.playerLife <=10 ?0:this.playerLife -= 10;
-                    else if(otherCollider.node.name === "Boss1"||otherCollider.node.name === "Boss1_2"||otherCollider.node.name === "Boss1_3"||otherCollider.node.name === "Boss1_4") this.playerLife <=5 ?0:this.playerLife -= 5;
+                    if (otherCollider.node.name === "Boomb") this.playerLife <= 10 ? 0 : this.playerLife -= 10;
+                    else if (otherCollider.node.name === "Boss1" || otherCollider.node.name === "Boss1_2" || otherCollider.node.name === "Boss1_3" || otherCollider.node.name === "Boss1_4") this.playerLife <= 5 ? 0 : this.playerLife -= 5;
                     else this.playerLife -= 2;
                     cc.log(`Player Life: ${this.playerLife}`);
 
@@ -273,8 +317,8 @@ export class PlayerController extends cc.Component {
                 damageMonster['damageInterval'] = this.schedule(() => {
                     if (this.contactMonsters.has(damageMonster) && !this.invincible) {
                         this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-                        if(otherCollider.node.name === "Boomb") this.playerLife <=10 ?0:this.playerLife -= 10;
-                        else if(otherCollider.node.name === "Boss1"||otherCollider.node.name === "Boss1_2"||otherCollider.node.name === "Boss1_3"||otherCollider.node.name === "Boss1_4") this.playerLife <=5 ?0:this.playerLife -= 5;
+                        if (otherCollider.node.name === "Boomb") this.playerLife <= 10 ? 0 : this.playerLife -= 10;
+                        else if (otherCollider.node.name === "Boss1" || otherCollider.node.name === "Boss1_2" || otherCollider.node.name === "Boss1_3" || otherCollider.node.name === "Boss1_4") this.playerLife <= 5 ? 0 : this.playerLife -= 5;
                         else this.playerLife -= 2;
                         cc.log(`Player Life: ${this.playerLife}`);
 
@@ -356,7 +400,7 @@ export class PlayerController extends cc.Component {
                 .start();
         }
     }
-    
+
 
     applyScreenShake(apply: boolean) {
         if (apply) {

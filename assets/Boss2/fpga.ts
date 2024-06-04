@@ -1,5 +1,9 @@
 const { ccclass, property } = cc._decorator;
 
+import {PlayerController} from "../Plater_Script/PlayerControl"
+import StaminaSystem from "../Plater_Script/StaminaSystem"
+import Timer from "../enemy_script/Timer"
+
 @ccclass
 export default class Boss2 extends cc.Component {
 
@@ -52,6 +56,7 @@ export default class Boss2 extends cc.Component {
 
     update(dt) {
         if (this.bosslife <= 0) {
+            // cc.find("Timer").getComponent(Timer).stopTimer(); 
             cc.director.loadScene("Menu");
         }
         // if (!this.istouch && this.player) {

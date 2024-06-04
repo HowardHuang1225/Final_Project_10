@@ -16,12 +16,19 @@ export default class RingAttack extends cc.Component {
     private bullets: cc.Node[] = []; // 存儲子彈節點
 
     private experienceSystem: ExperienceSystem = null;
+    private ringAttackLevelLabel: cc.Label = null; // 引用 RingAttackLevelLabel
 
     private level: number = 0;
 
     onLoad() {
         this.experienceSystem = cc.find("Canvas/Main Camera/ExperienceBar").getComponent(ExperienceSystem);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+
+        // 查找 RingAttackLevelLabel 节点并获取组件
+        this.ringAttackLevelLabel = cc.find("Canvas/Main Camera/SkillUI/RingAttackLevelLabel").getComponent(cc.Label);
+
+        // 初始化 level 显示
+        this.updateLevelLabel();
 
         this.createBullets(2); // 初始化生成2顆子彈
     }
@@ -40,12 +47,13 @@ export default class RingAttack extends cc.Component {
 
     onKeyDown(event: cc.Event.EventKeyboard) {
         switch (event.keyCode) {
-            case cc.macro.KEY.h:
+            case cc.macro.KEY.c:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && this.level < 3) {
                     this.experienceSystem.useUpgradePoint();
                     this.level += 1;
                     console.log("level:", this.level);
                     this.updateBullets(); // 更新子彈數量
+                    this.updateLevelLabel(); // 更新显示的 level
                 }
                 break;
         }
@@ -86,6 +94,12 @@ export default class RingAttack extends cc.Component {
             case 1: this.radius = 110; break;
             case 2: this.radius = 140; break;
             case 3: this.radius = 170; break;
+        }
+    }
+
+    private updateLevelLabel() {
+        if (this.ringAttackLevelLabel) {
+            this.ringAttackLevelLabel.string = `${this.level+1}`;
         }
     }
 }

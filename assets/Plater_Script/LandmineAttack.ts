@@ -1,5 +1,6 @@
 const { ccclass, property } = cc._decorator;
 import ExperienceSystem from './ExperienceSystem'; 
+
 @ccclass
 export default class LandmineAttack extends cc.Component {
 
@@ -10,10 +11,17 @@ export default class LandmineAttack extends cc.Component {
     level: number = 0;
 
     private experienceSystem: ExperienceSystem = null;
+    private landmineLevelLabel: cc.Label = null; // 引用 LandmineLevelLabel
 
-    onLoad(){
+    onLoad() {
         this.experienceSystem = cc.find("Canvas/Main Camera/ExperienceBar").getComponent(ExperienceSystem);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+
+        // 查找 LandmineLevelLabel 节点并获取组件
+        this.landmineLevelLabel = cc.find("Canvas/Main Camera/SkillUI/LandmineLevelLabel").getComponent(cc.Label);
+
+        // 初始化 level 显示
+        this.updateLevelLabel();
     }
 
     start() {
@@ -32,18 +40,25 @@ export default class LandmineAttack extends cc.Component {
         landmine.setPosition(playerPosition);
         this.node.parent.parent.addChild(landmine);
 
-        this.scheduleOnce(() => {landmine.active = false}, 5);
+        this.scheduleOnce(() => { landmine.active = false }, 5);
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
         switch (event.keyCode) {
-            case cc.macro.KEY.v:
-                if (this.experienceSystem && this.experienceSystem.upgradePoints>0 && this.level !=3) {
+            case cc.macro.KEY.z:
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && this.level < 3) {
                     this.experienceSystem.useUpgradePoint();
-                    this.level +=1 ; 
-                    console.log("level :",this.level);
+                    this.level += 1;
+                    console.log("level :", this.level);
+                    this.updateLevelLabel(); // 更新显示的 level
                 }
                 break;
+        }
+    }
+
+    private updateLevelLabel() {
+        if (this.landmineLevelLabel) {
+            this.landmineLevelLabel.string = `${this.level+1}`;
         }
     }
 }
