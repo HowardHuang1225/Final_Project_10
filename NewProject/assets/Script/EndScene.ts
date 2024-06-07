@@ -41,12 +41,19 @@ export default class EndScene extends cc.Component {
         // this.scheduleOnce(this.shrinkAndRemoveBlockAndVideoPlayer, 40);
 
         // this.scheduleOnce(this.shrinkAndRemoveVideoPlayer, 10);
+
+        this.addMouseEvents(cc.find("Canvas/ESC_BT"));
+        this.addMouseEvents(cc.find("Canvas/Skip"));
     }
 
     playVideo() {
         if (this.videoPlayer) {
             this.videoPlayer.play();
         }
+    }
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
     }
 
     onKeyDown(event) {
@@ -98,6 +105,34 @@ export default class EndScene extends cc.Component {
                     this.videoPlayer = null; // 清除引用
                 })
                 .start();
+        }
+    }
+
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "ESC_BT") {
+                buttonComponent.node.opacity = 250;
+                console.log("ESC_BT opacity: ", buttonComponent.node.opacity);
+            }
+            else {
+                buttonComponent.node.opacity = 250;
+            }
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "ESC_BT") {
+                //let node's picture opacity = 200;
+                buttonComponent.node.opacity = 200;
+            }
+            else {
+                buttonComponent.node.opacity = 200;
+            }
         }
     }
 

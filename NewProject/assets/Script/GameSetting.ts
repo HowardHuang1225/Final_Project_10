@@ -20,7 +20,13 @@ export default class GameSetting extends cc.Component {
 
     // onLoad () {}
     start() {
-
+        this.addMouseEvents(cc.find("Cancel"));
+        this.addMouseEvents(cc.find("Restart"));
+        this.addMouseEvents(cc.find("Continue"));
+    }
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
     }
 
 
@@ -54,6 +60,22 @@ export default class GameSetting extends cc.Component {
                 .start();
         }, 0.2);
 
+    }
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            buttonComponent.node.opacity = 250;
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            buttonComponent.node.opacity = 200;
+
+        }
     }
 
 

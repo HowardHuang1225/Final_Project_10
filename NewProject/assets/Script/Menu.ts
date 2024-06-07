@@ -36,58 +36,64 @@ export default class Menu extends cc.Component {
 
     addButtonClickListener() {
         // find the button and add a click event listener
-        console.log("addButtonClickListener");
-        console.log("this.nodein addButtonClickListener in menu start", this.node);
-        const back = cc.find("Canvas/Back").getComponent(cc.Button);
-        const setting = cc.find("Canvas/Setting").getComponent(cc.Button);
-        const history = cc.find("Canvas/History").getComponent(cc.Button);
-        const target = cc.find("Canvas/Target").getComponent(cc.Button);
-        // const store = cc.find("Canvas/Store").getComponent(cc.Button);
-        if (this.node.getParent().getChildByName("setting")) {
-            console.log("this.node.getParent()", this.node);
-            // let existingSettingNode = this.node.getParent();
-            const stopMusic = cc.find("setting/Bgm_control/Bgm_bt").getComponent(cc.Button);
-            const stopMusicHandler = new cc.Component.EventHandler();
-            stopMusicHandler.target = this.node;
-            stopMusicHandler.component = "Menu";
-            // stopMusicHandler.handler = "ControlBgm";
-            stopMusic.clickEvents.push(stopMusicHandler);
-        }
+        // console.log("addButtonClickListener");
+        // console.log("this.nodein addButtonClickListener in menu start", this.node);
+        // const back = cc.find("Canvas/Back").getComponent(cc.Button);
+        // const setting = cc.find("Canvas/Setting").getComponent(cc.Button);
+        // const history = cc.find("Canvas/History").getComponent(cc.Button);
+        // const target = cc.find("Canvas/Intro").getComponent(cc.Button);
+        // // const store = cc.find("Canvas/Store").getComponent(cc.Button);
+        // if (this.node.getParent().getChildByName("setting")) {
+        //     console.log("this.node.getParent()", this.node);
+        //     // let existingSettingNode = this.node.getParent();
+        //     const stopMusic = cc.find("setting/Bgm_control/Bgm_bt").getComponent(cc.Button);
+        //     const stopMusicHandler = new cc.Component.EventHandler();
+        //     stopMusicHandler.target = this.node;
+        //     stopMusicHandler.component = "Menu";
+        //     // stopMusicHandler.handler = "ControlBgm";
+        //     stopMusic.clickEvents.push(stopMusicHandler);
+        // }
 
 
 
 
+        // // add button click event listeners
+        // const backHandler = new cc.Component.EventHandler();
+        // backHandler.target = this.node;
+        // backHandler.component = "Menu";
+        // backHandler.handler = "BackStart";
+        // back.clickEvents.push(backHandler);
 
-        // add button click event listeners
-        const backHandler = new cc.Component.EventHandler();
-        backHandler.target = this.node;
-        backHandler.component = "Menu";
-        backHandler.handler = "BackStart";
-        back.clickEvents.push(backHandler);
+        // const settingHandler = new cc.Component.EventHandler();
+        // settingHandler.target = this.node;
+        // settingHandler.component = "Menu";
+        // settingHandler.handler = "SettingWindow";
+        // setting.clickEvents.push(settingHandler);
 
-        const settingHandler = new cc.Component.EventHandler();
-        settingHandler.target = this.node;
-        settingHandler.component = "Menu";
-        settingHandler.handler = "SettingWindow";
-        setting.clickEvents.push(settingHandler);
+        // const historyHandler = new cc.Component.EventHandler();
+        // historyHandler.target = this.node;
+        // historyHandler.component = "Menu";
+        // historyHandler.handler = "HistoryWindow";
+        // history.clickEvents.push(historyHandler);
 
-        const historyHandler = new cc.Component.EventHandler();
-        historyHandler.target = this.node;
-        historyHandler.component = "Menu";
-        historyHandler.handler = "HistoryWindow";
-        history.clickEvents.push(historyHandler);
+        // const targetHandler = new cc.Component.EventHandler();
+        // targetHandler.target = this.node;
+        // targetHandler.component = "Menu";
+        // targetHandler.handler = "TargetWindow";
+        // target.clickEvents.push(targetHandler);
 
-        const targetHandler = new cc.Component.EventHandler();
-        targetHandler.target = this.node;
-        targetHandler.component = "Menu";
-        targetHandler.handler = "TargetWindow";
-        target.clickEvents.push(targetHandler);
+        this.addMouseEvents(cc.find("Canvas/Back"));
+        this.addMouseEvents(cc.find("Canvas/Setting"));
+        this.addMouseEvents(cc.find("Canvas/History"));
+        this.addMouseEvents(cc.find("Canvas/Intro"));
+        this.addMouseEvents(cc.find("Canvas/Start"));
 
-        // const storeHandler = new cc.Component.EventHandler();
-        // storeHandler.target = this.node;
-        // storeHandler.component = "Menu";
-        // storeHandler.handler = "StoreWindow";
-        // store.clickEvents.push(storeHandler);
+        this.addFloatingEffect(cc.find("Canvas/Mark"));
+    }
+
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
     }
 
     BackStart() {
@@ -256,6 +262,55 @@ export default class Menu extends cc.Component {
             cc.audioEngine.stopAll();
             cc.director.loadScene("Loading");
         }, 0.5);
+    }
+
+
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Back") {
+                buttonComponent.node.opacity = 255;
+            } else if (node.name === "Start") {
+                //let node's picture opacity = 200;
+                buttonComponent.node.opacity = 255;
+            }
+            else {
+                buttonComponent.node.opacity = 255;
+            }
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Back") {
+                buttonComponent.node.opacity = 150;
+            } else if (node.name === "Start") {
+                buttonComponent.node.opacity = 205;
+            }
+            else {
+                buttonComponent.node.opacity = 205;
+            }
+        }
+    }
+    addFloatingEffect(node: cc.Node) {
+        if (node) {
+            cc.tween(node)
+                .repeatForever(
+                    cc.tween()
+                        .parallel(
+                            cc.tween().by(1.2, { position: cc.v3(0, 8, 0) }, { easing: 'sineInOut' }),
+                            cc.tween().to(1.2, { scale: 1.03 }, { easing: 'sineInOut' })
+                        )
+                        .parallel(
+                            cc.tween().by(1.2, { position: cc.v3(0, -8, 0) }, { easing: 'sineInOut' }),
+                            cc.tween().to(1.2, { scale: 1.0 }, { easing: 'sineInOut' })
+                        )
+                )
+                .start();
+        }
     }
 
 }

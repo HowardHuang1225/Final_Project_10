@@ -443,7 +443,7 @@
     "_prefab": {
       "__id__": 23
     },
-    "_opacity": 255,
+    "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -1036,7 +1036,7 @@
     "_prefab": {
       "__id__": 35
     },
-    "_opacity": 255,
+    "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -1981,7 +1981,7 @@
     "_prefab": {
       "__id__": 60
     },
-    "_opacity": 255,
+    "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -2487,7 +2487,7 @@
     "_prefab": {
       "__id__": 73
     },
-    "_opacity": 255,
+    "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -3322,7 +3322,7 @@
     "_prefab": {
       "__id__": 95
     },
-    "_opacity": 255,
+    "_opacity": 200,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,

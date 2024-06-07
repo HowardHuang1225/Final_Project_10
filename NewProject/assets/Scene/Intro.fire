@@ -561,7 +561,7 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 255,
+    "_opacity": 150,
     "_color": {
       "__type__": "cc.Color",
       "r": 0,
@@ -1688,7 +1688,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 220,
-      "height": 200
+      "height": 150
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1889,11 +1889,11 @@
     "_dstBlendFactor": 771,
     "_string": "Brian is a NTHU student.\nNo matter how hard he works, \nhe always screws up on the tests.\n\nWatching his friends are \"nei-juan\"ing, \nBrian eventually can't afford this huge pressure.\nHence, the inner demons of psychological depression appear.....",
     "_N$string": "Brian is a NTHU student.\nNo matter how hard he works, \nhe always screws up on the tests.\n\nWatching his friends are \"nei-juan\"ing, \nBrian eventually can't afford this huge pressure.\nHence, the inner demons of psychological depression appear.....",
-    "_fontSize": 20,
-    "_lineHeight": 20,
+    "_fontSize": 30,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "58901d9f-074f-4890-8757-fe8ab0f5b5a4"
+      "__uuid__": "17e24be4-521b-40ff-84a1-f252fecf92ef"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -2311,7 +2311,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 220,
-      "height": 400
+      "height": 450
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2458,8 +2458,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 658.2311312283978,
-      "height": 385.2
+      "width": 610.0039140354974,
+      "height": 406.5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2510,13 +2510,13 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "[ Control ]\nPress W : UP\nPress A  : LEFT\nPress S  : DOWN\nPress D : LEFT\n\n[ Attack ]\nC : normal bullet\n(will increase bullet numbers every level up)\nChrome : gyro bullet\n(will increase bullet numbers every level up)\nmath : barrier\n(increase def)\nwarning : landmine\n\n[ Item ]\nChatGPT: get exp\nSwitch: heal passion\nRed Bull: heal life",
-    "_N$string": "[ Control ]\nPress W : UP\nPress A  : LEFT\nPress S  : DOWN\nPress D : LEFT\n\n[ Attack ]\nC : normal bullet\n(will increase bullet numbers every level up)\nChrome : gyro bullet\n(will increase bullet numbers every level up)\nmath : barrier\n(increase def)\nwarning : landmine\n\n[ Item ]\nChatGPT: get exp\nSwitch: heal passion\nRed Bull: heal life",
-    "_fontSize": 20,
-    "_lineHeight": 20,
+    "_string": "[ Control ]\nPress W : UP\nPress A  : LEFT\nPress S  : DOWN\nPress D : LEFT\n\n[ Attack ] (choose attack increase every level up)\nPress X : normal bullet\nPress C : gyro bullet\nPress V : barrier  (increase def)\nPress Z : landmine\n\n[ Item ]\nChatGPT: magnet exp\nSwitch: heal passion\nRed Bull: heal life",
+    "_N$string": "[ Control ]\nPress W : UP\nPress A  : LEFT\nPress S  : DOWN\nPress D : LEFT\n\n[ Attack ] (choose attack increase every level up)\nPress X : normal bullet\nPress C : gyro bullet\nPress V : barrier  (increase def)\nPress Z : landmine\n\n[ Item ]\nChatGPT: magnet exp\nSwitch: heal passion\nRed Bull: heal life",
+    "_fontSize": 25,
+    "_lineHeight": 25,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "58901d9f-074f-4890-8757-fe8ab0f5b5a4"
+      "__uuid__": "17e24be4-521b-40ff-84a1-f252fecf92ef"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

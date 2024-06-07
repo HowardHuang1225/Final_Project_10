@@ -35,30 +35,22 @@ export default class Start extends cc.Component {
     }
     start() {
         // link click
-        let startbtn = new cc.Component.EventHandler();
-        let signinBt = new cc.Component.EventHandler();
-        let signupBt = new cc.Component.EventHandler();
-        let stopGamebtn = new cc.Component.EventHandler();
 
-        startbtn.target = this.node;
-        startbtn.component = "Start";
-        startbtn.handler = "loadMenu";
-        cc.find("Canvas/Guest").getComponent(cc.Button).clickEvents.push(startbtn);
 
-        signinBt.target = this.node;
-        signinBt.component = "Start";
-        signinBt.handler = "signinScene";
-        cc.find("Canvas/SignIn").getComponent(cc.Button).clickEvents.push(signinBt);
 
-        signupBt.target = this.node;
-        signupBt.component = "Start";
-        signupBt.handler = "signUPScene";
-        cc.find("Canvas/SignUp").getComponent(cc.Button).clickEvents.push(signupBt);
+        this.addMouseEvents(cc.find("Canvas/SignIn"));
+        this.addMouseEvents(cc.find("Canvas/SignUp"));
+        this.addMouseEvents(cc.find("Canvas/Guest"));
+        this.addMouseEvents(cc.find("Canvas/ESC_BT"));
 
-        stopGamebtn.target = this.node;
-        stopGamebtn.component = "Start";
-        stopGamebtn.handler = "jumpScene";
-        cc.find("Canvas/ESC_BT").getComponent(cc.Button).clickEvents.push(stopGamebtn);
+        // Add floating effect to Mark and Mark2 nodes
+        this.addFloatingEffect(cc.find("Canvas/Mark"));
+        this.addFloatingEffect1(cc.find("Canvas/Mark2"));
+    }
+
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
     }
 
     loadMenu() {
@@ -136,4 +128,60 @@ export default class Start extends cc.Component {
         cc.audioEngine.stopAll();
         cc.game.end();
     }
+
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Guest") {
+                buttonComponent.node.opacity = 200;
+            } else if (node.name === "ESC_BT") {
+                buttonComponent.node.opacity = 250;
+                console.log("ESC_BT opacity: ", buttonComponent.node.opacity);
+            }
+            else {
+                buttonComponent.node.opacity = 180;
+            }
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Guest") {
+                buttonComponent.node.opacity = 150;
+            } else if (node.name === "ESC_BT") {
+                //let node's picture opacity = 200;
+                buttonComponent.node.opacity = 200;
+            }
+            else {
+                buttonComponent.node.opacity = 120;
+            }
+        }
+    }
+
+    addFloatingEffect(node: cc.Node) {
+        if (node) {
+            cc.tween(node)
+                .repeatForever(
+                    cc.tween()
+                        .by(1, { position: cc.v3(0, 10, 0) }, { easing: 'sineInOut' })
+                        .by(1, { position: cc.v3(0, -10, 0) }, { easing: 'sineInOut' })
+                )
+                .start();
+        }
+    }
+    addFloatingEffect1(node: cc.Node) {
+        if (node) {
+            cc.tween(node)
+                .repeatForever(
+                    cc.tween()
+                        .by(1.2, { position: cc.v3(0, 8, 0) }, { easing: 'sineInOut' })
+                        .by(1.2, { position: cc.v3(0, -8, 0) }, { easing: 'sineInOut' })
+                )
+                .start();
+        }
+    }
+
 }

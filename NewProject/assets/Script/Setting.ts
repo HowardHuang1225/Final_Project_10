@@ -14,7 +14,52 @@ const { ccclass, property } = cc._decorator;
     if (escButton) {
       escButton.on('click', this.onEscButtonClick, this);
     }
+    this.addMouseEvents(escButton);
 
+    const Effect_bt = cc.find("Effect_control/Open", this.node);
+    this.addMouseEvents(Effect_bt);
+    const Bgm_bt = cc.find("Bgm_control/Open", this.node);
+    this.addMouseEvents(Bgm_bt);
+
+
+    const Bgm_handle = cc.find("Bgm_control/Bgm_bt", this.node);
+    this.addMouseEvents(Bgm_handle);
+    const Effect_handle = cc.find("Effect_control/Effect_bt", this.node);
+    this.addMouseEvents(Effect_handle);
+
+
+  }
+  addMouseEvents(node: cc.Node) {
+    node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+    node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
+  }
+
+  onMouseEnter(event) {
+    const node = event.target;
+    const buttonComponent = node.getComponent(cc.Button);
+    if (buttonComponent) {
+      if (node.name === "ESC_BT") {
+        buttonComponent.node.opacity = 250;
+        console.log("ESC_BT opacity: ", buttonComponent.node.opacity);
+      }
+      else {
+        buttonComponent.node.opacity = 255;
+      }
+    }
+  }
+
+  onMouseLeave(event) {
+    const node = event.target;
+    const buttonComponent = node.getComponent(cc.Button);
+    if (buttonComponent) {
+      if (node.name === "ESC_BT") {
+        //let node's picture opacity = 200;
+        buttonComponent.node.opacity = 150;
+      }
+      else {
+        buttonComponent.node.opacity = 200;
+      }
+    }
   }
 
   onEscButtonClick() {

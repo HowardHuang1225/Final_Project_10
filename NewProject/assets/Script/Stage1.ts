@@ -26,6 +26,34 @@ export default class Stage1 extends cc.Component {
 
     start() {
         this.addButtonClickListener();
+        const Effect_bt = cc.find("Setting", this.node);
+        if (Effect_bt) {
+            this.addMouseEvents(Effect_bt);
+            console.log("Effect_bt", Effect_bt);
+        }
+        console.log("Effect_bt", Effect_bt);
+        // this.addMouseEvents(Effect_bt);
+        // this.addMouseEvents(cc.find("Canvas/Hello/GameSetting"));
+    }
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
+    }
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            buttonComponent.node.opacity = 200;
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            buttonComponent.node.opacity = 150;
+        }
+
     }
     addButtonClickListener() {
         // find the button and add a click event listener

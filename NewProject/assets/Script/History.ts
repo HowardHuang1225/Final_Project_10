@@ -35,6 +35,8 @@ export default class History extends cc.Component {
         startbtn.component = "History";
         startbtn.handler = "BackMenu";
         cc.find("Canvas/Back").getComponent(cc.Button).clickEvents.push(startbtn);
+
+        this.addMouseEvents(cc.find("Canvas/Back"));
     }
 
     BackMenu() {
@@ -45,6 +47,37 @@ export default class History extends cc.Component {
             cc.director.loadScene("Menu");
         }, 0.5);
 
+    }
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
+    }
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Back") {
+                buttonComponent.node.opacity = 250;
+                console.log("ESC_BT opacity: ", buttonComponent.node.opacity);
+            }
+            else {
+                buttonComponent.node.opacity = 180;
+            }
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Back") {
+                //let node's picture opacity = 200;
+                buttonComponent.node.opacity = 150;
+            }
+            else {
+                buttonComponent.node.opacity = 120;
+            }
+        }
     }
 
     // update (dt) {}
