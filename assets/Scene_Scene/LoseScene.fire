@@ -1393,12 +1393,12 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 50,
+    "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 254,
-      "g": 254,
-      "b": 254,
+      "r": 230,
+      "g": 230,
+      "b": 230,
       "a": 255
     },
     "_contentSize": {
@@ -1536,7 +1536,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
+        2.4868995751603507e-14,
         0,
         0,
         0,

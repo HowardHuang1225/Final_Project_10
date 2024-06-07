@@ -50,6 +50,66 @@ export default class Menu extends cc.Component {
             let white = this.node.getChildByName("White");
             white.destroy();
         }
+
+        this.addMouseEvents(cc.find("Canvas/Back"));
+        this.addMouseEvents(cc.find("Canvas/Setting"));
+        this.addMouseEvents(cc.find("Canvas/History"));
+        this.addMouseEvents(cc.find("Canvas/Intro"));
+        this.addMouseEvents(cc.find("Canvas/Start"));
+
+        this.addFloatingEffect(cc.find("Canvas/Mark"));
+    }
+
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
+    }
+    onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Back") {
+                buttonComponent.node.opacity = 255;
+            } else if (node.name === "Start") {
+                //let node's picture opacity = 200;
+                buttonComponent.node.opacity = 255;
+            }
+            else {
+                buttonComponent.node.opacity = 255;
+            }
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Back") {
+                buttonComponent.node.opacity = 150;
+            } else if (node.name === "Start") {
+                buttonComponent.node.opacity = 205;
+            }
+            else {
+                buttonComponent.node.opacity = 205;
+            }
+        }
+    }
+    addFloatingEffect(node: cc.Node) {
+        if (node) {
+            cc.tween(node)
+                .repeatForever(
+                    cc.tween()
+                        .parallel(
+                            cc.tween().by(1.2, { position: cc.v3(0, 8, 0) }, { easing: 'sineInOut' }),
+                            cc.tween().to(1.2, { scale: 1.03 }, { easing: 'sineInOut' })
+                        )
+                        .parallel(
+                            cc.tween().by(1.2, { position: cc.v3(0, -8, 0) }, { easing: 'sineInOut' }),
+                            cc.tween().to(1.2, { scale: 1.0 }, { easing: 'sineInOut' })
+                        )
+                )
+                .start();
+        }
     }
 
 
