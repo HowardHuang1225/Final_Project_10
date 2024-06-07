@@ -9,10 +9,19 @@ export default class PlayerAttack extends cc.Component {
     @property // 射击间隔
     fireInterval: number = 1; // 調整攻擊間隔為 0.5 秒
 
+    @property(cc.AudioClip)
+    shootsound: cc.AudioClip = null;
+
     private fireTimer: number = 0;
     private level: number = 0;
     private experienceSystem: ExperienceSystem = null;
     private playerAttackLevelLabel: cc.Label = null; // 引用 PlayerAttackLevelLabel
+
+    playSoundEffect(a:cc.AudioClip) {
+        if (a) {
+            cc.audioEngine.playEffect(a, false);
+        }
+    }
 
     onLoad(){
         this.experienceSystem = cc.find("Canvas/Main Camera/ExperienceBar").getComponent(ExperienceSystem);
@@ -88,6 +97,8 @@ export default class PlayerAttack extends cc.Component {
                 this.createBullet(direction);
             }
         }
+
+        this.playSoundEffect(this.shootsound);
     }
 
     createBullet(direction: cc.Vec2) {

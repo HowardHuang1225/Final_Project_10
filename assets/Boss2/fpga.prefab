@@ -438,6 +438,7 @@
     "LifeBar": {
       "__id__": 7
     },
+    "timerNode": null,
     "_id": ""
   },
   {

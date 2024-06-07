@@ -109,6 +109,9 @@
       },
       {
         "__id__": 58
+      },
+      {
+        "__id__": 59
       }
     ],
     "_prefab": null,
@@ -2680,5 +2683,21 @@
       "__uuid__": "96e8665f-d3c1-472c-a53d-62a72e593dc8"
     },
     "_id": "a5iKFnkW5IWqibMSKDGcUF"
+  },
+  {
+    "__type__": "d44c16ZVqtPy5YaGUjkfjEN",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "testPrefab": {
+      "__uuid__": "3221dbe9-303c-4e6e-b241-8ddd871f43b5"
+    },
+    "alternatePrefab": {
+      "__uuid__": "85c78466-f3a8-40ab-a5ec-48696e33dd06"
+    },
+    "_id": "6eH/STrSNK9KixUQdMdBt+"
   }
 ]

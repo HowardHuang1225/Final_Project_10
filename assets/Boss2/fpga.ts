@@ -22,6 +22,9 @@ export default class Boss2 extends cc.Component {
     @property(cc.ProgressBar)
     LifeBar: cc.ProgressBar = null;
 
+    @property(cc.Node)
+    timerNode: cc.Node = null;  // 关联 Timer 节点
+
     private player: cc.Node = null;
     private rigidBody: cc.RigidBody = null;
     private screenSize: cc.Size = null;
@@ -31,7 +34,7 @@ export default class Boss2 extends cc.Component {
     private invincible: boolean = false;
 
     onLoad() {
-        this.bosslife = 100;
+        this.bosslife = 1;
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.rigidBody = this.getComponent(cc.RigidBody);
@@ -54,19 +57,66 @@ export default class Boss2 extends cc.Component {
         // this.anim.play("rotate");
     }
 
+    
     update(dt) {
+        console.log("ttime: ",cc.find("Canvas/Main Camera/timer").getComponent(Timer).Time()); 
         if (this.bosslife <= 0) {
-            // cc.find("Timer").getComponent(Timer).stopTimer(); 
-            cc.director.loadScene("Menu");
+            cc.audioEngine.stopMusic();
+            // 暫停計時
+            // cc.find("Canvas/Main Camera/timer").getComponent(Timer).stopTimer();
+            let score = cc.find("Canvas/Main Camera/timer").getComponent(Timer).Time();
+
+            // 获取当前登录用户的 UID
+            let user = firebase.auth().currentUser;
+            let userId = user.uid;
+            const dbRef = firebase.database().ref('users/'+ userId);
+            let time
+            // Listen for data changes
+            dbRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                time = Math.floor(data.time.time);
+            });
+
+            let a = time===0?score:Math.min(time,score);
+
+    
+            if (user) {
+                let userId = user.uid;
+                let userScoreRef = firebase.database().ref('users/' + userId+"/time/");
+                
+                cc.director.loadScene("Menu");
+                firebase.database().ref('users/' + userId+"/time/").set({
+                    time: a,
+                }).then(() => {
+                }).catch(error => {
+                    console.error("Failed to save email to database:", error);
+                });
+
+
+                
+                firebase.database().ref('leaderboard/' + a)
+                .update(
+                    {email: user.email
+                });
+
+                firebase.database().ref('users/' + userId+"/time/").set({
+                    time: a,
+                }).then(() => {
+                }).catch(error => {
+                    console.error("Failed to save email to database:", error);
+                });
+    
+                // 切换到菜单场景
+                
+            } else {
+                console.error("No user is signed in.");
+            }
         }
-        // if (!this.istouch && this.player) {
-        //     this.moveToPlayer();
-        // } else {
-        //     this.rigidBody.linearVelocity = cc.v2(0, 0);
-        // }
-        
-        this.LifeBar.progress = this.bosslife/100;
+    
+        // 更新生命条
+        this.LifeBar.progress = this.bosslife / 100;
     }
+    
 
     // moveToPlayer() {
     //     if (this.player) {

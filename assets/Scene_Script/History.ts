@@ -61,14 +61,25 @@ export default class History extends cc.Component {
         });
     }
 
-    updateLabels(username: string, score: string) {
+    updateLabels(username: string, timeInSeconds: number) {
         if (this.usernameLabel) {
             this.usernameLabel.string = username;
         }
 
         if (this.scoreLabel) {
-            this.scoreLabel.string = "Fastest Time: "+score;
+            const formattedTime = this.formatTime(timeInSeconds);
+            this.scoreLabel.string = "Fastest Time: " + formattedTime;
         }
+    }
+
+    formatTime(timeInSeconds: number): string {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+        return `${this.padZero(minutes)}:${this.padZero(seconds)}`;
+    }
+
+    padZero(num: number): string {
+        return num < 10 ? '0' + num : num.toString();
     }
 
     start() {

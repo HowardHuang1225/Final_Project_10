@@ -36,11 +36,32 @@ export class MonsterManager extends cc.Component {
     @property(cc.Prefab)
     bossPrefab2: cc.Prefab = null;
 
+    @property(cc.AudioClip)
+    bgm0: cc.AudioClip = null;
+
+    @property(cc.AudioClip)
+    bgm1: cc.AudioClip = null;
+
+    @property(cc.AudioClip)
+    bgm2: cc.AudioClip = null;
+
 
     private monsterPool: cc.NodePool;
     private spawnInterval: number = 0.3;  // 初始生成间隔
 
+    playBackgroundMusic(b: cc.AudioClip) {
+        if (b) {
+            cc.audioEngine.playMusic(b, true); // true 表示循环播放
+        }
+    }
+
+    // 停止背景音乐的方法
+    stopBackgroundMusic() {
+        cc.audioEngine.stopMusic();
+    }
+
     onLoad() {
+        this.playBackgroundMusic(this.bgm0);
         // 找到 Timer 节点并开始计时器
         this.timerNode = cc.find("Canvas/Main Camera/timer");
         const timer = this.timerNode.getComponent("Timer");
@@ -53,13 +74,21 @@ export class MonsterManager extends cc.Component {
             this.monsterPool.put(monster);
         }
         // 调度在100秒后生成Boss
-        this.scheduleOnce(this.spawnBoss1, 95);
+        this.scheduleOnce(()=>{
+            this.spawnBoss1()
+            cc.audioEngine.stopMusic();
+            this.playBackgroundMusic(this.bgm1)
+        }, 95);
 
         // this.scheduleOnce(()=>{
         //     cc.director.loadScene("Menu");
         // }, 110);
 
-        this.scheduleOnce(this.spawnBoss2, 150);
+        this.scheduleOnce(()=>{
+            this.spawnBoss2()
+            cc.audioEngine.stopMusic();
+            this.playBackgroundMusic(this.bgm2)
+        }, 150);
     }
 
     spawnBoss1() {

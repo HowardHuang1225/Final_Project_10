@@ -114,7 +114,7 @@ export default class Sign extends cc.Component {
               console.error("Failed to save email to database:", error);
           });
           firebase.database().ref('users/' + userId+"/time/").set({
-              time: "00:00",
+              time: 0,
           }).then(() => {
               console.log("User email saved to database as username.");
               cc.log("User signed up successfully!");

@@ -1,6 +1,7 @@
 import ExperienceSystem from './ExperienceSystem'; // Import the ExperienceSystem class
 import StaminaSystem from './StaminaSystem';
 const { ccclass, property } = cc._decorator;
+import SportSystem from './SportSystem';
 
 @ccclass
 export class PlayerController extends cc.Component {
@@ -29,6 +30,12 @@ export class PlayerController extends cc.Component {
     @property(cc.Prefab)
     bouncingBallPrefab: cc.Prefab = null;
 
+    @property(SportSystem)
+    sportSystem: SportSystem = null;
+
+    @property(cc.AudioClip)
+    rollSound: cc.AudioClip = null;
+
     private moveDir: cc.Vec2 = cc.v2(0, 0);
     private upDown: boolean = false;
     private downDown: boolean = false;
@@ -51,6 +58,7 @@ export class PlayerController extends cc.Component {
     private bouncelevel: number = -1;
     private level: number = 0;
     private BouncingBallAttackLevelLabel: cc.Label = null;
+    private rigidBody: cc.RigidBody = null;
 
     onLoad() {
         // this.node.zIndex = 8
@@ -59,6 +67,7 @@ export class PlayerController extends cc.Component {
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.physicManager.gravity = cc.v2(0, -200);
+        this.rigidBody = this.getComponent(cc.RigidBody);
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -91,10 +100,10 @@ export class PlayerController extends cc.Component {
         // 确保一开始播放 idle 动画
         this.playAnimation("player_idle");
     }
+    //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed * this.moveDir, this.getComponent(cc.RigidBody).linearVelocity.y);
 
     update(dt: number) {
-        this.node.x += this.playerSpeed * this.moveDir.x * dt;
-        this.node.y += this.playerSpeed * this.moveDir.y * dt;
+        this.rigidBody.linearVelocity = cc.v2(this.playerSpeed * this.moveDir.x, this.playerSpeed * this.moveDir.y)
         if (this.moveDir.x !== 0) {
             this.node.scaleX = (this.moveDir.x >= 0) ? 1 : -1;
         }
@@ -131,7 +140,7 @@ export class PlayerController extends cc.Component {
             case cc.macro.KEY.c:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.isring) {
                     this.experienceSystem.useUpgradePoint();
-                    this.spawnRingAttack(); 
+                    this.spawnRingAttack();
                     this.isring = true;
                     console.log(123);
                 }
@@ -139,7 +148,7 @@ export class PlayerController extends cc.Component {
             case cc.macro.KEY.z:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.ismoloto) {
                     this.experienceSystem.useUpgradePoint();
-                    this.spawnLandmineAttack(); 
+                    this.spawnLandmineAttack();
                     this.ismoloto = true;
                 }
                 break;
@@ -150,14 +159,21 @@ export class PlayerController extends cc.Component {
                 break;
 
             case cc.macro.KEY.b:
-                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && this.bouncelevel <3) {
+                if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && this.bouncelevel < 3) {
                     this.experienceSystem.useUpgradePoint();
                     this.enableBouncingBallAttack(); // 按下 J 键消耗升级点数并启用 BouncingBall 攻击方式
                     this.bouncelevel++;
-                    if(this.bouncelevel+1<=3){
-                        this.BouncingBallAttackLevelLabel.string = `${this.bouncelevel+1}`;
+                    if (this.bouncelevel + 1 <= 3) {
+                        this.BouncingBallAttackLevelLabel.string = `${this.bouncelevel + 1}`;
                     }
-                    
+
+                }
+                break;
+
+
+            case cc.macro.KEY.space:
+                if (this.sportSystem && this.sportSystem.currentStamina === this.sportSystem.maxStamina) {
+                    this.rollForward(); // 按下 R 键进行翻滚
                 }
                 break;
         }
@@ -262,15 +278,38 @@ export class PlayerController extends cc.Component {
     private spawnBouncingBall() {
         if (this.bouncingBallPrefab) {
             const bouncingBall = cc.instantiate(this.bouncingBallPrefab);
-            bouncingBall.scale = 0.5 + 0.2*this.bouncelevel; 
+            bouncingBall.scale = 0.5 + 0.2 * this.bouncelevel;
             bouncingBall.setPosition(this.node.position); // 确保位置为相对于玩家节点
             this.node.parent.addChild(bouncingBall); // 添加到玩家的父节点，以便相对于玩家的位置
             cc.log('Spawned new BouncingBall');
         }
     }
 
+
+    private rollForward() {
+        const rollDistance = 200; // 翻滚距离
+        const rollDuration = 0.3; // 翻滚时间
+
+        // 计算翻滚的目标位置
+        const rollDirection = cc.v3(this.moveDir.x, this.moveDir.y, 0).normalize().mul(rollDistance);
+        const targetPosition = this.node.position.add(rollDirection);
+
+        // 使用tween实现翻滚效果
+        cc.tween(this.node)
+            .to(rollDuration, { position: targetPosition }, { easing: 'quadInOut' })
+            .call(() => {
+                // 在翻滚完成时播放音效
+                cc.audioEngine.playEffect(this.rollSound, false); // 假设音效资源的名字为 "roll_sound"
+            })
+            .start();
+
+        // 重置体力值
+        this.sportSystem.resetStamina();
+    }
+
     onBeginContact(contact, selfCollider, otherCollider) {
         if (this.playerLife <= 0) {
+            cc.audioEngine.stopMusic();
             this.playAnimation("player_die");
             // const cover = cc.find("Canvas/Main Camera/Overlay1");
             // 例如，某个事件触发时调用

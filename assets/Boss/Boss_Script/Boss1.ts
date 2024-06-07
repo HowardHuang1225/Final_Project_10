@@ -21,6 +21,9 @@ export default class Boss1 extends cc.Component {
     @property(cc.ProgressBar)
     LifeBar: cc.ProgressBar = null;
 
+    @property(cc.AudioClip)
+    bgm0: cc.AudioClip = null;
+
     private player: cc.Node = null;
     private rigidBody: cc.RigidBody = null;
     private screenSize: cc.Size = null;
@@ -52,9 +55,17 @@ export default class Boss1 extends cc.Component {
         this.anim.play("rotate");
     }
 
+    playBackgroundMusic(b: cc.AudioClip) {
+        if (b) {
+            cc.audioEngine.playMusic(b, true); // true 表示循环播放
+        }
+    }
+
     update(dt) {
         if (this.bosslife <= 0) {
             this.Split();
+            // cc.audioEngine.stopMusic();
+            // this.playBackgroundMusic(this.bgm0)
         }
         if (!this.istouch && this.player) {
             this.moveToPlayer();

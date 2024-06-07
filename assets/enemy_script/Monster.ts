@@ -18,6 +18,9 @@ export default class Monster extends cc.Component {
 
     @property(cc.Prefab)
     chatgpt: cc.Prefab = null;
+
+    @property(cc.AudioClip)
+    hurtsound: cc.AudioClip = null;
     
 
     // 怪物速度
@@ -108,6 +111,12 @@ export default class Monster extends cc.Component {
         }, duration);
     }
 
+    playSoundEffect(a:cc.AudioClip) {
+        if (a) {
+            //cc.audioEngine.playEffect(a, false);
+        }
+    }
+
 
 
     onBeginContact(contact, selfCollider, otherCollider) {
@@ -116,6 +125,9 @@ export default class Monster extends cc.Component {
         if ((otherCollider.node.name === 'Bullet' || otherCollider.node.name === 'Bullet_ring' || otherCollider.node.name === 'Boomb_player' || otherCollider.node.name === 'CircleAttack' || otherCollider.node.name === 'BouncingBall') && this.life >=1) { 
             this.life -=1;
             this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
+            this.playSoundEffect(this.hurtsound);
+    
+
             // console.log("collide: ", this.life);
         }
         if((otherCollider.node.name === 'Bullet' || otherCollider.node.name === 'Bullet_ring' || otherCollider.node.name === 'Boomb_player' || otherCollider.node.name === 'CircleAttack' || otherCollider.node.name === 'BouncingBall') && this.life <= 0){
