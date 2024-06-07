@@ -45,6 +45,9 @@ export class MonsterManager extends cc.Component {
     @property(cc.AudioClip)
     bgm2: cc.AudioClip = null;
 
+    @property(cc.AudioClip)
+    entry: cc.AudioClip = null;
+
 
     private monsterPool: cc.NodePool;
     private spawnInterval: number = 0.3;  // 初始生成间隔
@@ -58,6 +61,12 @@ export class MonsterManager extends cc.Component {
     // 停止背景音乐的方法
     stopBackgroundMusic() {
         cc.audioEngine.stopMusic();
+    }
+
+    playSoundEffect(a:cc.AudioClip) {
+        if (a) {
+            cc.audioEngine.playEffect(a, false);
+        }
     }
 
     onLoad() {
@@ -76,8 +85,9 @@ export class MonsterManager extends cc.Component {
         // 调度在100秒后生成Boss
         this.scheduleOnce(()=>{
             this.spawnBoss1()
-            cc.audioEngine.stopMusic();
-            this.playBackgroundMusic(this.bgm1)
+            this.playSoundEffect(this.entry)
+            this.scheduleOnce(()=>{cc.audioEngine.stopMusic();
+            this.playBackgroundMusic(this.bgm1)}, 4);
         }, 95);
 
         // this.scheduleOnce(()=>{
@@ -86,8 +96,9 @@ export class MonsterManager extends cc.Component {
 
         this.scheduleOnce(()=>{
             this.spawnBoss2()
-            cc.audioEngine.stopMusic();
-            this.playBackgroundMusic(this.bgm2)
+            this.playSoundEffect(this.entry)
+            this.scheduleOnce(()=>{cc.audioEngine.stopMusic();
+            this.playBackgroundMusic(this.bgm2)}, 4);
         }, 150);
     }
 
@@ -102,7 +113,7 @@ export class MonsterManager extends cc.Component {
             let boss = cc.instantiate(this.bossPrefab);
             this.monsterParent.addChild(boss);
             boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +200);
-        }, 1);
+        }, 3);
     }
 
     spawnBoss2() {
@@ -114,7 +125,7 @@ export class MonsterManager extends cc.Component {
             let boss = cc.instantiate(this.bossPrefab2);
             this.monsterParent.addChild(boss);
             boss.setPosition(cc.find("Canvas/Main Camera").x, cc.find("Canvas/Main Camera").y +200);
-        }, 1);
+        }, 3);
     }
     
 
@@ -135,7 +146,7 @@ export class MonsterManager extends cc.Component {
         }
         console.log("elapsedTime: ",elapsedTime)
         if(elapsedTime >= 100) {
-            this.spawnInterval = 0.01;
+            this.spawnInterval = 0.03;
         }
         else if(elapsedTime >= 90) {
             this.spawnInterval = 0.04;
@@ -144,7 +155,7 @@ export class MonsterManager extends cc.Component {
             this.spawnInterval = 0.1;
         }
         else if(elapsedTime >= 60) {
-            this.spawnInterval = 0.01;
+            this.spawnInterval = 0.03;
         }
         else if (elapsedTime >= 30) {
             this.spawnInterval = 0.07;

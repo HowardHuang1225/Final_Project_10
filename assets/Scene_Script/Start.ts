@@ -1,4 +1,5 @@
 import Menu from "./Menu";
+import GlobalData from "./GlobalData";
 
 const { ccclass, property } = cc._decorator;
 
@@ -34,6 +35,14 @@ export default class Start extends cc.Component {
         console.log("StartOnLoad Menu.EffectVolume: ", Menu.EffectVolume);
     }
     start() {
+        this.addMouseEvents(cc.find("Canvas/SignIn"));
+        this.addMouseEvents(cc.find("Canvas/SignUp"));
+        this.addMouseEvents(cc.find("Canvas/Guest"));
+        this.addMouseEvents(cc.find("Canvas/ESC_BT"));
+
+        // Add floating effect to Mark and Mark2 nodes
+        this.addFloatingEffect(cc.find("Canvas/Mark"));
+        this.addFloatingEffect1(cc.find("Canvas/Mark2"));
         // link click
         let startbtn = new cc.Component.EventHandler();
         let signinBt = new cc.Component.EventHandler();
@@ -61,6 +70,65 @@ export default class Start extends cc.Component {
         cc.find("Canvas/ESC_BT").getComponent(cc.Button).clickEvents.push(stopGamebtn);
     }
 
+    addMouseEvents(node: cc.Node) {
+        node.on(cc.Node.EventType.MOUSE_ENTER, this.onMouseEnter, this);
+        node.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseLeave, this);
+    }
+  onMouseEnter(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Guest") {
+                buttonComponent.node.opacity = 200;
+            } else if (node.name === "ESC_BT") {
+                buttonComponent.node.opacity = 250;
+                console.log("ESC_BT opacity: ", buttonComponent.node.opacity);
+            }
+            else {
+                buttonComponent.node.opacity = 180;
+            }
+        }
+    }
+
+    onMouseLeave(event) {
+        const node = event.target;
+        const buttonComponent = node.getComponent(cc.Button);
+        if (buttonComponent) {
+            if (node.name === "Guest") {
+                buttonComponent.node.opacity = 150;
+            } else if (node.name === "ESC_BT") {
+                //let node's picture opacity = 200;
+                buttonComponent.node.opacity = 200;
+            }
+            else {
+                buttonComponent.node.opacity = 120;
+            }
+        }
+    }
+
+    addFloatingEffect(node: cc.Node) {
+        if (node) {
+            cc.tween(node)
+                .repeatForever(
+                    cc.tween()
+                        .by(1, { position: cc.v3(0, 10, 0) }, { easing: 'sineInOut' })
+                        .by(1, { position: cc.v3(0, -10, 0) }, { easing: 'sineInOut' })
+                )
+                .start();
+        }
+    }
+    addFloatingEffect1(node: cc.Node) {
+        if (node) {
+            cc.tween(node)
+                .repeatForever(
+                    cc.tween()
+                        .by(1.2, { position: cc.v3(0, 8, 0) }, { easing: 'sineInOut' })
+                        .by(1.2, { position: cc.v3(0, -8, 0) }, { easing: 'sineInOut' })
+                )
+                .start();
+        }
+    }
+
     loadMenu() {
         const existingSignWinNode = this.node.getParent().getChildByName("SignWin");
         const existingSignUpNode = this.node.getParent().getChildByName("SignUp");
@@ -72,11 +140,20 @@ export default class Start extends cc.Component {
         // 播放點擊音效
         let effect_value = Menu.EffectVolume * 10;
         cc.audioEngine.play(this.click, false, effect_value);
-        this.scheduleOnce(() => {
-            cc.audioEngine.stopAll();
-            cc.director.loadScene("Menu");
-        }, 0.5);
+
+        // 开始淡出动画
+        let white = this.node.getChildByName("White");
+        GlobalData.isStart = 1;
+
+        cc.tween(white)
+            .to(0.5, { opacity: 255 })  // 1 秒钟内将透明度变为 0
+            .call(() => {
+                cc.audioEngine.stopAll();
+                cc.director.loadScene("Menu");
+            })
+            .start();
     }
+
 
     signinScene() {
         // Check if SignWin node already exists

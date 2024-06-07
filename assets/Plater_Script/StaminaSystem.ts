@@ -56,7 +56,14 @@ export default class StaminaSystem extends cc.Component {
                 playerController.applySpeedReduction(false);
             }
         }
+
+
     }*/
+
+    Value(){
+        return this.currentStamina;
+    }
+
     decreaseStamina() {
         this.currentStamina -= this.staminaDecreaseRate;
         if (this.currentStamina < 0) {

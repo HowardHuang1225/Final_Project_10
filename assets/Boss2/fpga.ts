@@ -4,6 +4,8 @@ import {PlayerController} from "../Plater_Script/PlayerControl"
 import StaminaSystem from "../Plater_Script/StaminaSystem"
 import Timer from "../enemy_script/Timer"
 
+import GlobalData from "../Scene_Script/GlobalData";
+
 @ccclass
 export default class Boss2 extends cc.Component {
 
@@ -34,7 +36,7 @@ export default class Boss2 extends cc.Component {
     private invincible: boolean = false;
 
     onLoad() {
-        this.bosslife = 1;
+        this.bosslife = 100;
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.rigidBody = this.getComponent(cc.RigidBody);
@@ -61,15 +63,24 @@ export default class Boss2 extends cc.Component {
     update(dt) {
         console.log("ttime: ",cc.find("Canvas/Main Camera/timer").getComponent(Timer).Time()); 
         if (this.bosslife <= 0) {
+            cc.audioEngine.stopAllEffects();
             cc.audioEngine.stopMusic();
+            let stam = cc.find("Canvas/Main Camera/StaminaBar").getComponent(StaminaSystem).Value()
+
+            if(GlobalData.sigin===false){
+                if(stam<60) cc.director.loadScene("WinScene_Normal");
+                else if(stam>=60) cc.director.loadScene("WinScene_True");
+                return
+            }
             // 暫停計時
             // cc.find("Canvas/Main Camera/timer").getComponent(Timer).stopTimer();
             let score = cc.find("Canvas/Main Camera/timer").getComponent(Timer).Time();
 
+            
             // 获取当前登录用户的 UID
             let user = firebase.auth().currentUser;
-            let userId = user.uid;
-            const dbRef = firebase.database().ref('users/'+ userId);
+            let userIdd = user.uid;
+            const dbRef = firebase.database().ref('users/'+ userIdd);
             let time
             // Listen for data changes
             dbRef.on('value', (snapshot) => {
@@ -81,10 +92,14 @@ export default class Boss2 extends cc.Component {
 
     
             if (user) {
+                console.log("user:", user +"  "+ userIdd)
                 let userId = user.uid;
                 let userScoreRef = firebase.database().ref('users/' + userId+"/time/");
                 
-                cc.director.loadScene("Menu");
+                if(stam<60) cc.director.loadScene("WinScene_Normal");
+                else if(stam>=60) cc.director.loadScene("WinScene_True");
+                // cc.director.loadScene("WinScene_True")
+                
                 firebase.database().ref('users/' + userId+"/time/").set({
                     time: a,
                 }).then(() => {
@@ -105,12 +120,17 @@ export default class Boss2 extends cc.Component {
                 }).catch(error => {
                     console.error("Failed to save email to database:", error);
                 });
-    
+                return
                 // 切换到菜单场景
                 
-            } else {
+            } 
+            else {
                 console.error("No user is signed in.");
+                if(stam<60) cc.director.loadScene("WinScene_Normal");
+                else if(stam>=60) cc.director.loadScene("WinScene_True");
+                return
             }
+            cc.director.loadScene("Menu")
         }
     
         // 更新生命条

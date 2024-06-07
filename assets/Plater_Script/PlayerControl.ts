@@ -3,6 +3,8 @@ import StaminaSystem from './StaminaSystem';
 const { ccclass, property } = cc._decorator;
 import SportSystem from './SportSystem';
 
+import Timer from "../enemy_script/Timer"
+
 @ccclass
 export class PlayerController extends cc.Component {
 
@@ -10,10 +12,10 @@ export class PlayerController extends cc.Component {
     playerSpeed: number = 300;
 
     @property()
-    playerLife: number = 30;
+    playerLife: number = 150;
 
     @property()
-    playermaxLife: number = 30;
+    playermaxLife: number = 150;
 
     @property(cc.Prefab)
     newAttackPrefab: cc.Prefab = null;
@@ -108,7 +110,7 @@ export class PlayerController extends cc.Component {
             this.node.scaleX = (this.moveDir.x >= 0) ? 1 : -1;
         }
 
-        this.LifeBar.progress = this.playerLife / 30;
+        this.LifeBar.progress = this.playerLife / this.playermaxLife;
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {
@@ -130,6 +132,11 @@ export class PlayerController extends cc.Component {
                     this.experienceSystem.addExperience(10); // 按下 E 键增加经验值
                 }
                 break;
+
+            case cc.macro.KEY.p:
+                this.playerLife+=10;
+                break;
+
             case cc.macro.KEY.v:
                 if (this.experienceSystem && this.experienceSystem.upgradePoints > 0 && !this.iscircle) {
                     this.experienceSystem.useUpgradePoint();
@@ -287,7 +294,7 @@ export class PlayerController extends cc.Component {
 
 
     private rollForward() {
-        const rollDistance = 200; // 翻滚距离
+        const rollDistance = 300; // 翻滚距离
         const rollDuration = 0.3; // 翻滚时间
 
         // 计算翻滚的目标位置
@@ -309,16 +316,28 @@ export class PlayerController extends cc.Component {
 
     onBeginContact(contact, selfCollider, otherCollider) {
         if (this.playerLife <= 0) {
+            // cc.audioEngine.stopAllEffects();
+            cc.audioEngine.pauseAllEffects();
             cc.audioEngine.stopMusic();
             this.playAnimation("player_die");
             // const cover = cc.find("Canvas/Main Camera/Overlay1");
             // 例如，某个事件触发时调用
             this.applyVisionRestriction1(255);  // 从当前透明度渐变到255
 
-            this.scheduleOnce(() => {
-                // cc.audioEngine.stopAll();
-                cc.director.loadScene("Menu");
-            }, 2.4);
+            let time = cc.find("Canvas/Main Camera/timer").getComponent(Timer).Time()
+
+            if (time >= 150) {
+                this.scheduleOnce(() => {
+                    // cc.audioEngine.stopAll();
+                    cc.director.loadScene("LoseScene");
+                }, 2.4);
+            }
+            else {
+                this.scheduleOnce(() => {
+                    // cc.audioEngine.stopAll();
+                    cc.director.loadScene("Menu");
+                }, 2.4);
+            }
             return;
         }
 
@@ -341,8 +360,9 @@ export class PlayerController extends cc.Component {
 
                 if (!this.invincible) {
                     this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-                    if (otherCollider.node.name === "Boomb") this.playerLife <= 10 ? 0 : this.playerLife -= 10;
+                    if (otherCollider.node.name === "Boomb") this.playerLife <= 40 ? 0 : this.playerLife -= 40;
                     else if (otherCollider.node.name === "Boss1" || otherCollider.node.name === "Boss1_2" || otherCollider.node.name === "Boss1_3" || otherCollider.node.name === "Boss1_4") this.playerLife <= 5 ? 0 : this.playerLife -= 5;
+                    else if (otherCollider.node.name === "bullet") this.playerLife <= 20 ? 0 : this.playerLife -= 20;
                     else this.playerLife -= 2;
                     cc.log(`Player Life: ${this.playerLife}`);
 
@@ -384,7 +404,7 @@ export class PlayerController extends cc.Component {
         }
         if (otherCollider.node.name === 'redbull') {
             // this.experienceSystem.addExperience(10);
-            this.playerLife + 10 >= 30 ? this.playerLife = 30 : this.playerLife += 10;
+            this.playerLife + 30 >= this.playermaxLife ? this.playerLife = this.playermaxLife : this.playerLife += 30;
             otherCollider.node.destroy();
             console.log("reveal: ", this.playerLife);
         }

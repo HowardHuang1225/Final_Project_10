@@ -1,5 +1,6 @@
 import Setting from "./Setting";
 import Start from "./Start";
+import GlobalData from "./GlobalData";
 
 const { ccclass, property } = cc._decorator;
 
@@ -33,6 +34,24 @@ export default class Menu extends cc.Component {
         }
         this.addButtonClickListener();
     }
+
+    start() {
+        if(GlobalData.isStart){
+            let white = this.node.getChildByName("White");
+            cc.tween(white)
+            .to(0.5, { opacity: 0 })  // 1 秒钟内将透明度变为 0
+            .call(() => {
+                white.destroy();  // 动画结束后销毁遮罩层
+            })
+            .start();
+            GlobalData.isStart = 0;
+        }
+        else {
+            let white = this.node.getChildByName("White");
+            white.destroy();
+        }
+    }
+
 
     addButtonClickListener() {
         // find the button and add a click event listener

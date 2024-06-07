@@ -113,7 +113,7 @@ export default class Monster extends cc.Component {
 
     playSoundEffect(a:cc.AudioClip) {
         if (a) {
-            //cc.audioEngine.playEffect(a, false);
+            cc.audioEngine.playEffect(a, false);
         }
     }
 

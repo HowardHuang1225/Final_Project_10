@@ -23,7 +23,15 @@ export default class ExperienceSystem extends cc.Component {
     @property
     upgradePoints: number = 0; // 升级点数
 
+    @property(cc.AudioClip)
+    upgrade: cc.AudioClip = null;
+
     private level: number = 1;
+    playSoundEffect(a:cc.AudioClip) {
+        if (a) {
+            cc.audioEngine.playEffect(a, false);
+        }
+    }
 
     onLoad() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -50,6 +58,8 @@ export default class ExperienceSystem extends cc.Component {
         this.levelUpExperience *= 1.8; // 每次升级后需要更多经验
         this.upgradePoints++; // 增加一个升级点数
 
+        this.playSoundEffect(this.upgrade)
+
         // 触发 level-up 事件
         cc.log(`Level up! New level: ${this.level}`);
         this.node.emit('level-up', this.level);
@@ -60,7 +70,7 @@ export default class ExperienceSystem extends cc.Component {
     updateUI() {
         this.levelLabel.string = 'Lv' + this.level;
         this.experienceBar.progress = this.currentExperience / this.levelUpExperience;
-        this.upgradePointsLabel.string = 'Remaining Points: ' + this.upgradePoints; // 更新升级点数
+        this.upgradePointsLabel.string = 'Points: ' + this.upgradePoints; // 更新升级点数
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {

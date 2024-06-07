@@ -1,5 +1,6 @@
 import Menu from "./Menu";
 declare const firebase: any;
+import GlobalData from "./GlobalData"
 
 const { ccclass, property } = cc._decorator;
 
@@ -107,6 +108,7 @@ export default class Sign extends cc.Component {
             let effect_value = Menu.EffectVolume * 10;
             cc.audioEngine.play(this.click, false, effect_value);
             this.scheduleOnce(() => {
+              GlobalData.sigin = true;
               cc.audioEngine.stopAll();
               cc.director.loadScene("Menu");
             }, 0.2);
@@ -147,6 +149,7 @@ export default class Sign extends cc.Component {
         let effect_value = Menu.EffectVolume * 10;
         cc.audioEngine.play(this.click, false, effect_value);
         this.scheduleOnce(() => {
+          GlobalData.sigin = true;
           cc.audioEngine.stopAll();
           cc.director.loadScene("Menu");
         }, 0.2);
