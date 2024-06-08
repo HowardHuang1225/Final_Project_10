@@ -16,13 +16,13 @@ export default class Bullet extends cc.Component {
         const deltaMove = this.direction.mul(this.speed * deltaTime);
         this.node.position = this.node.position.add(deltaMove);
 
-        // 如果子彈超出畫面，則銷毀子彈
-        // const visibleSize = cc.view.getVisibleSize();
-        // if (this.node.x < -visibleSize.width / 2 ||
-        //     this.node.x > visibleSize.width / 2 ||
-        //     this.node.y < -visibleSize.height / 2 ||
-        //     this.node.y > visibleSize.height / 2) {
-        //     this.node.destroy();
-        // }
+        //如果子彈超出畫面，則銷毀子彈
+        const visibleSize = cc.view.getVisibleSize();
+        if (this.node.x < -visibleSize.width  ||
+            this.node.x > visibleSize.width  ||
+            this.node.y < -visibleSize.height  ||
+            this.node.y > visibleSize.height ) {
+            this.node.destroy();
+        }
     }
 }

@@ -36,7 +36,7 @@ export default class Boss2 extends cc.Component {
     private invincible: boolean = false;
 
     onLoad() {
-        this.bosslife = 100;
+        this.bosslife = 50;
         this.physicManager = cc.director.getPhysicsManager();
         this.physicManager.enabled = true;
         this.rigidBody = this.getComponent(cc.RigidBody);
@@ -68,7 +68,8 @@ export default class Boss2 extends cc.Component {
             let stam = cc.find("Canvas/Main Camera/StaminaBar").getComponent(StaminaSystem).Value()
 
             if(GlobalData.sigin===false){
-                if(stam<60) cc.director.loadScene("WinScene_Normal");
+                if(stam<=30) cc.director.loadScene("LoseScene");
+                else if(stam<60 && stam>30) cc.director.loadScene("WinScene_Normal");
                 else if(stam>=60) cc.director.loadScene("WinScene_True");
                 return
             }
@@ -96,9 +97,9 @@ export default class Boss2 extends cc.Component {
                 let userId = user.uid;
                 let userScoreRef = firebase.database().ref('users/' + userId+"/time/");
                 
-                if(stam<60) cc.director.loadScene("WinScene_Normal");
+                if(stam<=30) cc.director.loadScene("LoseScene");
+                else if(stam<60 && stam>30) cc.director.loadScene("WinScene_Normal");
                 else if(stam>=60) cc.director.loadScene("WinScene_True");
-                // cc.director.loadScene("WinScene_True")
                 
                 firebase.database().ref('users/' + userId+"/time/").set({
                     time: a,
@@ -126,7 +127,8 @@ export default class Boss2 extends cc.Component {
             } 
             else {
                 console.error("No user is signed in.");
-                if(stam<60) cc.director.loadScene("WinScene_Normal");
+                if(stam<=30) cc.director.loadScene("LoseScene");
+                else if(stam<60 && stam>30) cc.director.loadScene("WinScene_Normal");
                 else if(stam>=60) cc.director.loadScene("WinScene_True");
                 return
             }
@@ -134,7 +136,7 @@ export default class Boss2 extends cc.Component {
         }
     
         // 更新生命条
-        this.LifeBar.progress = this.bosslife / 100;
+        this.LifeBar.progress = this.bosslife / 50;
     }
     
 

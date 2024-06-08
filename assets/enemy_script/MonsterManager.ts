@@ -146,10 +146,10 @@ export class MonsterManager extends cc.Component {
         }
         console.log("elapsedTime: ",elapsedTime)
         if(elapsedTime >= 100) {
-            this.spawnInterval = 0.03;
+            this.spawnInterval = 0.06;
         }
         else if(elapsedTime >= 90) {
-            this.spawnInterval = 0.04;
+            this.spawnInterval = 0.05;
         }
         else if(elapsedTime >= 80) {
             this.spawnInterval = 0.1;

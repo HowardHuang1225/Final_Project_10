@@ -112,6 +112,15 @@ export default class StaminaSystem extends cc.Component {
     
     }
 
+    subStamina(){
+        this.currentStamina -= 10;
+        if (this.currentStamina > this.maxStamina) {
+            this.currentStamina = this.maxStamina;
+        }
+        this.updateStaminaBar();
+    
+    }
+
     updateStaminaBar() {
         if (this.staminaBar) {
             this.staminaBar.progress = this.currentStamina / this.maxStamina;

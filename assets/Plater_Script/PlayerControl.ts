@@ -134,7 +134,7 @@ export class PlayerController extends cc.Component {
                 break;
 
             case cc.macro.KEY.p:
-                this.playerLife+=10;
+                this.playerLife += 10;
                 break;
 
             case cc.macro.KEY.v:
@@ -162,6 +162,11 @@ export class PlayerController extends cc.Component {
 
             case cc.macro.KEY.o:
                 this.staminaSystem.addStamina();
+                console.log("Stamina++");
+                break;
+
+            case cc.macro.KEY.i:
+                this.staminaSystem.subStamina();
                 console.log("Stamina++");
                 break;
 
@@ -315,6 +320,7 @@ export class PlayerController extends cc.Component {
     }
 
     onBeginContact(contact, selfCollider, otherCollider) {
+        console.log("this.playerLife:" , this.playerLife)
         if (this.playerLife <= 0) {
             // cc.audioEngine.stopAllEffects();
             cc.audioEngine.pauseAllEffects();
@@ -376,8 +382,9 @@ export class PlayerController extends cc.Component {
                 damageMonster['damageInterval'] = this.schedule(() => {
                     if (this.contactMonsters.has(damageMonster) && !this.invincible) {
                         this.changeColorTemporarily(selfCollider.node, cc.Color.RED, 0.1);
-                        if (otherCollider.node.name === "Boomb") this.playerLife <= 10 ? 0 : this.playerLife -= 10;
+                        if (otherCollider.node.name === "Boomb") this.playerLife <= 40 ? 0 : this.playerLife -= 40;
                         else if (otherCollider.node.name === "Boss1" || otherCollider.node.name === "Boss1_2" || otherCollider.node.name === "Boss1_3" || otherCollider.node.name === "Boss1_4") this.playerLife <= 5 ? 0 : this.playerLife -= 5;
+                        else if (otherCollider.node.name === "bullet") this.playerLife <= 20 ? 0 : this.playerLife -= 20;
                         else this.playerLife -= 2;
                         cc.log(`Player Life: ${this.playerLife}`);
 
